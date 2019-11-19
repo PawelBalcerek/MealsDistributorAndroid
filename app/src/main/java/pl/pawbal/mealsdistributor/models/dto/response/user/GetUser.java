@@ -1,5 +1,6 @@
 package pl.pawbal.mealsdistributor.models.dto.response.user;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import lombok.Data;
@@ -12,4 +13,5 @@ import pl.pawbal.mealsdistributor.models.enums.UserRole;
 public class GetUser extends User {
     private UUID id;
     private UserRole role;
+    private LocalDateTime creationDate;
 }

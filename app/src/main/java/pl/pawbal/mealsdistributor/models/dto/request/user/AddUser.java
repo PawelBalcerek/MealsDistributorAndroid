@@ -7,5 +7,6 @@ import pl.pawbal.mealsdistributor.models.dto.base.User;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class AddUser extends User {
+    private String password;
     private String confirmPassword;
 }

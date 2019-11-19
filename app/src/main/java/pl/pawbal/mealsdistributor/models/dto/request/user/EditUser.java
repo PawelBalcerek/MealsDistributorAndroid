@@ -10,5 +10,6 @@ import pl.pawbal.mealsdistributor.models.dto.base.User;
 @EqualsAndHashCode(callSuper = true)
 public class EditUser extends User {
     private UUID id;
+    private String password;
     private String confirmPassword;
 }

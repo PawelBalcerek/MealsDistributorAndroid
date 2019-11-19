@@ -1,5 +1,6 @@
 package pl.pawbal.mealsdistributor.models.dto.response.orderposition;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import lombok.Data;
@@ -11,4 +12,5 @@ public class GetOrderPosition {
     private UUID id;
     private GetUser user;
     private GetMeal meal;
+    private LocalDateTime creationDate;
 }
