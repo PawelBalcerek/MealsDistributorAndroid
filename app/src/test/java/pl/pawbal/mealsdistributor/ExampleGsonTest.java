@@ -2,18 +2,18 @@ package pl.pawbal.mealsdistributor;
 
 import com.google.gson.Gson;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import pl.pawbal.mealsdistributor.models.dto.response.config.GetConfiguration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ExampleGsonTest {
+class ExampleGsonTest {
 
     @Test
-    @Ignore("Just testing how library works. :)")
-    public void testGson() {
+    @Disabled("Just testing how library works. :)")
+    void testGson() {
         //given
         String testJson = "{\"key\": \"key\", \"value\": \"value\"}";
 
