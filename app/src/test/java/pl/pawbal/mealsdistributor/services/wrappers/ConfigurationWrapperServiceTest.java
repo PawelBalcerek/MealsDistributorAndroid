@@ -12,6 +12,7 @@ import pl.pawbal.mealsdistributor.models.dto.request.config.EditConfiguration;
 import pl.pawbal.mealsdistributor.models.dto.response.config.GetConfiguration;
 import pl.pawbal.mealsdistributor.services.rest.ConfigurationRestService;
 import pl.pawbal.mealsdistributor.services.wrappers.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.services.wrappers.core.SingleWrapper;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -24,6 +25,9 @@ class ConfigurationWrapperServiceTest {
     @Mock
     ConfigurationRestService configurationRestService;
 
+    @Mock
+    SingleWrapper singleWrapper;
+
     @Test
     void getConfiguration() {
         //given
@@ -31,15 +35,17 @@ class ConfigurationWrapperServiceTest {
         @SuppressWarnings("unchecked")
         CustomSingleObserver<GetConfiguration> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
-        Single<GetConfiguration> getConfigurationSingle = Mockito.mock(Single.class);
-        when(configurationRestService.getConfiguration(key)).thenReturn(getConfigurationSingle);
+        Single<GetConfiguration> single = Mockito.mock(Single.class);
+        when(configurationRestService.getConfiguration(key)).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         configurationWrapperService.getConfiguration(key, observer);
 
         //then
         verify(configurationRestService).getConfiguration(key);
-        verify(getConfigurationSingle).subscribe(observer);
+        verify(singleWrapper).wrapSingle(single);
+        verify(single).subscribe(observer);
     }
 
     @Test
@@ -49,14 +55,16 @@ class ConfigurationWrapperServiceTest {
         @SuppressWarnings("unchecked")
         CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
-        Single<Void> putConfigurationSingle = Mockito.mock(Single.class);
-        when(configurationRestService.editConfiguration(body)).thenReturn(putConfigurationSingle);
+        Single<Void> single = Mockito.mock(Single.class);
+        when(configurationRestService.editConfiguration(body)).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         configurationWrapperService.editRestaurant(body, observer);
 
         //then
         verify(configurationRestService).editConfiguration(body);
-        verify(putConfigurationSingle).subscribe(observer);
+        verify(singleWrapper).wrapSingle(single);
+        verify(single).subscribe(observer);
     }
 }

@@ -16,6 +16,7 @@ import pl.pawbal.mealsdistributor.models.dto.response.restaurant.GetRestaurant;
 import pl.pawbal.mealsdistributor.models.dto.response.restaurant.GetRestaurants;
 import pl.pawbal.mealsdistributor.services.rest.RestaurantRestService;
 import pl.pawbal.mealsdistributor.services.wrappers.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.services.wrappers.core.SingleWrapper;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,6 +29,9 @@ class RestaurantWrapperServiceTest {
     @Mock
     RestaurantRestService restaurantRestService;
 
+    @Mock
+    SingleWrapper singleWrapper;
+
     @Test
     void getRestaurant() {
         //given
@@ -37,12 +41,14 @@ class RestaurantWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetRestaurant> single = Mockito.mock(Single.class);
         when(restaurantRestService.getRestaurant(id)).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         restaurantWrapperService.getRestaurant(id, observer);
 
         //then
         verify(restaurantRestService).getRestaurant(id);
+        verify(singleWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -54,12 +60,14 @@ class RestaurantWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetRestaurants> single = Mockito.mock(Single.class);
         when(restaurantRestService.getRestaurants()).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         restaurantWrapperService.getRestaurants(observer);
 
         //then
         verify(restaurantRestService).getRestaurants();
+        verify(singleWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -72,12 +80,14 @@ class RestaurantWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<Void> single = Mockito.mock(Single.class);
         when(restaurantRestService.addRestaurant(body)).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         restaurantWrapperService.addRestaurant(body, observer);
 
         //then
         verify(restaurantRestService).addRestaurant(body);
+        verify(singleWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -90,12 +100,14 @@ class RestaurantWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<Void> single = Mockito.mock(Single.class);
         when(restaurantRestService.editRestaurant(body)).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         restaurantWrapperService.editRestaurant(body, observer);
 
         //then
         verify(restaurantRestService).editRestaurant(body);
+        verify(singleWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -108,12 +120,14 @@ class RestaurantWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<Void> single = Mockito.mock(Single.class);
         when(restaurantRestService.deleteRestaurant(id)).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         restaurantWrapperService.deleteRestaurant(id, observer);
 
         //then
         verify(restaurantRestService).deleteRestaurant(id);
+        verify(singleWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 }
