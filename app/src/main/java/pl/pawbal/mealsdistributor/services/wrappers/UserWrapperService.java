@@ -4,7 +4,6 @@ import android.content.Context;
 
 import pl.pawbal.mealsdistributor.config.RestConfiguration;
 import pl.pawbal.mealsdistributor.models.dto.request.user.EditCurrentUser;
-import pl.pawbal.mealsdistributor.models.dto.request.user.LoginUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.models.dto.response.user.GetUser;
 import pl.pawbal.mealsdistributor.services.UserService;
@@ -33,12 +32,6 @@ public class UserWrapperService implements UserService {
     @Override
     public void registerUser(RegisterUser body, CustomSingleObserver<Void> observer) {
         userRestService.registerUser(body)
-                .subscribe(observer);
-    }
-
-    @Override
-    public void loginUser(LoginUser body, CustomSingleObserver<Void> observer) {
-        userRestService.loginUser(body)
                 .subscribe(observer);
     }
 

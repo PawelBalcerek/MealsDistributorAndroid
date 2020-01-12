@@ -9,7 +9,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ConfigurationRestService {
-    String CONFIGURATIONS_BASE_PATH = "/api/configurations";
+    String CONFIGURATIONS_BASE_PATH = "/configurations";
 
     @GET(CONFIGURATIONS_BASE_PATH + "/{key}")
     Single<GetConfiguration> getConfiguration(@Path("key") String key);

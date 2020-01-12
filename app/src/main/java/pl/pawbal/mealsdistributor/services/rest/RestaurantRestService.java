@@ -15,8 +15,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RestaurantRestService {
-    String RESTAURANT_BASE_PATH = "/api/restaurant";
-    String RESTAURANTS_BASE_PATH = "/api/restaurants";
+    String RESTAURANT_BASE_PATH = "/restaurant";
+    String RESTAURANTS_BASE_PATH = "/restaurants";
 
     @GET(RESTAURANT_BASE_PATH + "/{id}")
     Single<GetRestaurant> getRestaurant(@Path("id") UUID id);
