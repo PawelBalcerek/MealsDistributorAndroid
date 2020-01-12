@@ -3,7 +3,7 @@ package pl.pawbal.mealsdistributor.services.wrappers;
 import android.content.Context;
 
 import pl.pawbal.mealsdistributor.config.RestConfiguration;
-import pl.pawbal.mealsdistributor.models.dto.request.user.EditUser;
+import pl.pawbal.mealsdistributor.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.LoginUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.models.dto.response.user.GetUser;
@@ -25,26 +25,26 @@ public class UserWrapperService implements UserService {
     }
 
     @Override
-    public void getCurrentUserInfo(CustomSingleObserver<GetUser> observer) {
-        userRestService.getCurrentUserInfo()
+    public void getCurrentUser(CustomSingleObserver<GetUser> observer) {
+        userRestService.getCurrentUser()
                 .subscribe(observer);
     }
 
     @Override
-    public void registerUser(RegisterUser user, CustomSingleObserver<Void> observer) {
-        userRestService.registerUser(user)
+    public void registerUser(RegisterUser body, CustomSingleObserver<Void> observer) {
+        userRestService.registerUser(body)
                 .subscribe(observer);
     }
 
     @Override
-    public void loginUser(LoginUser user, CustomSingleObserver<Void> observer) {
-        userRestService.loginUser(user)
+    public void loginUser(LoginUser body, CustomSingleObserver<Void> observer) {
+        userRestService.loginUser(body)
                 .subscribe(observer);
     }
 
     @Override
-    public void editCurrentUserInfo(EditUser user, CustomSingleObserver<Void> observer) {
-        userRestService.editCurrentUserInfo(user)
+    public void editCurrentUser(EditCurrentUser body, CustomSingleObserver<Void> observer) {
+        userRestService.editCurrentUser(body)
                 .subscribe(observer);
     }
 }

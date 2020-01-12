@@ -50,13 +50,13 @@ class ConfigurationWrapperServiceTest {
         CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
         Single<Void> putConfigurationSingle = Mockito.mock(Single.class);
-        when(configurationRestService.putConfiguration(body)).thenReturn(putConfigurationSingle);
+        when(configurationRestService.editConfiguration(body)).thenReturn(putConfigurationSingle);
 
         //when
-        configurationWrapperService.putConfiguration(body, observer);
+        configurationWrapperService.editRestaurant(body, observer);
 
         //then
-        verify(configurationRestService).putConfiguration(body);
+        verify(configurationRestService).editConfiguration(body);
         verify(putConfigurationSingle).subscribe(observer);
     }
 }

@@ -8,7 +8,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import io.reactivex.Single;
-import pl.pawbal.mealsdistributor.models.dto.request.user.EditUser;
+import pl.pawbal.mealsdistributor.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.LoginUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.models.dto.response.user.GetUser;
@@ -27,19 +27,19 @@ class UserWrapperServiceTest {
     UserRestService userRestService;
 
     @Test
-    void getCurrentUserInfo() {
+    void getCurrentUser() {
         //given
         @SuppressWarnings("unchecked")
         CustomSingleObserver<GetUser> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
         Single<GetUser> getUserSingle = Mockito.mock(Single.class);
-        when(userRestService.getCurrentUserInfo()).thenReturn(getUserSingle);
+        when(userRestService.getCurrentUser()).thenReturn(getUserSingle);
 
         //when
-        userWrapperService.getCurrentUserInfo(observer);
+        userWrapperService.getCurrentUser(observer);
 
         //then
-        verify(userRestService).getCurrentUserInfo();
+        verify(userRestService).getCurrentUser();
         verify(getUserSingle).subscribe(observer);
     }
 
@@ -80,20 +80,20 @@ class UserWrapperServiceTest {
     }
 
     @Test
-    void editCurrentUserInfo() {
+    void editCurrentUser() {
         //given
-        EditUser user = new EditUser();
+        EditCurrentUser user = new EditCurrentUser();
         @SuppressWarnings("unchecked")
         CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
         Single<Void> single = Mockito.mock(Single.class);
-        when(userRestService.editCurrentUserInfo(user)).thenReturn(single);
+        when(userRestService.editCurrentUser(user)).thenReturn(single);
 
         //when
-        userWrapperService.editCurrentUserInfo(user, observer);
+        userWrapperService.editCurrentUser(user, observer);
 
         //then
-        verify(userRestService).editCurrentUserInfo(user);
+        verify(userRestService).editCurrentUser(user);
         verify(single).subscribe(observer);
     }
 }

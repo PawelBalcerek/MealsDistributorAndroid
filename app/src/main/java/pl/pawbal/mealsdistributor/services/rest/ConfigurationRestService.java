@@ -9,11 +9,11 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ConfigurationRestService {
-    String CONFIGURATIONS_BASE_PATH = "/api/configurations/";
+    String CONFIGURATIONS_BASE_PATH = "/api/configurations";
 
-    @GET(CONFIGURATIONS_BASE_PATH + "{key}")
+    @GET(CONFIGURATIONS_BASE_PATH + "/{key}")
     Single<GetConfiguration> getConfiguration(@Path("key") String key);
 
     @PUT(CONFIGURATIONS_BASE_PATH)
-    Single<Void> putConfiguration(@Body EditConfiguration configuration);
+    Single<Void> editConfiguration(@Body EditConfiguration configuration);
 }

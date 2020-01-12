@@ -30,8 +30,8 @@ public class ConfigurationWrapperService implements ConfigurationService {
     }
 
     @Override
-    public void putConfiguration(EditConfiguration body, CustomSingleObserver<Void> observer) {
-        configurationRestService.putConfiguration(body)
+    public void editRestaurant(EditConfiguration body, CustomSingleObserver<Void> observer) {
+        configurationRestService.editConfiguration(body)
                 .subscribe(observer);
     }
 }

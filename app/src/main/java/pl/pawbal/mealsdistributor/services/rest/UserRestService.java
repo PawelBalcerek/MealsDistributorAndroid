@@ -1,7 +1,7 @@
 package pl.pawbal.mealsdistributor.services.rest;
 
 import io.reactivex.Single;
-import pl.pawbal.mealsdistributor.models.dto.request.user.EditUser;
+import pl.pawbal.mealsdistributor.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.LoginUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.models.dto.response.user.GetUser;
@@ -14,7 +14,7 @@ public interface UserRestService {
     String USER_BASE_PATH = "/api/user";
 
     @GET(USER_BASE_PATH)
-    Single<GetUser> getCurrentUserInfo();
+    Single<GetUser> getCurrentUser();
 
     @POST(USER_BASE_PATH + "/register")
     Single<Void> registerUser(@Body RegisterUser user);
@@ -23,5 +23,5 @@ public interface UserRestService {
     Single<Void> loginUser(@Body LoginUser user);
 
     @PUT(USER_BASE_PATH)
-    Single<Void> editCurrentUserInfo(@Body EditUser user);
+    Single<Void> editCurrentUser(@Body EditCurrentUser user);
 }

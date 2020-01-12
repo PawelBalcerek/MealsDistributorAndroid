@@ -7,5 +7,5 @@ import pl.pawbal.mealsdistributor.services.wrappers.core.CustomSingleObserver;
 public interface ConfigurationService {
     void getConfiguration(String key, CustomSingleObserver<GetConfiguration> observer);
 
-    void putConfiguration(EditConfiguration body, CustomSingleObserver<Void> observer);
+    void editRestaurant(EditConfiguration body, CustomSingleObserver<Void> observer);
 }
