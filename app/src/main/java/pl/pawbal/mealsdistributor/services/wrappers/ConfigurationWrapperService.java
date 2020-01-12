@@ -23,7 +23,7 @@ public class ConfigurationWrapperService implements ConfigurationService {
 
     public ConfigurationWrapperService(Context context) {
         this(new RestConfiguration(context).create()
-                .create(ConfigurationRestService.class), new SingleWrapper());
+                .create(ConfigurationRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

@@ -25,7 +25,7 @@ public class OrderWrapperService implements OrderService {
 
     public OrderWrapperService(Context context) {
         this((new RestConfiguration(context)).create()
-                .create(OrderRestService.class), new SingleWrapper());
+                .create(OrderRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

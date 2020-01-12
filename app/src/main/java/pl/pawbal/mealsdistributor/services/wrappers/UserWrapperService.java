@@ -23,7 +23,7 @@ public class UserWrapperService implements UserService {
 
     public UserWrapperService(Context context) {
         this((new RestConfiguration(context)).create()
-                .create(UserRestService.class), new SingleWrapper());
+                .create(UserRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

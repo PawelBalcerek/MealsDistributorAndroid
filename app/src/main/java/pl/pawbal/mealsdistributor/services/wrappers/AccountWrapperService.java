@@ -22,7 +22,7 @@ public class AccountWrapperService implements AccountService {
 
     public AccountWrapperService(Context context) {
         this((new RestConfiguration(context)).create()
-                .create(AccountRestService.class), new SingleWrapper());
+                .create(AccountRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

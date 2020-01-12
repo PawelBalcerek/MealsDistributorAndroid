@@ -26,7 +26,7 @@ public class RestaurantWrapperService implements RestaurantService {
 
     public RestaurantWrapperService(Context context) {
         this((new RestConfiguration(context)).create()
-                .create(RestaurantRestService.class), new SingleWrapper());
+                .create(RestaurantRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

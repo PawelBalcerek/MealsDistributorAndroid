@@ -26,7 +26,7 @@ public class MealWrapperService implements MealService {
 
     public MealWrapperService(Context context) {
         this((new RestConfiguration(context)).create()
-                .create(MealRestService.class), new SingleWrapper());
+                .create(MealRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override
