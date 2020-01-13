@@ -10,7 +10,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.UUID;
 
 import io.reactivex.Single;
+import pl.pawbal.mealsdistributor.models.dto.request.orderproposition.AddOrderProposition;
 import pl.pawbal.mealsdistributor.models.dto.response.order.GetOrder;
+import pl.pawbal.mealsdistributor.models.dto.response.orderproposition.GetAvailableOrderPropositions;
+import pl.pawbal.mealsdistributor.models.dto.response.orderproposition.GetOrderProposition;
+import pl.pawbal.mealsdistributor.models.dto.response.orderproposition.GetParticipatedOrderPropositions;
 import pl.pawbal.mealsdistributor.services.rest.OrderPropositionRestService;
 import pl.pawbal.mealsdistributor.services.wrappers.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.services.wrappers.core.SingleWrapper;
@@ -33,9 +37,9 @@ class OrderPropositionWrapperServiceTest {
     void getParticipatedOrderPropositions() {
         //given
         @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
+        CustomSingleObserver<GetParticipatedOrderPropositions> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
+        Single<GetParticipatedOrderPropositions> single = Mockito.mock(Single.class);
         when(orderPropositionRestService.getParticipatedOrderPropositions()).thenReturn(single);
         when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
@@ -52,9 +56,9 @@ class OrderPropositionWrapperServiceTest {
     void getAvailableOrderPropositions() {
         //given
         @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
+        CustomSingleObserver<GetAvailableOrderPropositions> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
+        Single<GetAvailableOrderPropositions> single = Mockito.mock(Single.class);
         when(orderPropositionRestService.getAvailableOrderPropositions()).thenReturn(single);
         when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
@@ -68,13 +72,13 @@ class OrderPropositionWrapperServiceTest {
     }
 
     @Test
-    void getOrderPropositions() {
+    void getOrderProposition() {
         //given
         UUID id = UUID.randomUUID();
         @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
+        CustomSingleObserver<GetOrderProposition> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
+        Single<GetOrderProposition> single = Mockito.mock(Single.class);
         when(orderPropositionRestService.getOrderProposition(id)).thenReturn(single);
         when(singleWrapper.wrapSingle(single)).thenReturn(single);
 
@@ -90,7 +94,7 @@ class OrderPropositionWrapperServiceTest {
     @Test
     void addOrderProposition() {
         //given
-        Void body = null;
+        AddOrderProposition body = new AddOrderProposition();
         @SuppressWarnings("unchecked")
         CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")

@@ -5,7 +5,11 @@ import android.content.Context;
 import java.util.UUID;
 
 import pl.pawbal.mealsdistributor.config.RestConfiguration;
+import pl.pawbal.mealsdistributor.models.dto.request.orderproposition.AddOrderProposition;
 import pl.pawbal.mealsdistributor.models.dto.response.order.GetOrder;
+import pl.pawbal.mealsdistributor.models.dto.response.orderproposition.GetAvailableOrderPropositions;
+import pl.pawbal.mealsdistributor.models.dto.response.orderproposition.GetOrderProposition;
+import pl.pawbal.mealsdistributor.models.dto.response.orderproposition.GetParticipatedOrderPropositions;
 import pl.pawbal.mealsdistributor.services.OrderPropositionService;
 import pl.pawbal.mealsdistributor.services.rest.OrderPropositionRestService;
 import pl.pawbal.mealsdistributor.services.wrappers.core.CustomSingleObserver;
@@ -28,25 +32,25 @@ public class OrderPropositionWrapperService implements OrderPropositionService {
     }
 
     @Override
-    public void getParticipatedOrderPropositions(CustomSingleObserver<Void> observer) {
+    public void getParticipatedOrderPropositions(CustomSingleObserver<GetParticipatedOrderPropositions> observer) {
         singleWrapper.wrapSingle(orderPropositionRestService.getParticipatedOrderPropositions())
                 .subscribe(observer);
     }
 
     @Override
-    public void getAvailableOrderPropositions(CustomSingleObserver<Void> observer) {
+    public void getAvailableOrderPropositions(CustomSingleObserver<GetAvailableOrderPropositions> observer) {
         singleWrapper.wrapSingle(orderPropositionRestService.getAvailableOrderPropositions())
                 .subscribe(observer);
     }
 
     @Override
-    public void getOrderProposition(UUID id, CustomSingleObserver<Void> observer) {
+    public void getOrderProposition(UUID id, CustomSingleObserver<GetOrderProposition> observer) {
         singleWrapper.wrapSingle(orderPropositionRestService.getOrderProposition(id))
                 .subscribe(observer);
     }
 
     @Override
-    public void addOrderProposition(Void body, CustomSingleObserver<Void> observer) {
+    public void addOrderProposition(AddOrderProposition body, CustomSingleObserver<Void> observer) {
         singleWrapper.wrapSingle(orderPropositionRestService.addOrderProposition(body))
                 .subscribe(observer);
     }
