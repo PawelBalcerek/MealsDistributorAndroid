@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import pl.pawbal.mealsdistributor.models.dto.base.Restaurant;
 
 @Data
 public class GetRestaurants {
     @Expose
     @SerializedName("restaurants")
-    private List<GetRestaurant> restaurants = new ArrayList<>();
+    private List<Restaurant> restaurants = new ArrayList<>();
 }

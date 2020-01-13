@@ -7,19 +7,21 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import lombok.Data;
-import pl.pawbal.mealsdistributor.models.enums.UserRole;
 
 @Data
-public class User {
+public class Order {
     @Expose
     @SerializedName("id")
     private UUID id;
     @Expose
-    @SerializedName("email")
-    private String email;
+    @SerializedName("orderBoyId")
+    private UUID orderBoyId;
     @Expose
-    @SerializedName("role")
-    private UserRole role;
+    @SerializedName("restaurantId")
+    private UUID restaurantId;
+    @Expose
+    @SerializedName("isOrdered")
+    private boolean isOrdered;
     @Expose
     @SerializedName("creationDate")
     private LocalDateTime creationDate;

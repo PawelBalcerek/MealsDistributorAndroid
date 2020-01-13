@@ -3,16 +3,19 @@ package pl.pawbal.mealsdistributor.models.dto.response.restaurant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.UUID;
+import java.util.List;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import pl.pawbal.mealsdistributor.models.dto.base.Restaurant;
+import pl.pawbal.mealsdistributor.models.dto.response.meal.GetMeal;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class GetRestaurant extends Restaurant {
+public class GetRestaurant {
     @Expose
-    @SerializedName("id")
-    private UUID id;
+    @SerializedName("restaurant")
+    private Restaurant restaurant;
+
+    @Expose
+    @SerializedName("meals")
+    private List<GetMeal> meals;
 }

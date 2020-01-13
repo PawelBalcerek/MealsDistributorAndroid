@@ -6,11 +6,15 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import lombok.Data;
 
 @Data
 public class Restaurant {
+    @Expose
+    @SerializedName("id")
+    private UUID id;
     @Expose
     @SerializedName("name")
     private String name;

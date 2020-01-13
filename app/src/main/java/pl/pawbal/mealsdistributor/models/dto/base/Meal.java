@@ -12,6 +12,9 @@ import lombok.Data;
 @Data
 public class Meal {
     @Expose
+    @SerializedName("id")
+    private UUID id;
+    @Expose
     @SerializedName("name")
     private String name;
     @Expose
@@ -26,7 +29,4 @@ public class Meal {
     @Expose
     @SerializedName("endDate")
     private LocalDateTime endDate;
-    @Expose
-    @SerializedName("restaurantId")
-    private UUID restaurantId;
 }
