@@ -21,7 +21,7 @@ public interface MealRestService {
     @GET(MEAL_BASE_PATH + "/{id}")
     Single<GetMeal> getMeal(@Path("id") UUID id);
 
-    @GET("/restaurants/{restaurantId}" + MEALS_BASE_PATH)
+    @GET("/restaurant/{restaurantId}" + MEALS_BASE_PATH)
     Single<GetMeals> getMeals(@Path("restaurantId") UUID restaurantId);
 
     @POST(MEAL_BASE_PATH)
