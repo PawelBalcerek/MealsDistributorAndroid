@@ -19,7 +19,6 @@ public interface OrderRestService {
     @GET(ORDERS_BASE_PATH)
     Single<GetOrders> getOrders();
 
-    //TODO: verify returns from single
     @PUT(ORDER_BASE_PATH + "/{id}/ordered")
     Single<Void> markOrdered(@Path("id") UUID id);
 }
