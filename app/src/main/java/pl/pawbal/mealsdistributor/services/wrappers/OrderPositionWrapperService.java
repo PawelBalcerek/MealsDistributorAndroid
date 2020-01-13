@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.UUID;
 
 import pl.pawbal.mealsdistributor.config.RestConfiguration;
+import pl.pawbal.mealsdistributor.models.dto.response.orderposition.GetOrderPositions;
 import pl.pawbal.mealsdistributor.services.OrderPositionService;
 import pl.pawbal.mealsdistributor.services.rest.OrderPositionRestService;
 import pl.pawbal.mealsdistributor.services.wrappers.core.CustomSingleObserver;
@@ -27,20 +28,14 @@ public class OrderPositionWrapperService implements OrderPositionService {
     }
 
     @Override
-    public void getOrderPositions(CustomSingleObserver<Void> observer) {
+    public void getOrderPositions(CustomSingleObserver<GetOrderPositions> observer) {
         singleWrapper.wrapSingle(orderPositionRestService.getOrderPositions())
                 .subscribe(observer);
     }
 
     @Override
-    public void getOrderPositions(UUID orderPropositionId, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(orderPositionRestService.getOrderPositions(orderPropositionId))
-                .subscribe(observer);
-    }
-
-    @Override
-    public void addOrderPosition(UUID orderPropositionId, Void body, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(orderPositionRestService.addOrderPosition(orderPropositionId, body))
+    public void getOrderPositions(UUID orderId, CustomSingleObserver<GetOrderPositions> observer) {
+        singleWrapper.wrapSingle(orderPositionRestService.getOrderPositions(orderId))
                 .subscribe(observer);
     }
 }
