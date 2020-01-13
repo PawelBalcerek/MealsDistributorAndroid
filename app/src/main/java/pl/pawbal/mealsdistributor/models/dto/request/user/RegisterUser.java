@@ -4,12 +4,12 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import pl.pawbal.mealsdistributor.models.dto.base.User;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class AddUser extends User {
+public class RegisterUser {
+    @Expose
+    @SerializedName("email")
+    private String email;
     @Expose
     @SerializedName("password")
     private String password;

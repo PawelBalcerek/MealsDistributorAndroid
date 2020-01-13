@@ -3,23 +3,26 @@ package pl.pawbal.mealsdistributor.models.dto.response.order;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.List;
 
 import lombok.Data;
+import pl.pawbal.mealsdistributor.models.dto.base.Order;
+import pl.pawbal.mealsdistributor.models.dto.base.OrderPosition;
+import pl.pawbal.mealsdistributor.models.dto.base.Restaurant;
+import pl.pawbal.mealsdistributor.models.dto.base.User;
 
 @Data
 public class GetOrder {
     @Expose
-    @SerializedName("id")
-    private UUID id;
+    @SerializedName("order")
+    Order order;
     @Expose
-    @SerializedName("orderBoyId")
-    private UUID orderBoyId;
+    @SerializedName("orderBoy")
+    User user;
     @Expose
-    @SerializedName("isOrdered")
-    private boolean isOrdered;
+    @SerializedName("restaurant")
+    Restaurant restaurant;
     @Expose
-    @SerializedName("creationDate")
-    private LocalDateTime creationDate;
+    @SerializedName("orderPositions")
+    List<OrderPosition> orderPositions;
 }
