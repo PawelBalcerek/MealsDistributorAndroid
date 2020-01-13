@@ -2,6 +2,8 @@ package pl.pawbal.mealsdistributor.services.wrappers;
 
 import android.content.Context;
 
+import java.util.UUID;
+
 import pl.pawbal.mealsdistributor.config.RestConfiguration;
 import pl.pawbal.mealsdistributor.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.RegisterUser;
@@ -41,6 +43,12 @@ public class UserWrapperService implements UserService {
     @Override
     public void editCurrentUser(EditCurrentUser body, CustomSingleObserver<Void> observer) {
         singleWrapper.wrapSingle(userRestService.editCurrentUser(body))
+                .subscribe(observer);
+    }
+
+    @Override
+    public void getUser(UUID id, CustomSingleObserver<GetUser> observer) {
+        singleWrapper.wrapSingle(userRestService.getUser(id))
                 .subscribe(observer);
     }
 }

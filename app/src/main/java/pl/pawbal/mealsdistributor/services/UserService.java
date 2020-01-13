@@ -1,5 +1,7 @@
 package pl.pawbal.mealsdistributor.services;
 
+import java.util.UUID;
+
 import pl.pawbal.mealsdistributor.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.models.dto.response.user.GetUser;
@@ -11,4 +13,6 @@ public interface UserService {
     void registerUser(RegisterUser body, CustomSingleObserver<Void> observer);
 
     void editCurrentUser(EditCurrentUser body, CustomSingleObserver<Void> observer);
+
+    void getUser(UUID id, CustomSingleObserver<GetUser> observer);
 }

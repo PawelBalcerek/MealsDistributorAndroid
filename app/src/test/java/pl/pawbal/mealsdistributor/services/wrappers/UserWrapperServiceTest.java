@@ -7,6 +7,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.UUID;
+
 import io.reactivex.Single;
 import pl.pawbal.mealsdistributor.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.models.dto.request.user.RegisterUser;
@@ -84,6 +86,26 @@ class UserWrapperServiceTest {
 
         //then
         verify(userRestService).editCurrentUser(user);
+        verify(singleWrapper).wrapSingle(single);
+        verify(single).subscribe(observer);
+    }
+
+    @Test
+    void getUser() {
+        //given
+        UUID id = UUID.randomUUID();
+        @SuppressWarnings("unchecked")
+        CustomSingleObserver<GetUser> observer = Mockito.mock(CustomSingleObserver.class);
+        @SuppressWarnings("unchecked")
+        Single<GetUser> single = Mockito.mock(Single.class);
+        when(userRestService.getUser(id)).thenReturn(single);
+        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+
+        //when
+        userWrapperService.getUser(id, observer);
+
+        //then
+        verify(userRestService).getUser(id);
         verify(singleWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
