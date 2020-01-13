@@ -11,6 +11,8 @@ class ApplicationProperties {
     private final Context context;
     private final Properties properties;
 
+    // Used for mocking
+    @SuppressWarnings("unused")
     ApplicationProperties(Context context,
                           Properties properties) {
         this.context = context;

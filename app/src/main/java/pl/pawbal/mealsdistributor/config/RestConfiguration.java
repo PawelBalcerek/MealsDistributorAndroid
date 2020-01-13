@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestConfiguration {
     private static final String API_URL = "apiUrl";
-    private static final String DEFAULT_API_URL = "http://localhost";
+    private static final String DEFAULT_API_URL = "http://localhost/api";
 
     private final Context context;
 
