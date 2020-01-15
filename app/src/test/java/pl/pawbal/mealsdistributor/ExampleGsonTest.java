@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import pl.pawbal.mealsdistributor.models.dto.response.config.GetConfiguration;
+import pl.pawbal.mealsdistributor.data.models.dto.response.config.GetConfiguration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
