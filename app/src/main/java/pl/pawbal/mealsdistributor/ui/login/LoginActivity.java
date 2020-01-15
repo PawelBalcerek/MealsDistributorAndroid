@@ -15,9 +15,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.AccountFactory;
 import pl.pawbal.mealsdistributor.data.models.dto.request.account.Login;
-import pl.pawbal.mealsdistributor.data.service.AccountService;
-import pl.pawbal.mealsdistributor.data.service.wrapper.AccountWrapperService;
-import pl.pawbal.mealsdistributor.data.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.AccountService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.AccountWrapperService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 
 public class LoginActivity extends Activity {
     private AccountService accountService;
