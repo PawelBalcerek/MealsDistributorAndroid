@@ -1,32 +1,28 @@
 package pl.pawbal.mealsdistributor.data.api.service.wrapper;
 
-import android.content.Context;
-
 import java.util.UUID;
 
-import pl.pawbal.mealsdistributor.config.RestConfiguration;
-import pl.pawbal.mealsdistributor.data.models.dto.request.meal.AddMeal;
-import pl.pawbal.mealsdistributor.data.models.dto.request.meal.EditMeal;
-import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeal;
-import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import pl.pawbal.mealsdistributor.data.api.service.MealService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.MealRestService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.models.dto.request.meal.AddMeal;
+import pl.pawbal.mealsdistributor.data.models.dto.request.meal.EditMeal;
+import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeal;
+import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
 
+@Singleton
 public class MealWrapperService implements MealService {
     private final MealRestService mealRestService;
     private final SingleWrapper singleWrapper;
 
-    @SuppressWarnings("WeakerAccess")
+    @Inject
     MealWrapperService(MealRestService mealRestService, SingleWrapper singleWrapper) {
         this.mealRestService = mealRestService;
         this.singleWrapper = singleWrapper;
-    }
-
-    public MealWrapperService(Context context) {
-        this((new RestConfiguration(context)).create()
-                .create(MealRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

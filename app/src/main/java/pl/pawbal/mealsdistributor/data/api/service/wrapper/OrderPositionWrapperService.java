@@ -1,30 +1,26 @@
 package pl.pawbal.mealsdistributor.data.api.service.wrapper;
 
-import android.content.Context;
-
 import java.util.UUID;
 
-import pl.pawbal.mealsdistributor.config.RestConfiguration;
-import pl.pawbal.mealsdistributor.data.models.dto.response.orderposition.GetOrderPositions;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import pl.pawbal.mealsdistributor.data.api.service.OrderPositionService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPositionRestService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.models.dto.response.orderposition.GetOrderPositions;
 
+@Singleton
 public class OrderPositionWrapperService implements OrderPositionService {
     private final OrderPositionRestService orderPositionRestService;
     private final SingleWrapper singleWrapper;
 
-    @SuppressWarnings("WeakerAccess")
+    @Inject
     OrderPositionWrapperService(OrderPositionRestService orderPositionRestService,
                                 SingleWrapper singleWrapper) {
         this.orderPositionRestService = orderPositionRestService;
         this.singleWrapper = singleWrapper;
-    }
-
-    public OrderPositionWrapperService(Context context) {
-        this((new RestConfiguration(context)).create()
-                .create(OrderPositionRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

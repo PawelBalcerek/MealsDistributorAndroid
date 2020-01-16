@@ -1,29 +1,25 @@
 package pl.pawbal.mealsdistributor.data.api.service.wrapper;
 
-import android.content.Context;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
-import pl.pawbal.mealsdistributor.config.RestConfiguration;
-import pl.pawbal.mealsdistributor.data.models.dto.request.config.EditConfiguration;
-import pl.pawbal.mealsdistributor.data.models.dto.response.config.GetConfiguration;
 import pl.pawbal.mealsdistributor.data.api.service.ConfigurationService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.ConfigurationRestService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.models.dto.request.config.EditConfiguration;
+import pl.pawbal.mealsdistributor.data.models.dto.response.config.GetConfiguration;
 
+@Singleton
 public class ConfigurationWrapperService implements ConfigurationService {
     private final ConfigurationRestService configurationRestService;
     private final SingleWrapper singleWrapper;
 
-    @SuppressWarnings("WeakerAccess")
+    @Inject
     ConfigurationWrapperService(ConfigurationRestService configurationRestService,
                                 SingleWrapper singleWrapper) {
         this.configurationRestService = configurationRestService;
         this.singleWrapper = singleWrapper;
-    }
-
-    public ConfigurationWrapperService(Context context) {
-        this(new RestConfiguration(context).create()
-                .create(ConfigurationRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

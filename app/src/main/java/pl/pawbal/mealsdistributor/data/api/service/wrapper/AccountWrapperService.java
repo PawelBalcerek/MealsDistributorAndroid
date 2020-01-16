@@ -1,30 +1,26 @@
 package pl.pawbal.mealsdistributor.data.api.service.wrapper;
 
-import android.content.Context;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Single;
-import pl.pawbal.mealsdistributor.config.RestConfiguration;
-import pl.pawbal.mealsdistributor.data.models.dto.request.account.Login;
 import pl.pawbal.mealsdistributor.data.api.service.AccountService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.AccountRestService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.models.dto.request.account.Login;
 import retrofit2.Response;
 
+@Singleton
 public class AccountWrapperService implements AccountService {
     private final AccountRestService accountRestService;
     private final SingleWrapper singleWrapper;
 
-    @SuppressWarnings("WeakerAccess")
+    @Inject
     AccountWrapperService(AccountRestService accountRestService,
                           SingleWrapper singleWrapper) {
         this.accountRestService = accountRestService;
         this.singleWrapper = singleWrapper;
-    }
-
-    public AccountWrapperService(Context context) {
-        this((new RestConfiguration(context)).create()
-                .create(AccountRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

@@ -7,7 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface AccountRestService {
+public interface AccountRestService extends RestService {
     String ACCOUNT_BASE_PATH = "account";
 
     @POST(ACCOUNT_BASE_PATH + "/login")

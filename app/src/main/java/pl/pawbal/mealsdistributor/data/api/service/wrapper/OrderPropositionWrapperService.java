@@ -1,34 +1,30 @@
 package pl.pawbal.mealsdistributor.data.api.service.wrapper;
 
-import android.content.Context;
-
 import java.util.UUID;
 
-import pl.pawbal.mealsdistributor.config.RestConfiguration;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import pl.pawbal.mealsdistributor.data.api.service.OrderPropositionService;
+import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.orderproposition.AddOrderProposition;
 import pl.pawbal.mealsdistributor.data.models.dto.response.order.GetOrder;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetAvailableOrderPropositions;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetOrderProposition;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetParticipatedOrderPropositions;
-import pl.pawbal.mealsdistributor.data.api.service.OrderPropositionService;
-import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionRestService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
 
+@Singleton
 public class OrderPropositionWrapperService implements OrderPropositionService {
     private final OrderPropositionRestService orderPropositionRestService;
     private final SingleWrapper singleWrapper;
 
-    @SuppressWarnings("WeakerAccess")
+    @Inject
     OrderPropositionWrapperService(OrderPropositionRestService orderPropositionRestService,
                                    SingleWrapper singleWrapper) {
         this.orderPropositionRestService = orderPropositionRestService;
         this.singleWrapper = singleWrapper;
-    }
-
-    public OrderPropositionWrapperService(Context context) {
-        this((new RestConfiguration(context)).create()
-                .create(OrderPropositionRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override

@@ -1,31 +1,27 @@
 package pl.pawbal.mealsdistributor.data.api.service.wrapper;
 
-import android.content.Context;
-
 import java.util.UUID;
 
-import pl.pawbal.mealsdistributor.config.RestConfiguration;
-import pl.pawbal.mealsdistributor.data.models.dto.request.user.EditCurrentUser;
-import pl.pawbal.mealsdistributor.data.models.dto.request.user.RegisterUser;
-import pl.pawbal.mealsdistributor.data.models.dto.response.user.GetUser;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import pl.pawbal.mealsdistributor.data.api.service.UserService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.UserRestService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.models.dto.request.user.EditCurrentUser;
+import pl.pawbal.mealsdistributor.data.models.dto.request.user.RegisterUser;
+import pl.pawbal.mealsdistributor.data.models.dto.response.user.GetUser;
 
+@Singleton
 public class UserWrapperService implements UserService {
     private final UserRestService userRestService;
     private final SingleWrapper singleWrapper;
 
-    @SuppressWarnings("WeakerAccess")
+    @Inject
     UserWrapperService(UserRestService userRestService, SingleWrapper singleWrapper) {
         this.userRestService = userRestService;
         this.singleWrapper = singleWrapper;
-    }
-
-    public UserWrapperService(Context context) {
-        this((new RestConfiguration(context)).create()
-                .create(UserRestService.class), SingleWrapper.singleWrapper());
     }
 
     @Override
