@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
-public interface OrderRestService extends RestService {
+public interface OrderRestService {
     String ORDERS_BASE_PATH = "/orders";
     String ORDER_BASE_PATH = "/order";
 

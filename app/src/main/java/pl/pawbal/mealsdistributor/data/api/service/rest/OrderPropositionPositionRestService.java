@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface OrderPropositionPositionRestService extends RestService {
+public interface OrderPropositionPositionRestService {
     String POSITION_BASE_PATH = "/position";
     String POSITIONS_BASE_PATH = "/positions";
 
