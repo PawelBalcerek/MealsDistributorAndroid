@@ -31,7 +31,6 @@ import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPositionRestService
 import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionPositionRestService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionRestService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.OrderRestService;
-import pl.pawbal.mealsdistributor.data.api.service.rest.RestService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.RestaurantRestService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.UserRestService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.AccountWrapperService;
@@ -98,12 +97,6 @@ public class ApplicationModule {
     }
 
     // API Services
-
-    private <T extends RestService> T createRestService(RestConfiguration restConfiguration, Class<T> restServiceClass) {
-        return restConfiguration.create()
-                .create(restServiceClass);
-    }
-
     @Provides
     @Singleton
     SingleWrapper provideSingleWrapper() {
@@ -118,7 +111,8 @@ public class ApplicationModule {
 
     @Provides
     AccountRestService provideAccountRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, AccountRestService.class);
+        return restConfiguration.create()
+                .create(AccountRestService.class);
     }
 
     @Provides
@@ -129,7 +123,8 @@ public class ApplicationModule {
 
     @Provides
     ConfigurationRestService provideConfigurationRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, ConfigurationRestService.class);
+        return restConfiguration.create()
+                .create(ConfigurationRestService.class);
     }
 
     @Provides
@@ -140,7 +135,8 @@ public class ApplicationModule {
 
     @Provides
     MealRestService provideMealRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, MealRestService.class);
+        return restConfiguration.create()
+                .create(MealRestService.class);
     }
 
     @Provides
@@ -151,7 +147,8 @@ public class ApplicationModule {
 
     @Provides
     OrderPositionRestService provideOrderPositionRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, OrderPositionRestService.class);
+        return restConfiguration.create()
+                .create(OrderPositionRestService.class);
     }
 
     @Provides
@@ -162,7 +159,8 @@ public class ApplicationModule {
 
     @Provides
     OrderPropositionPositionRestService provideOrderPropositionPositionRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, OrderPropositionPositionRestService.class);
+        return restConfiguration.create()
+                .create(OrderPropositionPositionRestService.class);
     }
 
     @Provides
@@ -173,7 +171,8 @@ public class ApplicationModule {
 
     @Provides
     OrderPropositionRestService provideOrderPropositionRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, OrderPropositionRestService.class);
+        return restConfiguration.create()
+                .create(OrderPropositionRestService.class);
     }
 
     @Provides
@@ -184,7 +183,8 @@ public class ApplicationModule {
 
     @Provides
     OrderRestService provideOrderRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, OrderRestService.class);
+        return restConfiguration.create()
+                .create(OrderRestService.class);
     }
 
     @Provides
@@ -195,7 +195,8 @@ public class ApplicationModule {
 
     @Provides
     RestaurantRestService provideRestaurantRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, RestaurantRestService.class);
+        return restConfiguration.create()
+                .create(RestaurantRestService.class);
     }
 
     @Provides
@@ -206,6 +207,7 @@ public class ApplicationModule {
 
     @Provides
     UserRestService provideUserRestService(RestConfiguration restConfiguration) {
-        return createRestService(restConfiguration, UserRestService.class);
+        return restConfiguration.create()
+                .create(UserRestService.class);
     }
 }

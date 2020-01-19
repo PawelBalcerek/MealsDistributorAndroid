@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
-public interface ConfigurationRestService extends RestService {
+public interface ConfigurationRestService {
     String CONFIGURATIONS_BASE_PATH = "/configurations";
 
     @GET(CONFIGURATIONS_BASE_PATH + "/{key}")

@@ -13,7 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface OrderPropositionRestService extends RestService {
+public interface OrderPropositionRestService {
     String ORDER_PROPOSITION_BASE_PATH = "/order-proposition";
     String ORDER_PROPOSITIONS_BASE_PATH = "/order-propositions";
 
