@@ -1,4 +1,4 @@
-package pl.pawbal.mealsdistributor.ui.login;
+package pl.pawbal.mealsdistributor.ui.register;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,20 +14,22 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.ui.base.BaseActivity;
-import pl.pawbal.mealsdistributor.ui.register.RegisterActivity;
 
-public class LoginActivity extends BaseActivity implements LoginMvpView {
+public class RegisterActivity extends BaseActivity implements RegisterMvpView {
     @Inject
-    LoginMvpPresenter<LoginMvpView> presenter;
+    RegisterMvpPresenter<RegisterMvpView> presenter;
 
-    @BindView(R.id.et_login_login)
-    EditText loginEditText;
+    @BindView(R.id.et_register_email)
+    EditText emailEditText;
 
-    @BindView(R.id.et_login_password)
+    @BindView(R.id.et_register_password)
     EditText passwordEditText;
 
+    @BindView(R.id.et_register_confirmPassword)
+    EditText confirmPasswordEditText;
+
     public static Intent getStartIntent(Context context) {
-        return new Intent(context, LoginActivity.class);
+        return new Intent(context, RegisterActivity.class);
     }
 
     @Override
@@ -38,23 +40,23 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
 
     @Override
     protected void setUp() {
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
     }
 
-    @OnClick(R.id.btn_login_login)
-    void login() {
-        String email = loginEditText.getText().toString();
+    @OnClick(R.id.btn_register_register)
+    void register() {
+        String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        presenter.loginClick(email, password);
+        String confirmPassword = confirmPasswordEditText.getText().toString();
+        presenter.register(email, password, confirmPassword);
     }
 
-    @OnClick(R.id.tv_login_register)
-    void navigateToRegister() {
-        Intent intent = RegisterActivity.getStartIntent(LoginActivity.this);
-        startActivity(intent);
+    @Override
+    public void navigateToLogin() {
+        finish();
     }
 
     @Override

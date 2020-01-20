@@ -2,10 +2,10 @@ package pl.pawbal.mealsdistributor.data.api.service;
 
 import java.util.UUID;
 
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.data.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.data.models.dto.response.user.GetUser;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 
 public interface UserService {
     void getCurrentUser(CustomSingleObserver<GetUser> observer);

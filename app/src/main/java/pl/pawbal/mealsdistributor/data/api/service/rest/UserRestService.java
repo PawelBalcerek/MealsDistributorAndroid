@@ -13,7 +13,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface UserRestService {
-    String USER_BASE_PATH = "/user";
+    String USER_BASE_PATH = "user";
 
     @GET(USER_BASE_PATH)
     Single<GetUser> getCurrentUser();
@@ -21,7 +21,7 @@ public interface UserRestService {
     @GET(USER_BASE_PATH + "/{id}")
     Single<GetUser> getUser(@Path("id") UUID id);
 
-    @POST(USER_BASE_PATH + "/register")
+    @POST(USER_BASE_PATH)
     Single<Void> registerUser(@Body RegisterUser user);
 
     @PUT(USER_BASE_PATH)
