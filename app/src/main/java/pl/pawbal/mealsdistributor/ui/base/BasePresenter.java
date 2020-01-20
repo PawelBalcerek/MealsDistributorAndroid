@@ -19,7 +19,7 @@ public class BasePresenter<V> implements MvpPresenter<V> {
         this.mvpView = mvpView;
     }
 
-    V getMvpView() {
+    protected V getMvpView() {
         return mvpView;
     }
 

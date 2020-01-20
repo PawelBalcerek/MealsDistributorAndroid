@@ -33,9 +33,4 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
                 t -> Log.i("TEST", "TEST", t))
         );
     }
-
-    @Override
-    public void goToRegisterClick() {
-
-    }
 }
