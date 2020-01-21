@@ -42,7 +42,7 @@ import pl.pawbal.mealsdistributor.data.api.service.wrapper.OrderPropositionWrapp
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.OrderWrapperService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.RestaurantWrapperService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.UserWrapperService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.di.ApplicationContext;
 
 @Module
@@ -99,8 +99,8 @@ public class ApplicationModule {
     // API Services
     @Provides
     @Singleton
-    SingleWrapper provideSingleWrapper() {
-        return new SingleWrapper();
+    ResponseWrapper provideSingleWrapper() {
+        return new ResponseWrapper();
     }
 
     @Provides

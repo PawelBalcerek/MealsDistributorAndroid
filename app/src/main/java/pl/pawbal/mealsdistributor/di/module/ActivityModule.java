@@ -12,6 +12,9 @@ import pl.pawbal.mealsdistributor.data.models.dto.factory.UserFactory;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
 import pl.pawbal.mealsdistributor.ui.action.core.SuccessHandler;
+import pl.pawbal.mealsdistributor.ui.home.HomeMvpPresenter;
+import pl.pawbal.mealsdistributor.ui.home.HomeMvpView;
+import pl.pawbal.mealsdistributor.ui.home.HomePresenter;
 import pl.pawbal.mealsdistributor.ui.login.LoginMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.login.LoginMvpView;
 import pl.pawbal.mealsdistributor.ui.login.LoginPresenter;
@@ -21,6 +24,9 @@ import pl.pawbal.mealsdistributor.ui.main.MainPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpView;
 import pl.pawbal.mealsdistributor.ui.register.RegisterPresenter;
+import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpPresenter;
+import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpView;
+import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantPresenter;
 
 @Module
 public class ActivityModule {
@@ -58,6 +64,16 @@ public class ActivityModule {
 
     @Provides
     MainMvpPresenter<MainMvpView> provideMainMvpPresenter(MainPresenter<MainMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    HomeMvpPresenter<HomeMvpView> provideHomeMvpPresenter(HomePresenter<HomeMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    RestaurantMvpPresenter<RestaurantMvpView> provideRestaurantMvpPresenter(RestaurantPresenter<RestaurantMvpView> presenter) {
         return presenter;
     }
 
