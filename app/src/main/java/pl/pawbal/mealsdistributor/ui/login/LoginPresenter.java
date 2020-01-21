@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.data.api.service.AccountService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.AccountFactory;
 import pl.pawbal.mealsdistributor.data.models.dto.request.account.Login;
 import pl.pawbal.mealsdistributor.ui.action.error.AccountErrorHandler;
@@ -32,11 +32,13 @@ public class LoginPresenter<V extends LoginMvpView> extends BasePresenter<V> imp
 
     @Override
     public void loginClick(String email, String password) {
+        getMvpView().showLoading();
+        getMvpView().hideKeyboard();
         Login body = accountFactory.create(email, password);
-        accountService.login(body, new CustomSingleObserver<>(
+        accountService.login(body, new CustomCompletableObserver(
                 getCompositeDisposable(),
-                a -> successHandler.onLoginSuccess(getMvpView()),
-                errorHandler::onLoginError
+                () -> successHandler.onLoginSuccess(getMvpView()),
+                t -> errorHandler.onLoginError(t, getMvpView())
         ));
     }
 }

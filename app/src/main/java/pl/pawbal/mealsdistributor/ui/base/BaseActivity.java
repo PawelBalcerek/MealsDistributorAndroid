@@ -1,7 +1,10 @@
 package pl.pawbal.mealsdistributor.ui.base;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +17,7 @@ import pl.pawbal.mealsdistributor.di.module.ActivityModule;
 import pl.pawbal.mealsdistributor.service.ActivityCommonService;
 import pl.pawbal.mealsdistributor.service.NetworkCommonService;
 
-public abstract class BaseActivity extends AppCompatActivity implements MvpView {
+public abstract class BaseActivity extends AppCompatActivity implements MvpView, BaseFragment.Callback {
     private ActivityComponent activityComponent;
     private ProgressDialog progressDialog;
     private Unbinder unbinder;
@@ -50,6 +53,24 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
 
     public void setUnbinder(Unbinder unbinder) {
         this.unbinder = unbinder;
+    }
+
+    @Override
+    public void hideKeyboard() {
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputMethodManager != null)
+                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    public void onFragmentAttached() {
+    }
+
+    @Override
+    public void onFragmentDetached(String tag) {
     }
 
     @Override

@@ -11,5 +11,6 @@ public class AccountSuccessHandler {
 
     public void onLoginSuccess(LoginMvpView view) {
         view.navigateToMainActivity();
+        view.hideLoading();
     }
 }

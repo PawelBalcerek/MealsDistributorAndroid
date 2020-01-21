@@ -7,10 +7,9 @@
     <string name="register_yourself">Zarejestruj się…</string>
     <string name="email">E-mail</string>
     <string name="register">Zarejestruj</string>
-    <string name="register_success_toast">Rejestracja przebiegła pomyślnie.</string>
-    <string name="register_default_error_toast">Rejestracja nie powiodła się, proszę spróbować ponownie.</string>
-    <string name="register_error_400_toast">Podane dane są niepoprawne.</string>
-    <string name="register_error_409_toast">Użytkownik o podanym adresie e-mail już istnieje.</string>
-    <string name="login_default_error_toast">Logowanie nie powiodło się, proszę spróbować ponownie.</string>
     <string name="hello_navbar">Witaj,</string>
+    <string name="restaurants">Restauracje</string>
+    <string name="home">Strona startowa</string>
+    <string name="pyszne_pl">PYSZNE</string>
+    <string name="phone_number">Tel.</string>
 </resources>

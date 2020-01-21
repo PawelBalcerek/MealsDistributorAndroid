@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,6 +23,8 @@ import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.config.FontManager;
 import pl.pawbal.mealsdistributor.ui.base.BaseActivity;
+import pl.pawbal.mealsdistributor.ui.home.HomeFragment;
+import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
@@ -53,8 +57,17 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
+        attachHomeFragment();
         setUpTopBar();
         setUpNavigationView();
+    }
+
+    private void attachHomeFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .disallowAddToBackStack()
+                .add(R.id.fragment_wrapper, HomeFragment.newInstance(), HomeFragment.TAG)
+                .commit();
     }
 
     private void setUpTopBar() {
@@ -64,6 +77,21 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     private void setUpNavigationView() {
         loginTextView = menuNavigationView.findViewById(R.id.tv_navigation_header_login);
+        menuNavigationView.setNavigationItemSelectedListener(this::navigationItemSelectedAction);
+    }
+
+    private boolean navigationItemSelectedAction(MenuItem item) {
+        this.closeMenu();
+        switch (item.getItemId()) {
+            case R.id.mi_navigation_home:
+                presenter.onNavigateToHome();
+                return true;
+            case R.id.mi_navigation_restaurant:
+                presenter.onNavigateToRestaurant();
+                return true;
+            default:
+                return false;
+        }
     }
 
     @OnClick(R.id.tv_default_menu)
@@ -73,6 +101,33 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     public void closeMenu() {
         menuDrawerLayout.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void navigateToHomeActivity() {
+        Fragment fromStack = getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
+        if (fromStack == null) {
+            Fragment fragment = HomeFragment.newInstance();
+            replaceFragment(fragment, HomeFragment.TAG);
+        } else
+            replaceFragment(fromStack, HomeFragment.TAG);
+    }
+
+    private void replaceFragment(Fragment fragment, String fragmentTag) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_wrapper, fragment, fragmentTag)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void navigateToRestaurantActivity() {
+        Fragment fromStack = getSupportFragmentManager().findFragmentByTag(RestaurantFragment.TAG);
+        if (fromStack == null) {
+            Fragment fragment = RestaurantFragment.newInstance();
+            replaceFragment(fragment, RestaurantFragment.TAG);
+        } else
+            replaceFragment(fromStack, RestaurantFragment.TAG);
     }
 
     @Override

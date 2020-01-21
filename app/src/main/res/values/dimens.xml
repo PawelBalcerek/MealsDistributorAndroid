@@ -10,4 +10,6 @@
     <dimen name="h3">48sp</dimen>
     <dimen name="h2">60sp</dimen>
     <dimen name="h1">96sp</dimen>
+    <dimen name="top_bar">56dp</dimen>
+    <dimen name="top_bar_margin">60dp</dimen>
 </resources>

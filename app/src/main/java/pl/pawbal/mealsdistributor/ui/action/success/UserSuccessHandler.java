@@ -19,8 +19,9 @@ public class UserSuccessHandler {
         this.successHandler = successHandler;
     }
 
-    public void onRegisterUserSuccess(RegisterMvpView registerMvpView) {
+    public void onRegisterUserSuccess(RegisterMvpView view) {
+        view.hideLoading();
         successHandler.showToast(context, context.getResources().getString(R.string.register_success_toast));
-        registerMvpView.navigateToLogin();
+        view.navigateToLogin();
     }
 }

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
+import pl.pawbal.mealsdistributor.ui.register.RegisterMvpView;
 import retrofit2.HttpException;
 
 public class UserErrorHandler {
@@ -22,7 +23,8 @@ public class UserErrorHandler {
     }
 
     // TODO: May be unit tested
-    public void onRegisterUserError(Throwable t) {
+    public void onRegisterUserError(Throwable t, RegisterMvpView view) {
+        view.hideLoading();
         if (t instanceof HttpException) {
             switch (((HttpException) t).code()) {
                 case 400:

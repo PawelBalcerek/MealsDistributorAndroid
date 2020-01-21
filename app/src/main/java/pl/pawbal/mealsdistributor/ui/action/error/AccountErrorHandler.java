@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
+import pl.pawbal.mealsdistributor.ui.login.LoginMvpView;
 import retrofit2.HttpException;
 
 public class AccountErrorHandler {
@@ -22,7 +23,8 @@ public class AccountErrorHandler {
     }
 
     // TODO: May be unit tested
-    public void onLoginError(Throwable t) {
+    public void onLoginError(Throwable t, LoginMvpView view) {
+        view.hideLoading();
         if (t instanceof HttpException) {
             switch (((HttpException) t).code()) {
                 case 400:

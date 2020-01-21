@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.data.api.service.UserService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.UserFactory;
 import pl.pawbal.mealsdistributor.data.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.ui.action.error.UserErrorHandler;
@@ -33,10 +33,12 @@ public class RegisterPresenter<V extends RegisterMvpView> extends BasePresenter<
     @Override
     public void register(String email, String password, String confirmPassword) {
         RegisterUser body = userFactory.create(email, password, confirmPassword);
-        userService.registerUser(body, new CustomSingleObserver<>(
+        getMvpView().showLoading();
+        getMvpView().hideKeyboard();
+        userService.registerUser(body, new CustomCompletableObserver(
                 getCompositeDisposable(),
-                v -> successHandler.onRegisterUserSuccess(getMvpView()),
-                errorHandler::onRegisterUserError
+                () -> successHandler.onRegisterUserSuccess(getMvpView()),
+                t -> errorHandler.onRegisterUserError(t, getMvpView())
         ));
     }
 }
