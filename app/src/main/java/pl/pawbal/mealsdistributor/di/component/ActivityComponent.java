@@ -4,6 +4,7 @@ import dagger.Component;
 import pl.pawbal.mealsdistributor.di.PerActivity;
 import pl.pawbal.mealsdistributor.di.module.ActivityModule;
 import pl.pawbal.mealsdistributor.ui.login.LoginActivity;
+import pl.pawbal.mealsdistributor.ui.main.MainActivity;
 import pl.pawbal.mealsdistributor.ui.register.RegisterActivity;
 
 @PerActivity
@@ -12,4 +13,6 @@ public interface ActivityComponent {
     void inject(LoginActivity loginActivity);
 
     void inject(RegisterActivity registerActivity);
+
+    void inject(MainActivity mainActivity);
 }

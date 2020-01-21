@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.ui.base.BaseActivity;
+import pl.pawbal.mealsdistributor.ui.main.MainActivity;
 import pl.pawbal.mealsdistributor.ui.register.RegisterActivity;
 
 public class LoginActivity extends BaseActivity implements LoginMvpView {
@@ -55,6 +56,13 @@ public class LoginActivity extends BaseActivity implements LoginMvpView {
     void navigateToRegister() {
         Intent intent = RegisterActivity.getStartIntent(LoginActivity.this);
         startActivity(intent);
+    }
+
+    @Override
+    public void navigateToMainActivity() {
+        Intent intent = MainActivity.getStartIntent(LoginActivity.this);
+        startActivity(intent);
+        finish();
     }
 
     @Override

@@ -15,6 +15,9 @@ import pl.pawbal.mealsdistributor.ui.action.core.SuccessHandler;
 import pl.pawbal.mealsdistributor.ui.login.LoginMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.login.LoginMvpView;
 import pl.pawbal.mealsdistributor.ui.login.LoginPresenter;
+import pl.pawbal.mealsdistributor.ui.main.MainMvpPresenter;
+import pl.pawbal.mealsdistributor.ui.main.MainMvpView;
+import pl.pawbal.mealsdistributor.ui.main.MainPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpView;
 import pl.pawbal.mealsdistributor.ui.register.RegisterPresenter;
@@ -50,6 +53,11 @@ public class ActivityModule {
 
     @Provides
     RegisterMvpPresenter<RegisterMvpView> provideRegisterMvpPresenter(RegisterPresenter<RegisterMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    MainMvpPresenter<MainMvpView> provideMainMvpPresenter(MainPresenter<MainMvpView> presenter) {
         return presenter;
     }
 
