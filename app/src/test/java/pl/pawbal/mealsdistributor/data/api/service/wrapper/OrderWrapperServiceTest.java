@@ -9,12 +9,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
+import pl.pawbal.mealsdistributor.data.api.service.rest.OrderRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.response.order.GetOrder;
 import pl.pawbal.mealsdistributor.data.models.dto.response.order.GetOrders;
-import pl.pawbal.mealsdistributor.data.api.service.rest.OrderRestService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,7 +30,7 @@ class OrderWrapperServiceTest {
     OrderRestService orderRestService;
 
     @Mock
-    SingleWrapper singleWrapper;
+    ResponseWrapper responseWrapper;
 
     @Test
     void getOrder() {
@@ -39,14 +41,14 @@ class OrderWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetOrder> single = Mockito.mock(Single.class);
         when(orderRestService.getOrder(id)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderWrapperService.getOrder(id, observer);
 
         //then
         verify(orderRestService).getOrder(id);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -58,14 +60,14 @@ class OrderWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetOrders> single = Mockito.mock(Single.class);
         when(orderRestService.getOrders()).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderWrapperService.getOrders(observer);
 
         //then
         verify(orderRestService).getOrders();
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -73,19 +75,17 @@ class OrderWrapperServiceTest {
     void markOrdered() {
         //given
         UUID id = UUID.randomUUID();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(orderRestService.markOrdered(id)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(orderRestService.markOrdered(id)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         orderWrapperService.markOrdered(id, observer);
 
         //then
         verify(orderRestService).markOrdered(id);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 }

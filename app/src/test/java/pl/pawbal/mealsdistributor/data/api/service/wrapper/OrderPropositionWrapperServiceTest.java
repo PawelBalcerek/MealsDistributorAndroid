@@ -9,15 +9,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
+import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.orderproposition.AddOrderProposition;
 import pl.pawbal.mealsdistributor.data.models.dto.response.order.GetOrder;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetAvailableOrderPropositions;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetOrderProposition;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetParticipatedOrderPropositions;
-import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionRestService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -31,7 +33,7 @@ class OrderPropositionWrapperServiceTest {
     OrderPropositionRestService orderPropositionRestService;
 
     @Mock
-    SingleWrapper singleWrapper;
+    ResponseWrapper responseWrapper;
 
     @Test
     void getParticipatedOrderPropositions() {
@@ -41,14 +43,14 @@ class OrderPropositionWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetParticipatedOrderPropositions> single = Mockito.mock(Single.class);
         when(orderPropositionRestService.getParticipatedOrderPropositions()).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderPropositionWrapperService.getParticipatedOrderPropositions(observer);
 
         //then
         verify(orderPropositionRestService).getParticipatedOrderPropositions();
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -60,14 +62,14 @@ class OrderPropositionWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetAvailableOrderPropositions> single = Mockito.mock(Single.class);
         when(orderPropositionRestService.getAvailableOrderPropositions()).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderPropositionWrapperService.getAvailableOrderPropositions(observer);
 
         //then
         verify(orderPropositionRestService).getAvailableOrderPropositions();
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -80,14 +82,14 @@ class OrderPropositionWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetOrderProposition> single = Mockito.mock(Single.class);
         when(orderPropositionRestService.getOrderProposition(id)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderPropositionWrapperService.getOrderProposition(id, observer);
 
         //then
         verify(orderPropositionRestService).getOrderProposition(id);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -95,20 +97,18 @@ class OrderPropositionWrapperServiceTest {
     void addOrderProposition() {
         //given
         AddOrderProposition body = new AddOrderProposition();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(orderPropositionRestService.addOrderProposition(body)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(orderPropositionRestService.addOrderProposition(body)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         orderPropositionWrapperService.addOrderProposition(body, observer);
 
         //then
         verify(orderPropositionRestService).addOrderProposition(body);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 
     @Test
@@ -120,14 +120,14 @@ class OrderPropositionWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetOrder> single = Mockito.mock(Single.class);
         when(orderPropositionRestService.realizeOrderProposition(id)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderPropositionWrapperService.realizeOrderProposition(id, observer);
 
         //then
         verify(orderPropositionRestService).realizeOrderProposition(id);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 }

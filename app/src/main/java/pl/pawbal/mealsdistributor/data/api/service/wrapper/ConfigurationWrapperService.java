@@ -5,32 +5,33 @@ import javax.inject.Singleton;
 
 import pl.pawbal.mealsdistributor.data.api.service.ConfigurationService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.ConfigurationRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.config.EditConfiguration;
 import pl.pawbal.mealsdistributor.data.models.dto.response.config.GetConfiguration;
 
 @Singleton
 public class ConfigurationWrapperService implements ConfigurationService {
     private final ConfigurationRestService configurationRestService;
-    private final SingleWrapper singleWrapper;
+    private final ResponseWrapper responseWrapper;
 
     @Inject
     ConfigurationWrapperService(ConfigurationRestService configurationRestService,
-                                SingleWrapper singleWrapper) {
+                                ResponseWrapper responseWrapper) {
         this.configurationRestService = configurationRestService;
-        this.singleWrapper = singleWrapper;
+        this.responseWrapper = responseWrapper;
     }
 
     @Override
     public void getConfiguration(String key, CustomSingleObserver<GetConfiguration> observer) {
-        singleWrapper.wrapSingle(configurationRestService.getConfiguration(key))
+        responseWrapper.wrapSingle(configurationRestService.getConfiguration(key))
                 .subscribe(observer);
     }
 
     @Override
-    public void editRestaurant(EditConfiguration body, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(configurationRestService.editConfiguration(body))
+    public void editRestaurant(EditConfiguration body, CustomCompletableObserver observer) {
+        responseWrapper.wrapCompletable(configurationRestService.editConfiguration(body))
                 .subscribe(observer);
     }
 }

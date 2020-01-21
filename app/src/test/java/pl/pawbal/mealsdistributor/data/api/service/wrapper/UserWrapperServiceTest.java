@@ -9,13 +9,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
+import pl.pawbal.mealsdistributor.data.api.service.rest.UserRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.data.models.dto.request.user.RegisterUser;
 import pl.pawbal.mealsdistributor.data.models.dto.response.user.GetUser;
-import pl.pawbal.mealsdistributor.data.api.service.rest.UserRestService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,7 +31,7 @@ class UserWrapperServiceTest {
     UserRestService userRestService;
 
     @Mock
-    SingleWrapper singleWrapper;
+    ResponseWrapper responseWrapper;
 
     @Test
     void getCurrentUser() {
@@ -39,14 +41,14 @@ class UserWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetUser> single = Mockito.mock(Single.class);
         when(userRestService.getCurrentUser()).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         userWrapperService.getCurrentUser(observer);
 
         //then
         verify(userRestService).getCurrentUser();
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -54,40 +56,36 @@ class UserWrapperServiceTest {
     void registerUser() {
         //given
         RegisterUser user = new RegisterUser();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(userRestService.registerUser(user)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(userRestService.registerUser(user)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         userWrapperService.registerUser(user, observer);
 
         //then
         verify(userRestService).registerUser(user);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 
     @Test
     void editCurrentUser() {
         //given
         EditCurrentUser user = new EditCurrentUser();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(userRestService.editCurrentUser(user)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(userRestService.editCurrentUser(user)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         userWrapperService.editCurrentUser(user, observer);
 
         //then
         verify(userRestService).editCurrentUser(user);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 
     @Test
@@ -99,14 +97,14 @@ class UserWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetUser> single = Mockito.mock(Single.class);
         when(userRestService.getUser(id)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         userWrapperService.getUser(id, observer);
 
         //then
         verify(userRestService).getUser(id);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 }

@@ -7,12 +7,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
+import pl.pawbal.mealsdistributor.data.api.service.rest.ConfigurationRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.config.EditConfiguration;
 import pl.pawbal.mealsdistributor.data.models.dto.response.config.GetConfiguration;
-import pl.pawbal.mealsdistributor.data.api.service.rest.ConfigurationRestService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,7 +28,7 @@ class ConfigurationWrapperServiceTest {
     ConfigurationRestService configurationRestService;
 
     @Mock
-    SingleWrapper singleWrapper;
+    ResponseWrapper responseWrapper;
 
     @Test
     void getConfiguration() {
@@ -37,14 +39,14 @@ class ConfigurationWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetConfiguration> single = Mockito.mock(Single.class);
         when(configurationRestService.getConfiguration(key)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         configurationWrapperService.getConfiguration(key, observer);
 
         //then
         verify(configurationRestService).getConfiguration(key);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -52,19 +54,17 @@ class ConfigurationWrapperServiceTest {
     void putConfiguration() {
         //given
         EditConfiguration body = new EditConfiguration();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(configurationRestService.editConfiguration(body)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(configurationRestService.editConfiguration(body)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         configurationWrapperService.editRestaurant(body, observer);
 
         //then
         verify(configurationRestService).editConfiguration(body);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 }

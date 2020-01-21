@@ -2,6 +2,7 @@ package pl.pawbal.mealsdistributor.data.api.service.rest;
 
 import java.util.UUID;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import pl.pawbal.mealsdistributor.data.models.dto.request.user.EditCurrentUser;
 import pl.pawbal.mealsdistributor.data.models.dto.request.user.RegisterUser;
@@ -22,8 +23,8 @@ public interface UserRestService {
     Single<GetUser> getUser(@Path("id") UUID id);
 
     @POST(USER_BASE_PATH)
-    Single<Void> registerUser(@Body RegisterUser user);
+    Completable registerUser(@Body RegisterUser user);
 
     @PUT(USER_BASE_PATH)
-    Single<Void> editCurrentUser(@Body EditCurrentUser user);
+    Completable editCurrentUser(@Body EditCurrentUser user);
 }

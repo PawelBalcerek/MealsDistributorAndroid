@@ -7,31 +7,32 @@ import javax.inject.Singleton;
 
 import pl.pawbal.mealsdistributor.data.api.service.OrderPropositionPositionService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionPositionRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.orderpropositionposition.AddOrderPropositionPosition;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderpropositionposition.GetOrderPropositionPositions;
 
 @Singleton
 public class OrderPropositionPositionWrapperService implements OrderPropositionPositionService {
     private final OrderPropositionPositionRestService orderPropositionPositionRestService;
-    private final SingleWrapper singleWrapper;
+    private final ResponseWrapper responseWrapper;
 
     @Inject
-    OrderPropositionPositionWrapperService(OrderPropositionPositionRestService orderPropositionPositionRestService, SingleWrapper singleWrapper) {
+    OrderPropositionPositionWrapperService(OrderPropositionPositionRestService orderPropositionPositionRestService, ResponseWrapper responseWrapper) {
         this.orderPropositionPositionRestService = orderPropositionPositionRestService;
-        this.singleWrapper = singleWrapper;
+        this.responseWrapper = responseWrapper;
     }
 
     @Override
     public void getOrderPropositionPositions(UUID orderPropositionId, CustomSingleObserver<GetOrderPropositionPositions> observer) {
-        singleWrapper.wrapSingle(orderPropositionPositionRestService.getOrderPropositionPositions(orderPropositionId))
+        responseWrapper.wrapSingle(orderPropositionPositionRestService.getOrderPropositionPositions(orderPropositionId))
                 .subscribe(observer);
     }
 
     @Override
-    public void addOrderPropositionPosition(UUID orderPropositionId, AddOrderPropositionPosition body, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(orderPropositionPositionRestService.addOrderPropositionPosition(orderPropositionId, body))
+    public void addOrderPropositionPosition(UUID orderPropositionId, AddOrderPropositionPosition body, CustomCompletableObserver observer) {
+        responseWrapper.wrapCompletable(orderPropositionPositionRestService.addOrderPropositionPosition(orderPropositionId, body))
                 .subscribe(observer);
     }
 }
