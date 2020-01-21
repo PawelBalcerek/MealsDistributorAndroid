@@ -9,14 +9,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
+import pl.pawbal.mealsdistributor.data.api.service.rest.MealRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.meal.AddMeal;
 import pl.pawbal.mealsdistributor.data.models.dto.request.meal.EditMeal;
 import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeal;
 import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
-import pl.pawbal.mealsdistributor.data.api.service.rest.MealRestService;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -30,7 +32,7 @@ class MealWrapperServiceTest {
     MealRestService mealRestService;
 
     @Mock
-    SingleWrapper singleWrapper;
+    ResponseWrapper responseWrapper;
 
     @Test
     void getMeal() {
@@ -41,14 +43,14 @@ class MealWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetMeal> single = Mockito.mock(Single.class);
         when(mealRestService.getMeal(id)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         mealWrapperService.getMeal(id, observer);
 
         //then
         verify(mealRestService).getMeal(id);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -61,14 +63,14 @@ class MealWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetMeals> single = Mockito.mock(Single.class);
         when(mealRestService.getMeals(restaurantId)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         mealWrapperService.getMeals(restaurantId, observer);
 
         //then
         verify(mealRestService).getMeals(restaurantId);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -76,59 +78,53 @@ class MealWrapperServiceTest {
     void addMeal() {
         //given
         AddMeal body = new AddMeal();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(mealRestService.addMeal(body)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(mealRestService.addMeal(body)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         mealWrapperService.addMeal(body, observer);
 
         //then
         verify(mealRestService).addMeal(body);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 
     @Test
     void editMeal() {
         //given
         EditMeal body = new EditMeal();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(mealRestService.editMeal(body)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(mealRestService.editMeal(body)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         mealWrapperService.editMeal(body, observer);
 
         //then
         verify(mealRestService).editMeal(body);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 
     @Test
     void deleteMeal() {
         //given
         UUID id = UUID.randomUUID();
-        @SuppressWarnings("unchecked")
-        CustomSingleObserver<Void> observer = Mockito.mock(CustomSingleObserver.class);
-        @SuppressWarnings("unchecked")
-        Single<Void> single = Mockito.mock(Single.class);
-        when(mealRestService.deleteMeal(id)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
+        Completable completable = Mockito.mock(Completable.class);
+        when(mealRestService.deleteMeal(id)).thenReturn(completable);
+        when(responseWrapper.wrapCompletable(completable)).thenReturn(completable);
 
         //when
         mealWrapperService.deleteMeal(id, observer);
 
         //then
         verify(mealRestService).deleteMeal(id);
-        verify(singleWrapper).wrapSingle(single);
-        verify(single).subscribe(observer);
+        verify(responseWrapper).wrapCompletable(completable);
+        verify(completable).subscribe(observer);
     }
 }

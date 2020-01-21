@@ -2,6 +2,7 @@ package pl.pawbal.mealsdistributor.data.api.service.rest;
 
 import java.util.UUID;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import pl.pawbal.mealsdistributor.data.models.dto.request.restaurant.AddRestaurant;
 import pl.pawbal.mealsdistributor.data.models.dto.request.restaurant.EditRestaurant;
@@ -15,8 +16,8 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RestaurantRestService {
-    String RESTAURANT_BASE_PATH = "/restaurant";
-    String RESTAURANTS_BASE_PATH = "/restaurants";
+    String RESTAURANT_BASE_PATH = "restaurant";
+    String RESTAURANTS_BASE_PATH = "restaurants";
 
     @GET(RESTAURANT_BASE_PATH + "/{id}")
     Single<GetRestaurant> getRestaurant(@Path("id") UUID id);
@@ -25,11 +26,11 @@ public interface RestaurantRestService {
     Single<GetRestaurants> getRestaurants();
 
     @POST(RESTAURANT_BASE_PATH)
-    Single<Void> addRestaurant(@Body AddRestaurant addRestaurant);
+    Completable addRestaurant(@Body AddRestaurant addRestaurant);
 
     @PUT(RESTAURANT_BASE_PATH)
-    Single<Void> editRestaurant(@Body EditRestaurant editRestaurant);
+    Completable editRestaurant(@Body EditRestaurant editRestaurant);
 
     @DELETE(RESTAURANT_BASE_PATH + "/{id}")
-    Single<Void> deleteRestaurant(@Path("id") UUID id);
+    Completable deleteRestaurant(@Path("id") UUID id);
 }

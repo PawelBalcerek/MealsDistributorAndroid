@@ -7,8 +7,9 @@ import javax.inject.Singleton;
 
 import pl.pawbal.mealsdistributor.data.api.service.MealService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.MealRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.meal.AddMeal;
 import pl.pawbal.mealsdistributor.data.models.dto.request.meal.EditMeal;
 import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeal;
@@ -17,41 +18,41 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
 @Singleton
 public class MealWrapperService implements MealService {
     private final MealRestService mealRestService;
-    private final SingleWrapper singleWrapper;
+    private final ResponseWrapper responseWrapper;
 
     @Inject
-    MealWrapperService(MealRestService mealRestService, SingleWrapper singleWrapper) {
+    MealWrapperService(MealRestService mealRestService, ResponseWrapper responseWrapper) {
         this.mealRestService = mealRestService;
-        this.singleWrapper = singleWrapper;
+        this.responseWrapper = responseWrapper;
     }
 
     @Override
     public void getMeal(UUID id, CustomSingleObserver<GetMeal> observer) {
-        singleWrapper.wrapSingle(mealRestService.getMeal(id))
+        responseWrapper.wrapSingle(mealRestService.getMeal(id))
                 .subscribe(observer);
     }
 
     @Override
     public void getMeals(UUID restaurantId, CustomSingleObserver<GetMeals> observer) {
-        singleWrapper.wrapSingle(mealRestService.getMeals(restaurantId))
+        responseWrapper.wrapSingle(mealRestService.getMeals(restaurantId))
                 .subscribe(observer);
     }
 
     @Override
-    public void addMeal(AddMeal body, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(mealRestService.addMeal(body))
+    public void addMeal(AddMeal body, CustomCompletableObserver observer) {
+        responseWrapper.wrapCompletable(mealRestService.addMeal(body))
                 .subscribe(observer);
     }
 
     @Override
-    public void editMeal(EditMeal body, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(mealRestService.editMeal(body))
+    public void editMeal(EditMeal body, CustomCompletableObserver observer) {
+        responseWrapper.wrapCompletable(mealRestService.editMeal(body))
                 .subscribe(observer);
     }
 
     @Override
-    public void deleteMeal(UUID id, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(mealRestService.deleteMeal(id))
+    public void deleteMeal(UUID id, CustomCompletableObserver observer) {
+        responseWrapper.wrapCompletable(mealRestService.deleteMeal(id))
                 .subscribe(observer);
     }
 }

@@ -10,10 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.UUID;
 
 import io.reactivex.Single;
-import pl.pawbal.mealsdistributor.data.models.dto.response.orderposition.GetOrderPositions;
 import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPositionRestService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
+import pl.pawbal.mealsdistributor.data.models.dto.response.orderposition.GetOrderPositions;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -27,7 +27,7 @@ class OrderPositionWrapperServiceTest {
     OrderPositionRestService orderPositionRestService;
 
     @Mock
-    SingleWrapper singleWrapper;
+    ResponseWrapper responseWrapper;
 
     @Test
     void getOrderPositions() {
@@ -37,14 +37,14 @@ class OrderPositionWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetOrderPositions> single = Mockito.mock(Single.class);
         when(orderPositionRestService.getOrderPositions()).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderPositionWrapperService.getOrderPositions(observer);
 
         //then
         verify(orderPositionRestService).getOrderPositions();
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 
@@ -57,14 +57,14 @@ class OrderPositionWrapperServiceTest {
         @SuppressWarnings("unchecked")
         Single<GetOrderPositions> single = Mockito.mock(Single.class);
         when(orderPositionRestService.getOrderPositions(orderId)).thenReturn(single);
-        when(singleWrapper.wrapSingle(single)).thenReturn(single);
+        when(responseWrapper.wrapSingle(single)).thenReturn(single);
 
         //when
         orderPositionWrapperService.getOrderPositions(orderId, observer);
 
         //then
         verify(orderPositionRestService).getOrderPositions(orderId);
-        verify(singleWrapper).wrapSingle(single);
+        verify(responseWrapper).wrapSingle(single);
         verify(single).subscribe(observer);
     }
 }

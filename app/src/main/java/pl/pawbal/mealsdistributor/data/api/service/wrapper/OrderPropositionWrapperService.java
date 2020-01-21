@@ -7,8 +7,9 @@ import javax.inject.Singleton;
 
 import pl.pawbal.mealsdistributor.data.api.service.OrderPropositionService;
 import pl.pawbal.mealsdistributor.data.api.service.rest.OrderPropositionRestService;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
-import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.SingleWrapper;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
 import pl.pawbal.mealsdistributor.data.models.dto.request.orderproposition.AddOrderProposition;
 import pl.pawbal.mealsdistributor.data.models.dto.response.order.GetOrder;
 import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetAvailableOrderPropositions;
@@ -18,42 +19,42 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetP
 @Singleton
 public class OrderPropositionWrapperService implements OrderPropositionService {
     private final OrderPropositionRestService orderPropositionRestService;
-    private final SingleWrapper singleWrapper;
+    private final ResponseWrapper responseWrapper;
 
     @Inject
     OrderPropositionWrapperService(OrderPropositionRestService orderPropositionRestService,
-                                   SingleWrapper singleWrapper) {
+                                   ResponseWrapper responseWrapper) {
         this.orderPropositionRestService = orderPropositionRestService;
-        this.singleWrapper = singleWrapper;
+        this.responseWrapper = responseWrapper;
     }
 
     @Override
     public void getParticipatedOrderPropositions(CustomSingleObserver<GetParticipatedOrderPropositions> observer) {
-        singleWrapper.wrapSingle(orderPropositionRestService.getParticipatedOrderPropositions())
+        responseWrapper.wrapSingle(orderPropositionRestService.getParticipatedOrderPropositions())
                 .subscribe(observer);
     }
 
     @Override
     public void getAvailableOrderPropositions(CustomSingleObserver<GetAvailableOrderPropositions> observer) {
-        singleWrapper.wrapSingle(orderPropositionRestService.getAvailableOrderPropositions())
+        responseWrapper.wrapSingle(orderPropositionRestService.getAvailableOrderPropositions())
                 .subscribe(observer);
     }
 
     @Override
     public void getOrderProposition(UUID id, CustomSingleObserver<GetOrderProposition> observer) {
-        singleWrapper.wrapSingle(orderPropositionRestService.getOrderProposition(id))
+        responseWrapper.wrapSingle(orderPropositionRestService.getOrderProposition(id))
                 .subscribe(observer);
     }
 
     @Override
-    public void addOrderProposition(AddOrderProposition body, CustomSingleObserver<Void> observer) {
-        singleWrapper.wrapSingle(orderPropositionRestService.addOrderProposition(body))
+    public void addOrderProposition(AddOrderProposition body, CustomCompletableObserver observer) {
+        responseWrapper.wrapCompletable(orderPropositionRestService.addOrderProposition(body))
                 .subscribe(observer);
     }
 
     @Override
     public void realizeOrderProposition(UUID id, CustomSingleObserver<GetOrder> observer) {
-        singleWrapper.wrapSingle(orderPropositionRestService.realizeOrderProposition(id))
+        responseWrapper.wrapSingle(orderPropositionRestService.realizeOrderProposition(id))
                 .subscribe(observer);
     }
 }
