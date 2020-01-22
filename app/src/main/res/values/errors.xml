@@ -7,4 +7,7 @@
     <string name="add_restaurants_default_error_toast">Nie udało się dodać nowej restauracji, proszę spróbować ponownie.</string>
     <string name="add_restaurants_400_error_toast">Nie udało się dodać nowej restauracji, proszę sprawdzić poprawność danych.</string>
     <string name="add_restaurants_403_error_toast">Nie udało się dodać nowej restauracji, nie masz dostępu do tej funkcjonalności.</string>
+    <string name="get_restaurant_default_error_toast">Nie udało się pobrać wymaganych informacji, proszę spróbować ponownie.</string>
+    <string name="get_restaurant_403_error_toast">Nie posiadasz dostępu do wymaganych informacji.</string>
+    <string name="get_restaurant_404_error_toast">Nie udało się znaleźć wymaganych informacji.</string>
 </resources>

@@ -28,7 +28,7 @@ public class RestaurantWrapperService implements RestaurantService {
 
 
     @Override
-    public void getRestaurant(UUID id, CustomSingleObserver<GetRestaurant> observer) {
+    public void getRestaurant(String id, CustomSingleObserver<GetRestaurant> observer) {
         responseWrapper.wrapSingle(restaurantRestService.getRestaurant(id))
                 .subscribe(observer);
     }

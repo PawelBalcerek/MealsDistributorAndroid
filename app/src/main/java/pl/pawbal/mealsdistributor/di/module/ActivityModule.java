@@ -9,6 +9,7 @@ import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.AccountFactory;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.UserFactory;
+import pl.pawbal.mealsdistributor.data.models.dto.factory.bundle.RestaurantBundleFactory;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
 import pl.pawbal.mealsdistributor.ui.action.core.SuccessHandler;
@@ -30,6 +31,9 @@ import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantPresenter;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantPresenter;
+import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsMvpPresenter;
+import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsMvpView;
+import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsPresenter;
 
 @Module
 public class ActivityModule {
@@ -85,6 +89,11 @@ public class ActivityModule {
         return presenter;
     }
 
+    @Provides
+    RestaurantDetailsMvpPresenter<RestaurantDetailsMvpView> provideRestaurantDetailsMvpPresenter(RestaurantDetailsPresenter<RestaurantDetailsMvpView> presenter) {
+        return presenter;
+    }
+
     // Factories
 
     @Provides
@@ -95,6 +104,11 @@ public class ActivityModule {
     @Provides
     UserFactory providesUserFactory() {
         return new UserFactory();
+    }
+
+    @Provides
+    RestaurantBundleFactory provideRestaurantBundleFactory() {
+        return new RestaurantBundleFactory();
     }
 
     // Other (Core, Common, etc.)

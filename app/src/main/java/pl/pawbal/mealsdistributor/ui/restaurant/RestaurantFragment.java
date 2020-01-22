@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantFragment;
+import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsFragment;
 
 public class RestaurantFragment extends BaseFragment implements RestaurantMvpView {
     public static final String TAG = RestaurantFragment.class.toString();
@@ -67,8 +69,13 @@ public class RestaurantFragment extends BaseFragment implements RestaurantMvpVie
 
     @Override
     public void bindRestaurantsToList(List<Restaurant> restaurants) {
-        RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(restaurants);
+        RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(restaurants, this::onRestaurantViewHolderClick);
         restaurantList.setAdapter(restaurantListAdapter);
+    }
+
+    private void onRestaurantViewHolderClick(View view) {
+        TextView restaurantId = view.findViewById(R.id.tv_restaurant_id);
+        presenter.getRestaurant(restaurantId.getText().toString());
     }
 
     @OnClick(R.id.btn_restaurant_add)
@@ -90,6 +97,22 @@ public class RestaurantFragment extends BaseFragment implements RestaurantMvpVie
                 .replace(R.id.fragment_wrapper, fragment, fragmentTag)
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void navigateToRestaurantDetails(Bundle getRestaurant) {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            Fragment fromStack = fragmentManager.findFragmentByTag(RestaurantDetailsFragment.TAG);
+            if (fromStack == null) {
+                Fragment fragment = RestaurantDetailsFragment.newInstance();
+                fragment.setArguments(getRestaurant);
+                replaceFragment(fragmentManager, fragment, RestaurantDetailsFragment.TAG);
+            } else {
+                fromStack.setArguments(getRestaurant);
+                replaceFragment(fragmentManager, fromStack, RestaurantDetailsFragment.TAG);
+            }
+        }
     }
 
     @Override

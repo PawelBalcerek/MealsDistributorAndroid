@@ -20,7 +20,7 @@ public interface RestaurantRestService {
     String RESTAURANTS_BASE_PATH = "restaurants";
 
     @GET(RESTAURANT_BASE_PATH + "/{id}")
-    Single<GetRestaurant> getRestaurant(@Path("id") UUID id);
+    Single<GetRestaurant> getRestaurant(@Path("id") String id);
 
     @GET(RESTAURANTS_BASE_PATH)
     Single<GetRestaurants> getRestaurants();
