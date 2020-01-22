@@ -8,6 +8,8 @@ import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpView;
+import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpView;
+import retrofit2.HttpException;
 
 public class RestaurantErrorHandler {
     private final static String TAG = RestaurantErrorHandler.class.toString();
@@ -25,5 +27,26 @@ public class RestaurantErrorHandler {
     public void onGetRestaurantsError(Throwable t, RestaurantMvpView view) {
         view.hideLoading();
         errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_restaurants_default_error_toast), t);
+    }
+
+    // TODO: May be unit tested
+    public void onAddRestaurantError(Throwable t, AddRestaurantMvpView view) {
+        view.hideLoading();
+        view.hideKeyboard();
+        if (t instanceof HttpException) {
+            switch (((HttpException) t).code()) {
+                case 400:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_400_error_toast), t);
+                    break;
+                case 403:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_403_error_toast), t);
+                    break;
+                default:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_default_error_toast), t);
+                    break;
+            }
+        } else {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_default_error_toast), t);
+        }
     }
 }

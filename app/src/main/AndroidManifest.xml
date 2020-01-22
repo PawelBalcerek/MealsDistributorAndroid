@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.register.RegisterActivity" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.main.MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 </manifest>

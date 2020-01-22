@@ -4,4 +4,7 @@
     <string name="register_error_409_toast">Użytkownik o podanym adresie e-mail już istnieje.</string>
     <string name="login_default_error_toast">Logowanie nie powiodło się, proszę spróbować ponownie.</string>
     <string name="get_restaurants_default_error_toast">Nie udało się pobrać listy restauracji, proszę spróbować ponownie.</string>
+    <string name="add_restaurants_default_error_toast">Nie udało się dodać nowej restauracji, proszę spróbować ponownie.</string>
+    <string name="add_restaurants_400_error_toast">Nie udało się dodać nowej restauracji, proszę sprawdzić poprawność danych.</string>
+    <string name="add_restaurants_403_error_toast">Nie udało się dodać nowej restauracji, nie masz dostępu do tej funkcjonalności.</string>
 </resources>
