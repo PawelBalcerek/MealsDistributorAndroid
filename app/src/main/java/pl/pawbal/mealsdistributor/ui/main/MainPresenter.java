@@ -14,12 +14,12 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     @Override
     public void onNavigateToHome() {
         getMvpView().closeMenu();
-        getMvpView().navigateToHomeActivity();
+        getMvpView().navigateToHomeFragment();
     }
 
     @Override
     public void onNavigateToRestaurant() {
         getMvpView().closeMenu();
-        getMvpView().navigateToRestaurantActivity();
+        getMvpView().navigateToRestaurantFragment();
     }
 }

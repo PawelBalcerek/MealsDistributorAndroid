@@ -12,4 +12,14 @@
     <string name="home">Strona startowa</string>
     <string name="pyszne_pl">PYSZNE</string>
     <string name="phone_number">Tel.</string>
+    <string name="add_restaurant">Nowa resturacja</string>
+    <string name="restaurant_name">Nazwa*</string>
+    <string name="add_restaurant_title">Dodaj nową restaurację</string>
+    <string name="restaurant_phone_number">Numer telefonu*</string>
+    <string name="restaurant_min_order_cost">Minimalny koszt zamówienia</string>
+    <string name="restaurant_delivery_cost">Koszt dostawy</string>
+    <string name="restaurant_free_delivery_cost">Koszt darmowej dostawy</string>
+    <string name="cancel">Anuluj</string>
+    <string name="add">Dodaj</string>
+    <string name="is_pyszne">Restauracja widnieje w portalu Pyszne.pl</string>
 </resources>

@@ -104,7 +104,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
-    public void navigateToHomeActivity() {
+    public void navigateToHomeFragment() {
         Fragment fromStack = getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
         if (fromStack == null) {
             Fragment fragment = HomeFragment.newInstance();
@@ -121,7 +121,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
-    public void navigateToRestaurantActivity() {
+    public void navigateToRestaurantFragment() {
         Fragment fromStack = getSupportFragmentManager().findFragmentByTag(RestaurantFragment.TAG);
         if (fromStack == null) {
             Fragment fragment = RestaurantFragment.newInstance();

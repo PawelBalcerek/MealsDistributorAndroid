@@ -27,6 +27,9 @@ import pl.pawbal.mealsdistributor.ui.register.RegisterPresenter;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantPresenter;
+import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpPresenter;
+import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpView;
+import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantPresenter;
 
 @Module
 public class ActivityModule {
@@ -74,6 +77,11 @@ public class ActivityModule {
 
     @Provides
     RestaurantMvpPresenter<RestaurantMvpView> provideRestaurantMvpPresenter(RestaurantPresenter<RestaurantMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    AddRestaurantMvpPresenter<AddRestaurantMvpView> provideAddRestaurantMvpPresenter(AddRestaurantPresenter<AddRestaurantMvpView> presenter) {
         return presenter;
     }
 

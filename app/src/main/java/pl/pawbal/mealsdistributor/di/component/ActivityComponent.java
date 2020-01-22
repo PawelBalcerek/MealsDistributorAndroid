@@ -8,6 +8,7 @@ import pl.pawbal.mealsdistributor.ui.login.LoginActivity;
 import pl.pawbal.mealsdistributor.ui.main.MainActivity;
 import pl.pawbal.mealsdistributor.ui.register.RegisterActivity;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
+import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantFragment;
 
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
@@ -21,4 +22,6 @@ public interface ActivityComponent {
     void inject(HomeFragment homeFragment);
 
     void inject(RestaurantFragment restaurantFragment);
+
+    void inject(AddRestaurantFragment addRestaurantFragment);
 }

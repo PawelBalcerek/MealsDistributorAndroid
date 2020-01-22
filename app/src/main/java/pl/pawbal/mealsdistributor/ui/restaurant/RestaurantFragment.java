@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,10 +18,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
+import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantFragment;
 
 public class RestaurantFragment extends BaseFragment implements RestaurantMvpView {
     public static final String TAG = RestaurantFragment.class.toString();
@@ -65,6 +69,27 @@ public class RestaurantFragment extends BaseFragment implements RestaurantMvpVie
     public void bindRestaurantsToList(List<Restaurant> restaurants) {
         RestaurantListAdapter restaurantListAdapter = new RestaurantListAdapter(restaurants);
         restaurantList.setAdapter(restaurantListAdapter);
+    }
+
+    @OnClick(R.id.btn_restaurant_add)
+    void navigateToAddRestaurantFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            Fragment fromStack = fragmentManager.findFragmentByTag(AddRestaurantFragment.TAG);
+            if (fromStack == null) {
+                Fragment fragment = AddRestaurantFragment.newInstance();
+                replaceFragment(fragmentManager, fragment, AddRestaurantFragment.TAG);
+            } else
+                replaceFragment(fragmentManager, fromStack, AddRestaurantFragment.TAG);
+        }
+    }
+
+    // TODO: create FragmentUtil and move this method there
+    private void replaceFragment(@NonNull FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_wrapper, fragment, fragmentTag)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
