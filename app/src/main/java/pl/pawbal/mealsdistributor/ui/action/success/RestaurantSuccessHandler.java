@@ -10,6 +10,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaur
 import pl.pawbal.mealsdistributor.ui.action.core.SuccessHandler;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpView;
+import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsMvpView;
 
 public class RestaurantSuccessHandler {
     private final SuccessHandler successHandler;
@@ -36,5 +37,10 @@ public class RestaurantSuccessHandler {
         view.hideLoading();
         Bundle getRestaurant = restaurantBundleFactory.create(restaurant);
         view.navigateToRestaurantDetails(getRestaurant);
+    }
+
+    public void onDeleteRestaurantSuccess(RestaurantDetailsMvpView view) {
+        view.hideLoading();
+        view.onRestaurantDelete();
     }
 }

@@ -1,7 +1,5 @@
 package pl.pawbal.mealsdistributor.data.api.service;
 
-import java.util.UUID;
-
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.models.dto.request.restaurant.AddRestaurant;
@@ -18,5 +16,5 @@ public interface RestaurantService {
 
     void editRestaurant(EditRestaurant body, CustomCompletableObserver observer);
 
-    void deleteRestaurant(UUID id, CustomCompletableObserver observer);
+    void deleteRestaurant(String id, CustomCompletableObserver observer);
 }

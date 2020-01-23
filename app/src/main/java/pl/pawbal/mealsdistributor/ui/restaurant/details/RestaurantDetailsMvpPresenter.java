@@ -8,4 +8,6 @@ import pl.pawbal.mealsdistributor.ui.base.MvpPresenter;
 
 public interface RestaurantDetailsMvpPresenter<V> extends MvpPresenter<V> {
     void bindGetRestaurant(@Nullable Bundle bundle);
+
+    void deleteRestaurant(String id);
 }

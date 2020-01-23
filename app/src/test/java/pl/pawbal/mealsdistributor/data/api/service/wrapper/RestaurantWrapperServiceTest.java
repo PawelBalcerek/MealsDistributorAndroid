@@ -112,7 +112,7 @@ class RestaurantWrapperServiceTest {
     @Test
     void deleteRestaurant() {
         //given
-        UUID id = UUID.randomUUID();
+        String id = UUID.randomUUID().toString();
         CustomCompletableObserver observer = Mockito.mock(CustomCompletableObserver.class);
         Completable completable = Mockito.mock(Completable.class);
         when(restaurantRestService.deleteRestaurant(id)).thenReturn(completable);

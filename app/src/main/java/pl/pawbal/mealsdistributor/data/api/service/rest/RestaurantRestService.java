@@ -1,7 +1,5 @@
 package pl.pawbal.mealsdistributor.data.api.service.rest;
 
-import java.util.UUID;
-
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import pl.pawbal.mealsdistributor.data.models.dto.request.restaurant.AddRestaurant;
@@ -32,5 +30,5 @@ public interface RestaurantRestService {
     Completable editRestaurant(@Body EditRestaurant editRestaurant);
 
     @DELETE(RESTAURANT_BASE_PATH + "/{id}")
-    Completable deleteRestaurant(@Path("id") UUID id);
+    Completable deleteRestaurant(@Path("id") String id);
 }
