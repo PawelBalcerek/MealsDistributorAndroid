@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.data.api.service.RestaurantService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
+import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.bundle.RestaurantBundleFactory;
 import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurant;
 import pl.pawbal.mealsdistributor.ui.action.error.RestaurantErrorHandler;
@@ -47,5 +48,11 @@ public class RestaurantDetailsPresenter<V extends RestaurantDetailsMvpView> exte
                 getCompositeDisposable(),
                 () -> successHandler.onDeleteRestaurantSuccess(getMvpView()),
                 t -> errorHandler.onDeleteRestaurantError(t, getMvpView())));
+    }
+
+    @Override
+    public void navigateToEditRestaurant(Restaurant restaurant) {
+        Bundle bundle = restaurantBundleFactory.create(restaurant);
+        getMvpView().navigateToEditRestaurantFragment(bundle);
     }
 }

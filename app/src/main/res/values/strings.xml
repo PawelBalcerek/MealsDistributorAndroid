@@ -32,4 +32,6 @@
     <string name="delete">Usuń</string>
     <string name="edit">Edytuj</string>
     <string name="no_info">Brak informacji</string>
+    <string name="edit_restaurant_title">Edycja restauracji</string>
+    <string name="save">Zapisz</string>
 </resources>

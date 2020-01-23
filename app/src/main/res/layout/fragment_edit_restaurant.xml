@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_add_restaurant"
+    android:id="@+id/fragment_edit_restaurant"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/top_bar"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_add_restaurant_title"
+        android:id="@+id/tv_edit_restaurant_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:text="@string/add_restaurant_title"
+        android:text="@string/edit_restaurant_title"
         android:textSize="@dimen/h5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_add_restaurant_title" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit_restaurant_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_restaurant_form">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add_restaurant_go_back"
+            android:id="@+id/btn_edit_restaurant_go_back"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,15 +47,18 @@
             android:textSize="@dimen/body_1" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_add_restaurant_accept"
+            android:id="@+id/btn_edit_restaurant_save"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:backgroundTint="@color/defaultButtonColor"
-            android:text="@string/add"
+            android:text="@string/save"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:textColor="@color/defaultTextColor"
             android:textSize="@dimen/body_1" />
     </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
