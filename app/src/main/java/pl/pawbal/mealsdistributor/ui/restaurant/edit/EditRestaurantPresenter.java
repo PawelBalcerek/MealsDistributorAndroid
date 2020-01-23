@@ -50,11 +50,19 @@ public class EditRestaurantPresenter<V extends EditRestaurantMvpView> extends Ba
                                @Nullable String deliveryCost, @Nullable String maxPaidOrderValue,
                                boolean isPyszne) {
         getMvpView().showLoading();
-        EditRestaurant body = restaurantFactory.create(id, name, phoneNumber, minOrderCost, deliveryCost, maxPaidOrderValue, isPyszne);
-        restaurantService.editRestaurant(body, new CustomCompletableObserver(
-                getCompositeDisposable(),
-                () -> successHandler.onEditRestaurantSuccess(getMvpView()),
-                t -> errorHandler.onEditRestaurantError(t, getMvpView())
-        ));
+        tryEditRestaurant(id, name, phoneNumber, minOrderCost, deliveryCost, maxPaidOrderValue, isPyszne);
+    }
+
+    private void tryEditRestaurant(String id, String name, String phoneNumber, @Nullable String minOrderCost, @Nullable String deliveryCost, @Nullable String maxPaidOrderValue, boolean isPyszne) {
+        try {
+            EditRestaurant body = restaurantFactory.create(id, name, phoneNumber, minOrderCost, deliveryCost, maxPaidOrderValue, isPyszne);
+            restaurantService.editRestaurant(body, new CustomCompletableObserver(
+                    getCompositeDisposable(),
+                    () -> successHandler.onEditRestaurantSuccess(getMvpView()),
+                    t -> errorHandler.onEditRestaurantError(t, getMvpView())
+            ));
+        } catch (NumberFormatException exception) {
+            errorHandler.onEditRestaurantError(exception, getMvpView());
+        }
     }
 }

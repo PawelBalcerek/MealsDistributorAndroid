@@ -10,5 +10,5 @@ import pl.pawbal.mealsdistributor.ui.base.MvpView;
 public interface RestaurantMvpView extends MvpView {
     void bindRestaurantsToList(List<Restaurant> restaurants);
 
-    void navigateToRestaurantDetails(Bundle getRestaurant);
+    void navigateToRestaurantDetails(Bundle bundle);
 }

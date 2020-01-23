@@ -9,16 +9,16 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.data.api.service.RestaurantService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
+import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.bundle.RestaurantBundleFactory;
-import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurant;
 import pl.pawbal.mealsdistributor.ui.action.error.RestaurantErrorHandler;
 import pl.pawbal.mealsdistributor.ui.action.success.RestaurantSuccessHandler;
 import pl.pawbal.mealsdistributor.ui.base.BasePresenter;
 
 public class RestaurantDetailsPresenter<V extends RestaurantDetailsMvpView> extends BasePresenter<V> implements RestaurantDetailsMvpPresenter<V> {
     private final RestaurantBundleFactory restaurantBundleFactory;
-    private final RestaurantService restaurantWrapperService;
+    private final RestaurantService restaurantService;
     private final RestaurantSuccessHandler successHandler;
     private final RestaurantErrorHandler errorHandler;
 
@@ -30,21 +30,26 @@ public class RestaurantDetailsPresenter<V extends RestaurantDetailsMvpView> exte
                                       RestaurantErrorHandler restaurantErrorHandler) {
         super(compositeDisposable);
         this.restaurantBundleFactory = restaurantBundleFactory;
-        this.restaurantWrapperService = restaurantService;
+        this.restaurantService = restaurantService;
         this.successHandler = restaurantSuccessHandler;
         this.errorHandler = restaurantErrorHandler;
     }
 
     @Override
-    public void bindGetRestaurant(@Nullable Bundle bundle) {
-        GetRestaurant getRestaurant = restaurantBundleFactory.getRestaurant(bundle);
-        getMvpView().bindRestaurantDetails(getRestaurant);
+    public void getRestaurant(@Nullable Bundle bundle) {
+        String restaurantId = restaurantBundleFactory.getRestaurantId(bundle);
+        getMvpView().showLoading();
+        restaurantService.getRestaurant(restaurantId, new CustomSingleObserver<>(
+                getCompositeDisposable(),
+                restaurant -> successHandler.onGetRestaurantSuccess(restaurant, getMvpView()),
+                t -> errorHandler.onGetRestaurantError(t, getMvpView())
+        ));
     }
 
     @Override
     public void deleteRestaurant(String id) {
         getMvpView().showLoading();
-        restaurantWrapperService.deleteRestaurant(id, new CustomCompletableObserver(
+        restaurantService.deleteRestaurant(id, new CustomCompletableObserver(
                 getCompositeDisposable(),
                 () -> successHandler.onDeleteRestaurantSuccess(getMvpView()),
                 t -> errorHandler.onDeleteRestaurantError(t, getMvpView())));
