@@ -8,8 +8,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 
-import pl.pawbal.mealsdistributor.data.models.dto.factory.util.BigDecimalFormatUtil;
 import pl.pawbal.mealsdistributor.data.models.dto.request.restaurant.AddRestaurant;
+import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;

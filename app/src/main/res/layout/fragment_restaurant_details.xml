@@ -1,7 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_restaurant_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_restaurant_details">
+    android:layout_marginTop="@dimen/top_bar">
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_const_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/restaurant_details"
+                android:textSize="@dimen/h3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/icon_rounded_border"
+                android:gravity="center"
+                android:text="@string/fas_utensils"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/h4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_restaurant_details_const_title" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/example"
+                android:textSize="@dimen/h4"
+                app:layout_constraintStart_toEndOf="@id/tv_restaurant_details_icon"
+                app:layout_constraintTop_toBottomOf="@id/tv_restaurant_details_const_title" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:text="@string/example"
+                android:textSize="@dimen/h5"
+                app:layout_constraintStart_toEndOf="@id/tv_restaurant_details_icon"
+                app:layout_constraintTop_toBottomOf="@id/tv_restaurant_details_name" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_additional_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/additional_info"
+                android:textSize="@dimen/h4_5"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_icon" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_const_min_order_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/restaurant_min_order_cost_colon"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_additional_info" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_min_order_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/example_number"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toEndOf="@+id/tv_restaurant_details_const_min_order_cost"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_additional_info" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_const_delivery_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/restaurant_delivery_cost_colon"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_const_min_order_cost" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_delivery_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/example_number"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toEndOf="@+id/tv_restaurant_details_const_delivery_cost"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_const_min_order_cost" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_const_max_paid_order_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/restaurant_free_delivery_cost_colon"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_const_delivery_cost" />
+
+            <TextView
+                android:id="@+id/tv_restaurant_details_max_paid_order_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/example_number"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toEndOf="@+id/tv_restaurant_details_const_max_paid_order_value"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_const_delivery_cost" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_restaurant_details_const_max_paid_order_value">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_restaurant_details_edit"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/edit"
+                    android:backgroundTint="@color/defaultButtonColor"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    android:textColor="@color/defaultTextColor"
+                    android:textSize="@dimen/body_1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_restaurant_details_delete"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="@string/delete"
+                    android:backgroundTint="@color/warningButtonColor"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    android:textColor="@color/defaultTextColor"
+                    android:textSize="@dimen/body_1" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,8 @@ import androidx.annotation.Nullable;
 
 import javax.inject.Inject;
 
-import pl.pawbal.mealsdistributor.data.models.dto.factory.util.BigDecimalFormatUtil;
 import pl.pawbal.mealsdistributor.data.models.dto.request.restaurant.AddRestaurant;
+import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
 
 public class RestaurantFactory {
     private final BigDecimalFormatUtil bigDecimalFormatUtil;
