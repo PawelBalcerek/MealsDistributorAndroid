@@ -1,7 +1,5 @@
 package pl.pawbal.mealsdistributor.ui.action.success;
 
-import android.os.Bundle;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,7 +19,6 @@ import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsMvpView
 import pl.pawbal.mealsdistributor.ui.restaurant.edit.EditRestaurantMvpView;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class RestaurantSuccessHandlerTest {
@@ -65,17 +62,14 @@ class RestaurantSuccessHandlerTest {
     void onGetRestaurantSuccess() {
         //given
         GetRestaurant restaurant = new GetRestaurant();
-        RestaurantMvpView view = Mockito.mock(RestaurantMvpView.class);
-        Bundle getRestaurant = new Bundle();
-        when(restaurantBundleFactory.create(restaurant)).thenReturn(getRestaurant);
+        RestaurantDetailsMvpView view = Mockito.mock(RestaurantDetailsMvpView.class);
 
         //when
         successHandler.onGetRestaurantSuccess(restaurant, view);
 
         //then
         verify(view).hideLoading();
-        verify(restaurantBundleFactory).create(restaurant);
-        verify(view).navigateToRestaurantDetails(getRestaurant);
+        verify(view).bindRestaurantDetails(restaurant);
     }
 
     @Test

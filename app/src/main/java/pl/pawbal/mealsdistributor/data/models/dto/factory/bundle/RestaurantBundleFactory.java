@@ -7,23 +7,19 @@ import androidx.annotation.Nullable;
 import com.google.gson.Gson;
 
 import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
-import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurant;
 
 public class RestaurantBundleFactory {
-    private static final String GET_RESTAURANT_BUNDLE_KEY = "getRestaurant";
+    private static final String RESTAURANT_ID_BUNDLE_KEY = "restaurantId";
     private static final String RESTAURANT_BUNDLE_KEY = "restaurant";
 
-    public Bundle create(GetRestaurant restaurant) {
+    public Bundle create(String restaurantId) {
         Bundle bundle = new Bundle();
-        bundle.putString(GET_RESTAURANT_BUNDLE_KEY, new Gson().toJson(restaurant));
+        bundle.putString(RESTAURANT_ID_BUNDLE_KEY, restaurantId);
         return bundle;
     }
 
-    public GetRestaurant getRestaurant(@Nullable Bundle bundle) {
-        String getRestaurantJson = null;
-        if (bundle != null)
-            getRestaurantJson = bundle.getString(GET_RESTAURANT_BUNDLE_KEY);
-        return new Gson().fromJson(getRestaurantJson, GetRestaurant.class);
+    public String getRestaurantId(@Nullable Bundle bundle) {
+        return bundle != null ? bundle.getString(RESTAURANT_ID_BUNDLE_KEY) : "";
     }
 
     public Bundle create(Restaurant restaurant) {

@@ -1,7 +1,5 @@
 package pl.pawbal.mealsdistributor.ui.action.success;
 
-import android.os.Bundle;
-
 import javax.inject.Inject;
 
 import pl.pawbal.mealsdistributor.data.models.dto.factory.bundle.RestaurantBundleFactory;
@@ -15,13 +13,11 @@ import pl.pawbal.mealsdistributor.ui.restaurant.edit.EditRestaurantMvpView;
 
 public class RestaurantSuccessHandler {
     private final SuccessHandler successHandler;
-    private final RestaurantBundleFactory restaurantBundleFactory;
 
     @Inject
     public RestaurantSuccessHandler(SuccessHandler successHandler,
                                     RestaurantBundleFactory restaurantBundleFactory) {
         this.successHandler = successHandler;
-        this.restaurantBundleFactory = restaurantBundleFactory;
     }
 
     public void onGetRestaurantsSuccess(GetRestaurants restaurants, RestaurantMvpView view) {
@@ -34,10 +30,9 @@ public class RestaurantSuccessHandler {
         view.goBack();
     }
 
-    public void onGetRestaurantSuccess(GetRestaurant restaurant, RestaurantMvpView view) {
+    public void onGetRestaurantSuccess(GetRestaurant restaurant, RestaurantDetailsMvpView view) {
         view.hideLoading();
-        Bundle getRestaurant = restaurantBundleFactory.create(restaurant);
-        view.navigateToRestaurantDetails(getRestaurant);
+        view.bindRestaurantDetails(restaurant);
     }
 
     public void onDeleteRestaurantSuccess(RestaurantDetailsMvpView view) {

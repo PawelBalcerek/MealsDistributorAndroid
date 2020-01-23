@@ -79,7 +79,7 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
 
     private void bindRestaurantDetails() {
         Bundle bundle = getArguments();
-        presenter.bindGetRestaurant(bundle);
+        presenter.getRestaurant(bundle);
     }
 
     private void setIcon() {
@@ -92,11 +92,11 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
         this.restaurant = restaurant.getRestaurant();
         restaurantName.setText(restaurant.getRestaurant().getName());
         restaurantPhoneNumber.setText(restaurant.getRestaurant().getPhoneNumber());
-        String minOrderCost = BigDecimalFormatUtil.format(restaurant.getRestaurant().getMinOrderCost());
+        String minOrderCost = BigDecimalFormatUtil.formatWithCurrency(restaurant.getRestaurant().getMinOrderCost());
         restaurantMinOrderCost.setText(minOrderCost != null ? minOrderCost : requireContext().getResources().getText(R.string.no_info));
-        String deliveryCost = BigDecimalFormatUtil.format(restaurant.getRestaurant().getDeliveryCost());
+        String deliveryCost = BigDecimalFormatUtil.formatWithCurrency(restaurant.getRestaurant().getDeliveryCost());
         restaurantDeliveryCost.setText(deliveryCost != null ? deliveryCost : requireContext().getResources().getText(R.string.no_info));
-        String maxPaidOrderValue = BigDecimalFormatUtil.format(restaurant.getRestaurant().getMaxPaidOrderValue());
+        String maxPaidOrderValue = BigDecimalFormatUtil.formatWithCurrency(restaurant.getRestaurant().getMaxPaidOrderValue());
         restaurantMaxPaidOrderValue.setText(maxPaidOrderValue != null ? maxPaidOrderValue : requireContext().getResources().getText(R.string.no_info));
     }
 

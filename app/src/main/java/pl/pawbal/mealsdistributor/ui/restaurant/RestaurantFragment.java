@@ -75,7 +75,7 @@ public class RestaurantFragment extends BaseFragment implements RestaurantMvpVie
 
     private void onRestaurantViewHolderClick(View view) {
         TextView restaurantId = view.findViewById(R.id.tv_restaurant_id);
-        presenter.getRestaurant(restaurantId.getText().toString());
+        presenter.navigateToRestaurantDetails(restaurantId.getText().toString());
     }
 
     @OnClick(R.id.btn_restaurant_add)
@@ -100,16 +100,16 @@ public class RestaurantFragment extends BaseFragment implements RestaurantMvpVie
     }
 
     @Override
-    public void navigateToRestaurantDetails(Bundle getRestaurant) {
+    public void navigateToRestaurantDetails(Bundle bundle) {
         FragmentManager fragmentManager = getFragmentManager();
         if (fragmentManager != null) {
             Fragment fromStack = fragmentManager.findFragmentByTag(RestaurantDetailsFragment.TAG);
             if (fromStack == null) {
                 Fragment fragment = RestaurantDetailsFragment.newInstance();
-                fragment.setArguments(getRestaurant);
+                fragment.setArguments(bundle);
                 replaceFragment(fragmentManager, fragment, RestaurantDetailsFragment.TAG);
             } else {
-                fromStack.setArguments(getRestaurant);
+                fromStack.setArguments(bundle);
                 replaceFragment(fragmentManager, fromStack, RestaurantDetailsFragment.TAG);
             }
         }

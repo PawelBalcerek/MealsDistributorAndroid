@@ -47,13 +47,15 @@ public class RestaurantErrorHandler {
                     errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_default_error_toast), t);
                     break;
             }
+        } else if (t instanceof NumberFormatException) {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurant_nfe_error_toast), t);
         } else {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_default_error_toast), t);
         }
     }
 
     // TODO: May be unit tested
-    public void onGetRestaurantError(Throwable t, RestaurantMvpView view) {
+    public void onGetRestaurantError(Throwable t, RestaurantDetailsMvpView view) {
         view.hideLoading();
         if (t instanceof HttpException) {
             switch (((HttpException) t).code()) {
@@ -106,6 +108,8 @@ public class RestaurantErrorHandler {
                 default:
                     errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_restaurant_default_error_toast), t);
             }
+        } else if (t instanceof NumberFormatException) {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_restaurant_nfe_error_toast), t);
         } else {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_restaurant_default_error_toast), t);
         }

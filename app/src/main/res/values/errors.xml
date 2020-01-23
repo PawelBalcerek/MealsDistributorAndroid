@@ -5,6 +5,7 @@
     <string name="login_default_error_toast">Logowanie nie powiodło się, proszę spróbować ponownie.</string>
     <string name="get_restaurants_default_error_toast">Nie udało się pobrać listy restauracji, proszę spróbować ponownie.</string>
     <string name="add_restaurants_default_error_toast">Nie udało się dodać nowej restauracji, proszę spróbować ponownie.</string>
+    <string name="add_restaurant_nfe_error_toast">Dodawanie nowej restauracji nie powiodło się. Minimalny koszt zamówienia, koszt dostawy oraz koszt darmowej dostawy muszą być wartościami liczbowymi.</string>
     <string name="add_restaurants_400_error_toast">Nie udało się dodać nowej restauracji, proszę sprawdzić poprawność danych.</string>
     <string name="add_restaurants_403_error_toast">Nie udało się dodać nowej restauracji, nie masz dostępu do tej funkcjonalności.</string>
     <string name="get_restaurant_default_error_toast">Nie udało się pobrać wymaganych informacji, proszę spróbować ponownie.</string>
@@ -14,6 +15,7 @@
     <string name="delete_restaurant_403_error_toast">Nie posiadasz dostępu do usunięcia tej restauracji.</string>
     <string name="delete_restaurant_404_error_toast">Podana restauracja do usunięcia nie istnieje w systemie.</string>
     <string name="edit_restaurant_default_error_toast">Edycja restauracji nie powiodła się, proszę spróbować ponownie.</string>
+    <string name="edit_restaurant_nfe_error_toast">Edycja restauracji nie powiodła się. Minimalny koszt zamówienia, koszt dostawy oraz koszt darmowej dostawy muszą być wartościami liczbowymi.</string>
     <string name="edit_restaurant_400_error_toast">Edycja restauracji nie powiodła się, proszę sprawdzić poprawność danych.</string>
     <string name="edit_restaurant_403_error_toast">Nie posiadasz dostępu do edycji tej restauracji.</string>
     <string name="edit_restaurant_404_error_toast">Edytowana restauracja nie została odnaleziona w systemie, proszę spróbować ponownie.</string>
