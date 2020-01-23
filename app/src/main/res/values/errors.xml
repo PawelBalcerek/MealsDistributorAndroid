@@ -13,4 +13,8 @@
     <string name="delete_restaurant_default_error_toast">Usunięcie restauracji nie powiodło się, proszę spróbować ponownie.</string>
     <string name="delete_restaurant_403_error_toast">Nie posiadasz dostępu do usunięcia tej restauracji.</string>
     <string name="delete_restaurant_404_error_toast">Podana restauracja do usunięcia nie istnieje w systemie.</string>
+    <string name="edit_restaurant_default_error_toast">Edycja restauracji nie powiodła się, proszę spróbować ponownie.</string>
+    <string name="edit_restaurant_400_error_toast">Edycja restauracji nie powiodła się, proszę sprawdzić poprawność danych.</string>
+    <string name="edit_restaurant_403_error_toast">Nie posiadasz dostępu do edycji tej restauracji.</string>
+    <string name="edit_restaurant_404_error_toast">Edytowana restauracja nie została odnaleziona w systemie, proszę spróbować ponownie.</string>
 </resources>

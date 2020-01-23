@@ -18,6 +18,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaur
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsMvpView;
+import pl.pawbal.mealsdistributor.ui.restaurant.edit.EditRestaurantMvpView;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -88,5 +89,18 @@ class RestaurantSuccessHandlerTest {
         //then
         verify(view).hideLoading();
         verify(view).onRestaurantDelete();
+    }
+
+    @Test
+    void onEditRestaurantSuccess() {
+        //given
+        EditRestaurantMvpView view = Mockito.mock(EditRestaurantMvpView.class);
+
+        //when
+        successHandler.onEditRestaurantSuccess(view);
+
+        //then
+        verify(view).hideLoading();
+        verify(view).goBack();
     }
 }

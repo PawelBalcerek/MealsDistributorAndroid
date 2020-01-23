@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import javax.inject.Inject;
 
@@ -17,14 +19,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.config.FontManager;
+import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurant;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
+import pl.pawbal.mealsdistributor.ui.restaurant.edit.EditRestaurantFragment;
 import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
 
 public class RestaurantDetailsFragment extends BaseFragment implements RestaurantDetailsMvpView {
     public static final String TAG = RestaurantDetailsFragment.class.toString();
-    private String restaurantId;
+    private Restaurant restaurant;
 
     @Inject
     RestaurantDetailsMvpPresenter<RestaurantDetailsMvpView> presenter;
@@ -85,7 +89,7 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
 
     @Override
     public void bindRestaurantDetails(GetRestaurant restaurant) {
-        restaurantId = restaurant.getRestaurant().getId();
+        this.restaurant = restaurant.getRestaurant();
         restaurantName.setText(restaurant.getRestaurant().getName());
         restaurantPhoneNumber.setText(restaurant.getRestaurant().getPhoneNumber());
         String minOrderCost = BigDecimalFormatUtil.format(restaurant.getRestaurant().getMinOrderCost());
@@ -98,12 +102,41 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
 
     @OnClick(R.id.btn_restaurant_details_delete)
     void deleteRestaurant() {
-        presenter.deleteRestaurant(restaurantId);
+        presenter.deleteRestaurant(restaurant.getId());
     }
 
     @Override
     public void onRestaurantDelete() {
         requireFragmentManager().popBackStack();
+    }
+
+    @OnClick(R.id.btn_restaurant_details_edit)
+    void navigateToEditRestaurantFragment() {
+        presenter.navigateToEditRestaurant(restaurant);
+    }
+
+    @Override
+    public void navigateToEditRestaurantFragment(Bundle restaurant) {
+        FragmentManager fragmentManager = getFragmentManager();
+        if (fragmentManager != null) {
+            Fragment fromStack = fragmentManager.findFragmentByTag(EditRestaurantFragment.TAG);
+            if (fromStack == null) {
+                Fragment fragment = EditRestaurantFragment.newInstance();
+                fragment.setArguments(restaurant);
+                replaceFragment(fragmentManager, fragment, EditRestaurantFragment.TAG);
+            } else {
+                fromStack.setArguments(restaurant);
+                replaceFragment(fragmentManager, fromStack, EditRestaurantFragment.TAG);
+            }
+        }
+    }
+
+    // TODO: create FragmentUtil and move this method there
+    private void replaceFragment(@NonNull FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_wrapper, fragment, fragmentTag)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

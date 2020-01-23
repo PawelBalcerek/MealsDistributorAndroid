@@ -11,6 +11,7 @@ import pl.pawbal.mealsdistributor.ui.action.core.SuccessHandler;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsMvpView;
+import pl.pawbal.mealsdistributor.ui.restaurant.edit.EditRestaurantMvpView;
 
 public class RestaurantSuccessHandler {
     private final SuccessHandler successHandler;
@@ -42,5 +43,10 @@ public class RestaurantSuccessHandler {
     public void onDeleteRestaurantSuccess(RestaurantDetailsMvpView view) {
         view.hideLoading();
         view.onRestaurantDelete();
+    }
+
+    public void onEditRestaurantSuccess(EditRestaurantMvpView view) {
+        view.hideLoading();
+        view.goBack();
     }
 }

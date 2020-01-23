@@ -1,4 +1,4 @@
-package pl.pawbal.mealsdistributor.ui.restaurant.add;
+package pl.pawbal.mealsdistributor.ui.restaurant.edit;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,12 +17,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
+import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
+import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
 import pl.pawbal.mealsdistributor.util.EditTextUtil;
 
-public class AddRestaurantFragment extends BaseFragment implements AddRestaurantMvpView {
-    public static final String TAG = AddRestaurantFragment.class.toString();
+public class EditRestaurantFragment extends BaseFragment implements EditRestaurantMvpView {
+    public static final String TAG = EditRestaurantFragment.class.toString();
+    private String restaurantId;
+
+    @Inject
+    EditRestaurantMvpPresenter<EditRestaurantMvpView> presenter;
 
     @BindView(R.id.et_restaurant_form_name)
     TextInputEditText restaurantName;
@@ -42,12 +48,9 @@ public class AddRestaurantFragment extends BaseFragment implements AddRestaurant
     @BindView(R.id.cb_restaurant_form_is_pyszne)
     CheckBox restaurantIsPyszne;
 
-    @Inject
-    AddRestaurantMvpPresenter<AddRestaurantMvpView> presenter;
-
-    public static AddRestaurantFragment newInstance() {
+    public static EditRestaurantFragment newInstance() {
         Bundle args = new Bundle();
-        AddRestaurantFragment fragment = new AddRestaurantFragment();
+        EditRestaurantFragment fragment = new EditRestaurantFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +58,7 @@ public class AddRestaurantFragment extends BaseFragment implements AddRestaurant
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_restaurant, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_restaurant, container, false);
         ActivityComponent component = getActivityComponent();
         if (component != null) {
             component.inject(this);
@@ -67,28 +70,43 @@ public class AddRestaurantFragment extends BaseFragment implements AddRestaurant
 
     @Override
     protected void setUp(View view) {
+        bindRestaurant();
     }
 
-    @OnClick(R.id.btn_add_restaurant_go_back)
+    private void bindRestaurant() {
+        Bundle bundle = getArguments();
+        presenter.bindRestaurant(bundle);
+    }
+
+    @Override
+    public void bindRestaurant(Restaurant restaurant) {
+        restaurantId = restaurant.getId();
+        restaurantName.setText(restaurant.getName());
+        restaurantPhoneNumber.setText(restaurant.getPhoneNumber());
+        String minOrderCost = BigDecimalFormatUtil.format(restaurant.getMinOrderCost());
+        restaurantMinOrderCost.setText(minOrderCost != null ? minOrderCost : "");
+        String deliveryCost = BigDecimalFormatUtil.format(restaurant.getDeliveryCost());
+        restaurantDeliveryCost.setText(deliveryCost != null ? deliveryCost : "");
+        String maxPaidOrderValue = BigDecimalFormatUtil.format(restaurant.getMaxPaidOrderValue());
+        restaurantMaxPaidOrderValue.setText(maxPaidOrderValue != null ? maxPaidOrderValue : "");
+        restaurantIsPyszne.setChecked(restaurant.isPyszne());
+    }
+
+    @OnClick(R.id.btn_edit_restaurant_go_back)
+    @Override
     public void goBack() {
         requireFragmentManager().popBackStack();
         hideKeyboard();
     }
 
-    @OnClick(R.id.btn_add_restaurant_accept)
-    void saveRestaurant() {
+    @OnClick(R.id.btn_edit_restaurant_save)
+    void editRestaurant() {
         String name = EditTextUtil.getValue(restaurantName);
         String phoneNumber = EditTextUtil.getValue(restaurantPhoneNumber);
         String minOrderCost = EditTextUtil.getValue(restaurantMinOrderCost);
         String deliveryCost = EditTextUtil.getValue(restaurantDeliveryCost);
         String maxPaidOrderValue = EditTextUtil.getValue(restaurantMaxPaidOrderValue);
         boolean isPyszne = restaurantIsPyszne.isChecked();
-        presenter.addRestaurant(name, phoneNumber, minOrderCost, deliveryCost, maxPaidOrderValue, isPyszne);
-    }
-
-    @Override
-    public void onDestroyView() {
-        presenter.onDetach();
-        super.onDestroyView();
+        presenter.editRestaurant(restaurantId, name, phoneNumber, minOrderCost, deliveryCost, maxPaidOrderValue, isPyszne);
     }
 }
