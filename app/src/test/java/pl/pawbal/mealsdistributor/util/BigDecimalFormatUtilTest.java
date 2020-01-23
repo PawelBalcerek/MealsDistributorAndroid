@@ -1,4 +1,4 @@
-package pl.pawbal.mealsdistributor.data.models.dto.factory.util;
+package pl.pawbal.mealsdistributor.util;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -10,7 +10,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaur
 import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurants;
 
 public interface RestaurantService {
-    void getRestaurant(UUID id, CustomSingleObserver<GetRestaurant> observer);
+    void getRestaurant(String id, CustomSingleObserver<GetRestaurant> observer);
 
     void getRestaurants(CustomSingleObserver<GetRestaurants> observer);
 

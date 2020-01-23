@@ -33,4 +33,14 @@ public class RestaurantPresenter<V extends RestaurantMvpView> extends BasePresen
                 restaurants -> successHandler.onGetRestaurantsSuccess(restaurants, getMvpView()),
                 t -> errorHandler.onGetRestaurantsError(t, getMvpView())));
     }
+
+    @Override
+    public void getRestaurant(String id) {
+        getMvpView().showLoading();
+        restaurantService.getRestaurant(id, new CustomSingleObserver<>(
+                getCompositeDisposable(),
+                restaurant -> successHandler.onGetRestaurantSuccess(restaurant, getMvpView()),
+                t -> errorHandler.onGetRestaurantError(t, getMvpView())
+        ));
+    }
 }

@@ -49,4 +49,23 @@ public class RestaurantErrorHandler {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_default_error_toast), t);
         }
     }
+
+    // TODO: May be unit tested
+    public void onGetRestaurantError(Throwable t, RestaurantMvpView view) {
+        view.hideLoading();
+        if (t instanceof HttpException) {
+            switch (((HttpException) t).code()) {
+                case 403:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_restaurant_403_error_toast), t);
+                    break;
+                case 404:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_restaurant_404_error_toast), t);
+                    break;
+                default:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_restaurant_default_error_toast), t);
+            }
+        } else {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_restaurant_default_error_toast), t);
+        }
+    }
 }

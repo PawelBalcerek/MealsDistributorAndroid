@@ -17,9 +17,19 @@
     <string name="add_restaurant_title">Dodaj nową restaurację</string>
     <string name="restaurant_phone_number">Numer telefonu*</string>
     <string name="restaurant_min_order_cost">Minimalny koszt zamówienia</string>
+    <string name="restaurant_min_order_cost_colon">Minimalny koszt zamówienia:</string>
     <string name="restaurant_delivery_cost">Koszt dostawy</string>
+    <string name="restaurant_delivery_cost_colon">Koszt dostawy:</string>
     <string name="restaurant_free_delivery_cost">Koszt darmowej dostawy</string>
+    <string name="restaurant_free_delivery_cost_colon">Koszt darmowej dostawy:</string>
     <string name="cancel">Anuluj</string>
     <string name="add">Dodaj</string>
     <string name="is_pyszne">Restauracja widnieje w portalu Pyszne.pl</string>
+    <string name="restaurant_details">Szczegóły restauracji</string>
+    <string name="example">Example text</string>
+    <string name="additional_info">Dodatkowe informacje:</string>
+    <string name="example_number">1000.00</string>
+    <string name="delete">Usuń</string>
+    <string name="edit">Edytuj</string>
+    <string name="no_info">Brak informacji</string>
 </resources>
