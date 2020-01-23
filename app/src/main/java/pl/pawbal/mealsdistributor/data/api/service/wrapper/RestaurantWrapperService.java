@@ -1,7 +1,5 @@
 package pl.pawbal.mealsdistributor.data.api.service.wrapper;
 
-import java.util.UUID;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -52,7 +50,7 @@ public class RestaurantWrapperService implements RestaurantService {
     }
 
     @Override
-    public void deleteRestaurant(UUID id, CustomCompletableObserver observer) {
+    public void deleteRestaurant(String id, CustomCompletableObserver observer) {
         responseWrapper.wrapCompletable(restaurantRestService.deleteRestaurant(id))
                 .subscribe(observer);
     }

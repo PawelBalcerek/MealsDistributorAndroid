@@ -10,4 +10,7 @@
     <string name="get_restaurant_default_error_toast">Nie udało się pobrać wymaganych informacji, proszę spróbować ponownie.</string>
     <string name="get_restaurant_403_error_toast">Nie posiadasz dostępu do wymaganych informacji.</string>
     <string name="get_restaurant_404_error_toast">Nie udało się znaleźć wymaganych informacji.</string>
+    <string name="delete_restaurant_default_error_toast">Usunięcie restauracji nie powiodło się, proszę spróbować ponownie.</string>
+    <string name="delete_restaurant_403_error_toast">Nie posiadasz dostępu do usunięcia tej restauracji.</string>
+    <string name="delete_restaurant_404_error_toast">Podana restauracja do usunięcia nie istnieje w systemie.</string>
 </resources>

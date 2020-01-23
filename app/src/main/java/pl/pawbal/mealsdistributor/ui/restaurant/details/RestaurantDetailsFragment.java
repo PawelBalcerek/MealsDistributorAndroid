@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.config.FontManager;
 import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurant;
@@ -93,6 +94,16 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
         restaurantDeliveryCost.setText(deliveryCost != null ? deliveryCost : requireContext().getResources().getText(R.string.no_info));
         String maxPaidOrderValue = BigDecimalFormatUtil.format(restaurant.getRestaurant().getMaxPaidOrderValue());
         restaurantMaxPaidOrderValue.setText(maxPaidOrderValue != null ? maxPaidOrderValue : requireContext().getResources().getText(R.string.no_info));
+    }
+
+    @OnClick(R.id.btn_restaurant_details_delete)
+    void deleteRestaurant() {
+        presenter.deleteRestaurant(restaurantId);
+    }
+
+    @Override
+    public void onRestaurantDelete() {
+        requireFragmentManager().popBackStack();
     }
 
     @Override
