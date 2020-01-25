@@ -11,6 +11,7 @@ import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
 import pl.pawbal.mealsdistributor.ui.meal.MealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealMvpView;
+import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpView;
 import retrofit2.HttpException;
 
 public class MealErrorHandler {
@@ -56,5 +57,25 @@ public class MealErrorHandler {
         } else {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_meal_default_error_toast), t);
         }
+    }
+
+    //TODO: may be unit tested
+    public void onGetMealError(Throwable t, MealDetailsMvpView view) {
+        view.hideLoading();
+        if (t instanceof HttpException) {
+            switch (((HttpException) t).code()) {
+                case 403:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_meal_403_error_toast), t);
+                    break;
+                case 404:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_meal_404_error_toast), t);
+                    break;
+                default:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_meal_default_error_toast), t);
+            }
+        } else {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_meal_default_error_toast), t);
+        }
+
     }
 }

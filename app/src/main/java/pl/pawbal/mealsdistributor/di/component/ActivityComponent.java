@@ -8,6 +8,7 @@ import pl.pawbal.mealsdistributor.ui.login.LoginActivity;
 import pl.pawbal.mealsdistributor.ui.main.MainActivity;
 import pl.pawbal.mealsdistributor.ui.meal.MealFragment;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealFragment;
+import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsFragment;
 import pl.pawbal.mealsdistributor.ui.register.RegisterActivity;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantFragment;
@@ -36,4 +37,6 @@ public interface ActivityComponent {
     void inject(MealFragment mealFragment);
 
     void inject(AddMealFragment addMealFragment);
+
+    void inject(MealDetailsFragment mealDetailsFragment);
 }

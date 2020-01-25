@@ -25,4 +25,7 @@
     <string name="add_meal_400_error_toast">Nie udało się dodać nowego posiłku, proszę sprawdzić poprawność danych.</string>
     <string name="add_meal_403_error_toast">Nie udało się dodać nowego posiłku, nie masz dostępu do tej funkcjonalności.</string>
     <string name="add_meal_404_error_toast">Nie udało się dodać nowego posiłku dla wybranej restauracji, wybrana restauracja nie istnieje.</string>
+    <string name="get_meal_default_error_toast">Nie udało się pobrać wymaganych informacji, proszę spróbować ponownie.</string>
+    <string name="get_meal_403_error_toast">Nie posiadasz dostępu do wymaganych informacji.</string>
+    <string name="get_meal_404_error_toast">Nie udało się znaleźć wymaganych informacji.</string>
 </resources>

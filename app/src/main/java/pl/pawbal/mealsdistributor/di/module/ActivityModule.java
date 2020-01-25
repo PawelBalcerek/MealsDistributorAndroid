@@ -7,12 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
-import pl.pawbal.mealsdistributor.data.models.dto.factory.AccountFactory;
-import pl.pawbal.mealsdistributor.data.models.dto.factory.UserFactory;
-import pl.pawbal.mealsdistributor.data.models.dto.factory.bundle.RestaurantBundleFactory;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
-import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
-import pl.pawbal.mealsdistributor.ui.action.core.SuccessHandler;
 import pl.pawbal.mealsdistributor.ui.home.HomeMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.home.HomeMvpView;
 import pl.pawbal.mealsdistributor.ui.home.HomePresenter;
@@ -28,6 +23,9 @@ import pl.pawbal.mealsdistributor.ui.meal.MealPresenter;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealPresenter;
+import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpPresenter;
+import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpView;
+import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpView;
 import pl.pawbal.mealsdistributor.ui.register.RegisterPresenter;
@@ -118,32 +116,8 @@ public class ActivityModule {
         return presenter;
     }
 
-    // Factories
-
     @Provides
-    AccountFactory provideAccountFactory() {
-        return new AccountFactory();
-    }
-
-    @Provides
-    UserFactory providesUserFactory() {
-        return new UserFactory();
-    }
-
-    @Provides
-    RestaurantBundleFactory provideRestaurantBundleFactory() {
-        return new RestaurantBundleFactory();
-    }
-
-    // Other (Core, Common, etc.)
-
-    @Provides
-    SuccessHandler provideSuccessHandler() {
-        return new SuccessHandler();
-    }
-
-    @Provides
-    ErrorHandler provideErrorHandler() {
-        return new ErrorHandler();
+    MealDetailsMvpPresenter<MealDetailsMvpView> provideMealDetailsMvpPresenter(MealDetailsPresenter<MealDetailsMvpView> presenter) {
+        return presenter;
     }
 }

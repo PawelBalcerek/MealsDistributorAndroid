@@ -23,6 +23,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealFragment;
+import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsFragment;
 import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
 public class MealFragment extends BaseFragment implements MealMvpView {
@@ -74,6 +75,14 @@ public class MealFragment extends BaseFragment implements MealMvpView {
     private void onMealViewHolderClick(View view) {
         TextView mealId = view.findViewById(R.id.tv_meal_id);
         presenter.navigateToMealDetails(mealId.getText().toString());
+    }
+
+    @Override
+    public void navigateToMealDetailsFragment(Bundle bundle) {
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(MealDetailsFragment.TAG);
+        FragmentUtil.navigateToFragment(bundle, fragmentManager, fromStack,
+                MealDetailsFragment.newInstance(), MealDetailsFragment.TAG);
     }
 
     @OnClick(R.id.btn_meal_add)

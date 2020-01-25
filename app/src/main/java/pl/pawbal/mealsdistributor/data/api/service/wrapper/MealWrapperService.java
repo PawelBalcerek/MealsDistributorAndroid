@@ -27,7 +27,7 @@ public class MealWrapperService implements MealService {
     }
 
     @Override
-    public void getMeal(UUID id, CustomSingleObserver<GetMeal> observer) {
+    public void getMeal(String id, CustomSingleObserver<GetMeal> observer) {
         responseWrapper.wrapSingle(mealRestService.getMeal(id))
                 .subscribe(observer);
     }
