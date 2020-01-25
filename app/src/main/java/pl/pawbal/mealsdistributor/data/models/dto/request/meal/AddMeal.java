@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import lombok.Data;
 
@@ -28,5 +27,5 @@ public class AddMeal {
     private LocalDateTime endDate;
     @Expose
     @SerializedName("restaurantId")
-    private UUID restaurantId;
+    private String restaurantId;
 }

@@ -31,7 +31,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MealVi
         void bindData(Meal meal) {
             mealId.setText(meal.getId());
             mealName.setText(meal.getName());
-            mealPrice.setText(BigDecimalFormatUtil.format(meal.getPrice()));
+            mealPrice.setText(BigDecimalFormatUtil.formatWithCurrency(meal.getPrice()));
         }
 
         void bindClickListener(View.OnClickListener clickListener) {

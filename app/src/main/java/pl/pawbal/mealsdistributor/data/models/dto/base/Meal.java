@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -27,9 +27,9 @@ public class Meal {
     @Nullable
     @Expose
     @SerializedName("startDate")
-    private Date startDate;
+    private LocalDateTime startDate;
     @Nullable
     @Expose
     @SerializedName("endDate")
-    private Date endDate;
+    private LocalDateTime endDate;
 }

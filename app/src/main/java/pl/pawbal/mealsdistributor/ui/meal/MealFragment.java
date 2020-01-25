@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +17,13 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
+import pl.pawbal.mealsdistributor.ui.meal.add.AddMealFragment;
+import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
 public class MealFragment extends BaseFragment implements MealMvpView {
     public static final String TAG = MealFragment.class.toString();
@@ -69,6 +74,14 @@ public class MealFragment extends BaseFragment implements MealMvpView {
     private void onMealViewHolderClick(View view) {
         TextView mealId = view.findViewById(R.id.tv_meal_id);
         presenter.navigateToMealDetails(mealId.getText().toString());
+    }
+
+    @OnClick(R.id.btn_meal_add)
+    void navigateToAddFragment() {
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(AddMealFragment.TAG);
+        FragmentUtil.navigateToFragment(getArguments(), fragmentManager, fromStack,
+                AddMealFragment.newInstance(), AddMealFragment.TAG);
     }
 
     @Override
