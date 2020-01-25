@@ -37,7 +37,7 @@ class MealWrapperServiceTest {
     @Test
     void getMeal() {
         //given
-        UUID id = UUID.randomUUID();
+        String id = UUID.randomUUID().toString();
         @SuppressWarnings("unchecked")
         CustomSingleObserver<GetMeal> observer = Mockito.mock(CustomSingleObserver.class);
         @SuppressWarnings("unchecked")

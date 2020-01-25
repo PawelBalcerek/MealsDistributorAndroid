@@ -6,11 +6,17 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 
+import javax.inject.Inject;
+
 import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 
 public class RestaurantBundleFactory {
     private static final String RESTAURANT_ID_BUNDLE_KEY = "restaurantId";
     private static final String RESTAURANT_BUNDLE_KEY = "restaurant";
+
+    @Inject
+    public RestaurantBundleFactory() {
+    }
 
     public Bundle create(String restaurantId) {
         Bundle bundle = new Bundle();
@@ -18,8 +24,9 @@ public class RestaurantBundleFactory {
         return bundle;
     }
 
+    @Nullable
     public String getRestaurantId(@Nullable Bundle bundle) {
-        return bundle != null ? bundle.getString(RESTAURANT_ID_BUNDLE_KEY) : "";
+        return bundle != null ? bundle.getString(RESTAURANT_ID_BUNDLE_KEY) : null;
     }
 
     public Bundle create(Restaurant restaurant) {

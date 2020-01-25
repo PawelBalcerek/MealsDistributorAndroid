@@ -4,10 +4,15 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
 import es.dmoral.toasty.Toasty;
 
 public class ErrorHandler {
-    @SuppressWarnings("WeakerAccess")
+    @Inject
+    public ErrorHandler() {
+    }
+
     public void onError(String tag, String message, Throwable e) {
         Log.e(tag, message, e);
     }

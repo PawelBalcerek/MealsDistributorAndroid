@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_meal_details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/top_bar">
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/colorPrimary"
+        app:strokeWidth="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_meal_details_const_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_view_bottom_border"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="@string/meal_details"
+                android:textSize="@dimen/h3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/icon_rounded_border"
+                android:gravity="center"
+                android:text="@string/fas_drumstick_bite"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/h4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_meal_details_const_title" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/h4"
+                app:layout_constraintStart_toEndOf="@id/tv_meal_details_icon"
+                app:layout_constraintTop_toBottomOf="@id/tv_meal_details_const_title"
+                tools:text="@string/example" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:textSize="@dimen/h5"
+                app:layout_constraintStart_toEndOf="@id/tv_meal_details_icon"
+                app:layout_constraintTop_toBottomOf="@id/tv_meal_details_name"
+                tools:text="@string/example_price" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_additional_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/additional_info"
+                android:textSize="@dimen/h4_5"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_meal_details_icon" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_meal_details_additional_info"
+                tools:text="@string/example_long_text" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_const_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/meal_start_date_colon"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_meal_details_description" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toEndOf="@+id/tv_meal_details_const_start_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_meal_details_description"
+                tools:text="@string/example_date" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_const_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/meal_start_date_colon"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_meal_details_const_start_date" />
+
+            <TextView
+                android:id="@+id/tv_meal_details_end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/body_1"
+                app:layout_constraintStart_toEndOf="@+id/tv_meal_details_const_end_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_meal_details_start_date"
+                tools:text="@string/example_date" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_meal_details_const_end_date">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_meal_details_edit"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="@string/edit"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    android:textColor="@color/defaultButtonColor"
+                    android:textSize="@dimen/body_1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_meal_details_delete"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                    android:textColor="@color/warningButtonColor"
+                    android:textSize="@dimen/body_1"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toEndOf="@id/btn_meal_details_edit"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
