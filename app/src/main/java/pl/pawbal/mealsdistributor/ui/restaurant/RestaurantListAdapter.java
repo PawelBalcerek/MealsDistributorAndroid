@@ -70,6 +70,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
     @Override
     public int getItemViewType(int position) {
-        return R.layout.restaurant_view_holder;
+        return R.layout.view_holder_restaurant;
     }
 }

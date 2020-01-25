@@ -26,6 +26,7 @@ import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsFragment;
+import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
 public class RestaurantFragment extends BaseFragment implements RestaurantMvpView {
     public static final String TAG = RestaurantFragment.class.toString();
@@ -80,39 +81,18 @@ public class RestaurantFragment extends BaseFragment implements RestaurantMvpVie
 
     @OnClick(R.id.btn_restaurant_add)
     void navigateToAddRestaurantFragment() {
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            Fragment fromStack = fragmentManager.findFragmentByTag(AddRestaurantFragment.TAG);
-            if (fromStack == null) {
-                Fragment fragment = AddRestaurantFragment.newInstance();
-                replaceFragment(fragmentManager, fragment, AddRestaurantFragment.TAG);
-            } else
-                replaceFragment(fragmentManager, fromStack, AddRestaurantFragment.TAG);
-        }
-    }
-
-    // TODO: create FragmentUtil and move this method there
-    private void replaceFragment(@NonNull FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_wrapper, fragment, fragmentTag)
-                .addToBackStack(null)
-                .commit();
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(AddRestaurantFragment.TAG);
+        FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
+                AddRestaurantFragment.newInstance(), AddRestaurantFragment.TAG);
     }
 
     @Override
     public void navigateToRestaurantDetails(Bundle bundle) {
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            Fragment fromStack = fragmentManager.findFragmentByTag(RestaurantDetailsFragment.TAG);
-            if (fromStack == null) {
-                Fragment fragment = RestaurantDetailsFragment.newInstance();
-                fragment.setArguments(bundle);
-                replaceFragment(fragmentManager, fragment, RestaurantDetailsFragment.TAG);
-            } else {
-                fromStack.setArguments(bundle);
-                replaceFragment(fragmentManager, fromStack, RestaurantDetailsFragment.TAG);
-            }
-        }
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(RestaurantDetailsFragment.TAG);
+        FragmentUtil.navigateToFragment(bundle, fragmentManager, fromStack,
+                RestaurantDetailsFragment.newInstance(), RestaurantDetailsFragment.TAG);
     }
 
     @Override

@@ -12,6 +12,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -25,6 +26,7 @@ import pl.pawbal.mealsdistributor.config.FontManager;
 import pl.pawbal.mealsdistributor.ui.base.BaseActivity;
 import pl.pawbal.mealsdistributor.ui.home.HomeFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
+import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
 public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
@@ -105,29 +107,18 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void navigateToHomeFragment() {
-        Fragment fromStack = getSupportFragmentManager().findFragmentByTag(HomeFragment.TAG);
-        if (fromStack == null) {
-            Fragment fragment = HomeFragment.newInstance();
-            replaceFragment(fragment, HomeFragment.TAG);
-        } else
-            replaceFragment(fromStack, HomeFragment.TAG);
-    }
-
-    private void replaceFragment(Fragment fragment, String fragmentTag) {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_wrapper, fragment, fragmentTag)
-                .addToBackStack(null)
-                .commit();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(HomeFragment.TAG);
+        FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
+                RestaurantFragment.newInstance(), HomeFragment.TAG);
     }
 
     @Override
     public void navigateToRestaurantFragment() {
-        Fragment fromStack = getSupportFragmentManager().findFragmentByTag(RestaurantFragment.TAG);
-        if (fromStack == null) {
-            Fragment fragment = RestaurantFragment.newInstance();
-            replaceFragment(fragment, RestaurantFragment.TAG);
-        } else
-            replaceFragment(fromStack, RestaurantFragment.TAG);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(RestaurantFragment.TAG);
+        FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
+                RestaurantFragment.newInstance(), RestaurantFragment.TAG);
     }
 
     @Override

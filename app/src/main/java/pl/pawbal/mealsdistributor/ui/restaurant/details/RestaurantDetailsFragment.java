@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.button.MaterialButton;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -23,8 +25,10 @@ import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurant;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
+import pl.pawbal.mealsdistributor.ui.meal.MealFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.edit.EditRestaurantFragment;
 import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
+import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
 public class RestaurantDetailsFragment extends BaseFragment implements RestaurantDetailsMvpView {
     public static final String TAG = RestaurantDetailsFragment.class.toString();
@@ -50,6 +54,9 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
 
     @BindView(R.id.tv_restaurant_details_max_paid_order_value)
     TextView restaurantMaxPaidOrderValue;
+
+    @BindView(R.id.btn_restaurant_details_meals)
+    MaterialButton goToMealsButton;
 
     public static RestaurantDetailsFragment newInstance() {
         Bundle args = new Bundle();
@@ -84,7 +91,8 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
 
     private void setIcon() {
         Typeface iconFont = FontManager.getTypeface(requireContext(), FontManager.FONTAWESOME_SOLID);
-        FontManager.markAsIconContainer(utensilsIcon, iconFont);
+        utensilsIcon.setTypeface(iconFont);
+        goToMealsButton.setTypeface(iconFont);
     }
 
     @Override
@@ -116,27 +124,24 @@ public class RestaurantDetailsFragment extends BaseFragment implements Restauran
     }
 
     @Override
-    public void navigateToEditRestaurantFragment(Bundle restaurant) {
-        FragmentManager fragmentManager = getFragmentManager();
-        if (fragmentManager != null) {
-            Fragment fromStack = fragmentManager.findFragmentByTag(EditRestaurantFragment.TAG);
-            if (fromStack == null) {
-                Fragment fragment = EditRestaurantFragment.newInstance();
-                fragment.setArguments(restaurant);
-                replaceFragment(fragmentManager, fragment, EditRestaurantFragment.TAG);
-            } else {
-                fromStack.setArguments(restaurant);
-                replaceFragment(fragmentManager, fromStack, EditRestaurantFragment.TAG);
-            }
-        }
+    public void navigateToEditRestaurantFragment(Bundle bundle) {
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(EditRestaurantFragment.TAG);
+        FragmentUtil.navigateToFragment(bundle, fragmentManager, fromStack,
+                EditRestaurantFragment.newInstance(), EditRestaurantFragment.TAG);
     }
 
-    // TODO: create FragmentUtil and move this method there
-    private void replaceFragment(@NonNull FragmentManager fragmentManager, Fragment fragment, String fragmentTag) {
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_wrapper, fragment, fragmentTag)
-                .addToBackStack(null)
-                .commit();
+    @OnClick(R.id.btn_restaurant_details_meals)
+    void navigateToMealFragment() {
+        presenter.navigateToMeals(restaurant.getId());
+    }
+
+    @Override
+    public void navigateToMealFragment(Bundle bundle) {
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(MealFragment.TAG);
+        FragmentUtil.navigateToFragment(bundle, fragmentManager, fromStack,
+                MealFragment.newInstance(), MealFragment.TAG);
     }
 
     @Override

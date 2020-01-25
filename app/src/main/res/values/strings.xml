@@ -28,10 +28,12 @@
     <string name="restaurant_details">Szczegóły restauracji</string>
     <string name="example">Example text</string>
     <string name="additional_info">Dodatkowe informacje:</string>
-    <string name="example_number">1000.00</string>
+    <string name="example_price">1000.00 zł.</string>
     <string name="delete">Usuń</string>
     <string name="edit">Edytuj</string>
     <string name="no_info">Brak informacji</string>
     <string name="edit_restaurant_title">Edycja restauracji</string>
     <string name="save">Zapisz</string>
+    <string name="add_meal">Dodaj posiłek</string>
+    <string name="to_meals_arrow">Posiłki &#xf054;</string>
 </resources>

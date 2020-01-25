@@ -17,13 +17,13 @@ import retrofit2.http.Path;
 
 public interface MealRestService {
     String MEAL_BASE_PATH = "meal";
-    String MEALS_BASE_PATH = "meals";
+    String MEALS_BASE_PATH = "/meals";
 
     @GET(MEAL_BASE_PATH + "/{id}")
     Single<GetMeal> getMeal(@Path("id") UUID id);
 
-    @GET("/restaurant/{restaurantId}" + MEALS_BASE_PATH)
-    Single<GetMeals> getMeals(@Path("restaurantId") UUID restaurantId);
+    @GET("restaurant/{restaurantId}" + MEALS_BASE_PATH)
+    Single<GetMeals> getMeals(@Path("restaurantId") String restaurantId);
 
     @POST(MEAL_BASE_PATH)
     Completable addMeal(@Body AddMeal body);

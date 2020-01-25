@@ -1,5 +1,8 @@
 package pl.pawbal.mealsdistributor.config;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import javax.inject.Singleton;
 
 import retrofit2.Retrofit;
@@ -19,9 +22,15 @@ public class RestConfiguration {
     public Retrofit create() {
         return new Retrofit.Builder()
                 .baseUrl(getBaseUrl())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
+    }
+
+    public Gson gson() {
+        return new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .create();
     }
 
     private String getBaseUrl() {

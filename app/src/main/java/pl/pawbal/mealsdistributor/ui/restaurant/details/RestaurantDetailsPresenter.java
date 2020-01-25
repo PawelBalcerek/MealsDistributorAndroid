@@ -47,9 +47,9 @@ public class RestaurantDetailsPresenter<V extends RestaurantDetailsMvpView> exte
     }
 
     @Override
-    public void deleteRestaurant(String id) {
+    public void deleteRestaurant(String restaurantId) {
         getMvpView().showLoading();
-        restaurantService.deleteRestaurant(id, new CustomCompletableObserver(
+        restaurantService.deleteRestaurant(restaurantId, new CustomCompletableObserver(
                 getCompositeDisposable(),
                 () -> successHandler.onDeleteRestaurantSuccess(getMvpView()),
                 t -> errorHandler.onDeleteRestaurantError(t, getMvpView())));
@@ -59,5 +59,11 @@ public class RestaurantDetailsPresenter<V extends RestaurantDetailsMvpView> exte
     public void navigateToEditRestaurant(Restaurant restaurant) {
         Bundle bundle = restaurantBundleFactory.create(restaurant);
         getMvpView().navigateToEditRestaurantFragment(bundle);
+    }
+
+    @Override
+    public void navigateToMeals(String restaurantId) {
+        Bundle bundle = restaurantBundleFactory.create(restaurantId);
+        getMvpView().navigateToMealFragment(bundle);
     }
 }
