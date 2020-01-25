@@ -13,7 +13,7 @@
     <string name="pyszne_pl">PYSZNE</string>
     <string name="phone_number">Tel.</string>
     <string name="add_restaurant">Nowa resturacja</string>
-    <string name="restaurant_name">Nazwa*</string>
+    <string name="restaurant_name_hint">Nazwa*</string>
     <string name="add_restaurant_title">Dodaj nową restaurację</string>
     <string name="restaurant_phone_number">Numer telefonu*</string>
     <string name="restaurant_min_order_cost">Minimalny koszt zamówienia</string>
@@ -36,4 +36,11 @@
     <string name="save">Zapisz</string>
     <string name="add_meal">Dodaj posiłek</string>
     <string name="to_meals_arrow">Posiłki &#xf054;</string>
+    <string name="meal_name_hint">Nazwa*</string>
+    <string name="meal_description_hint">Opis*</string>
+    <string name="meal_price_hint">Cena*</string>
+    <string name="meal_start_date_hint">Dostępny od</string>
+    <string name="add_meal_title">Dodaj nowy posiłek</string>
+    <string name="date_picker_title">Wybierz datę:</string>
+    <string name="meal_end_date_hint">Dostępny do</string>
 </resources>

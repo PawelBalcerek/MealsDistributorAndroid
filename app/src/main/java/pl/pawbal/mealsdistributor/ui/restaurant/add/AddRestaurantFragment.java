@@ -19,7 +19,7 @@ import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
-import pl.pawbal.mealsdistributor.util.EditTextUtil;
+import pl.pawbal.mealsdistributor.util.ViewValueUtil;
 
 public class AddRestaurantFragment extends BaseFragment implements AddRestaurantMvpView {
     public static final String TAG = AddRestaurantFragment.class.toString();
@@ -77,11 +77,11 @@ public class AddRestaurantFragment extends BaseFragment implements AddRestaurant
 
     @OnClick(R.id.btn_add_restaurant_accept)
     void saveRestaurant() {
-        String name = EditTextUtil.getValue(restaurantName);
-        String phoneNumber = EditTextUtil.getValue(restaurantPhoneNumber);
-        String minOrderCost = EditTextUtil.getValue(restaurantMinOrderCost);
-        String deliveryCost = EditTextUtil.getValue(restaurantDeliveryCost);
-        String maxPaidOrderValue = EditTextUtil.getValue(restaurantMaxPaidOrderValue);
+        String name = ViewValueUtil.getValue(restaurantName);
+        String phoneNumber = ViewValueUtil.getValue(restaurantPhoneNumber);
+        String minOrderCost = ViewValueUtil.getValue(restaurantMinOrderCost);
+        String deliveryCost = ViewValueUtil.getValue(restaurantDeliveryCost);
+        String maxPaidOrderValue = ViewValueUtil.getValue(restaurantMaxPaidOrderValue);
         boolean isPyszne = restaurantIsPyszne.isChecked();
         presenter.addRestaurant(name, phoneNumber, minOrderCost, deliveryCost, maxPaidOrderValue, isPyszne);
     }

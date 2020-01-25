@@ -4,10 +4,10 @@
     <string name="register_error_409_toast">Użytkownik o podanym adresie e-mail już istnieje.</string>
     <string name="login_default_error_toast">Logowanie nie powiodło się, proszę spróbować ponownie.</string>
     <string name="get_restaurants_default_error_toast">Nie udało się pobrać listy restauracji, proszę spróbować ponownie.</string>
-    <string name="add_restaurants_default_error_toast">Nie udało się dodać nowej restauracji, proszę spróbować ponownie.</string>
+    <string name="add_restaurant_default_error_toast">Nie udało się dodać nowej restauracji, proszę spróbować ponownie.</string>
     <string name="add_restaurant_nfe_error_toast">Dodawanie nowej restauracji nie powiodło się. Minimalny koszt zamówienia, koszt dostawy oraz koszt darmowej dostawy muszą być wartościami liczbowymi.</string>
-    <string name="add_restaurants_400_error_toast">Nie udało się dodać nowej restauracji, proszę sprawdzić poprawność danych.</string>
-    <string name="add_restaurants_403_error_toast">Nie udało się dodać nowej restauracji, nie masz dostępu do tej funkcjonalności.</string>
+    <string name="add_restaurant_400_error_toast">Nie udało się dodać nowej restauracji, proszę sprawdzić poprawność danych.</string>
+    <string name="add_restaurant_403_error_toast">Nie udało się dodać nowej restauracji, nie masz dostępu do tej funkcjonalności.</string>
     <string name="get_restaurant_default_error_toast">Nie udało się pobrać wymaganych informacji, proszę spróbować ponownie.</string>
     <string name="get_restaurant_403_error_toast">Nie posiadasz dostępu do wymaganych informacji.</string>
     <string name="get_restaurant_404_error_toast">Nie udało się znaleźć wymaganych informacji.</string>
@@ -19,4 +19,10 @@
     <string name="edit_restaurant_400_error_toast">Edycja restauracji nie powiodła się, proszę sprawdzić poprawność danych.</string>
     <string name="edit_restaurant_403_error_toast">Nie posiadasz dostępu do edycji tej restauracji.</string>
     <string name="edit_restaurant_404_error_toast">Edytowana restauracja nie została odnaleziona w systemie, proszę spróbować ponownie.</string>
+    <string name="add_meal_default_error_toast">Nie udało się dodać nowego posiłku, proszę spróbować ponownie.</string>
+    <string name="add_meal_nfe_error_toast">Dodawanie nowej restauracji nie powiodło się. Cena posiłku musi być wartością liczbową.</string>
+    <string name="add_meal_dte_error_toast">Dodawanie nowej restauracji nie powiodło się. Data dostępności od bądź data dostępności do nie została wybrana poprawnie.</string>
+    <string name="add_meal_400_error_toast">Nie udało się dodać nowego posiłku, proszę sprawdzić poprawność danych.</string>
+    <string name="add_meal_403_error_toast">Nie udało się dodać nowego posiłku, nie masz dostępu do tej funkcjonalności.</string>
+    <string name="add_meal_404_error_toast">Nie udało się dodać nowego posiłku dla wybranej restauracji, wybrana restauracja nie istnieje.</string>
 </resources>

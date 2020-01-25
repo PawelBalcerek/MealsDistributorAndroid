@@ -38,19 +38,19 @@ public class RestaurantErrorHandler {
         if (t instanceof HttpException) {
             switch (((HttpException) t).code()) {
                 case 400:
-                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_400_error_toast), t);
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurant_400_error_toast), t);
                     break;
                 case 403:
-                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_403_error_toast), t);
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurant_403_error_toast), t);
                     break;
                 default:
-                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_default_error_toast), t);
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurant_default_error_toast), t);
                     break;
             }
         } else if (t instanceof NumberFormatException) {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurant_nfe_error_toast), t);
         } else {
-            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurants_default_error_toast), t);
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_restaurant_default_error_toast), t);
         }
     }
 

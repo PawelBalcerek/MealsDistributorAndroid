@@ -21,7 +21,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
 import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
-import pl.pawbal.mealsdistributor.util.EditTextUtil;
+import pl.pawbal.mealsdistributor.util.ViewValueUtil;
 
 public class EditRestaurantFragment extends BaseFragment implements EditRestaurantMvpView {
     public static final String TAG = EditRestaurantFragment.class.toString();
@@ -101,11 +101,11 @@ public class EditRestaurantFragment extends BaseFragment implements EditRestaura
 
     @OnClick(R.id.btn_edit_restaurant_save)
     void editRestaurant() {
-        String name = EditTextUtil.getValue(restaurantName);
-        String phoneNumber = EditTextUtil.getValue(restaurantPhoneNumber);
-        String minOrderCost = EditTextUtil.getValue(restaurantMinOrderCost);
-        String deliveryCost = EditTextUtil.getValue(restaurantDeliveryCost);
-        String maxPaidOrderValue = EditTextUtil.getValue(restaurantMaxPaidOrderValue);
+        String name = ViewValueUtil.getValue(restaurantName);
+        String phoneNumber = ViewValueUtil.getValue(restaurantPhoneNumber);
+        String minOrderCost = ViewValueUtil.getValue(restaurantMinOrderCost);
+        String deliveryCost = ViewValueUtil.getValue(restaurantDeliveryCost);
+        String maxPaidOrderValue = ViewValueUtil.getValue(restaurantMaxPaidOrderValue);
         boolean isPyszne = restaurantIsPyszne.isChecked();
         presenter.editRestaurant(restaurantId, name, phoneNumber, minOrderCost, deliveryCost, maxPaidOrderValue, isPyszne);
     }
