@@ -33,7 +33,7 @@ public class MealWrapperService implements MealService {
     }
 
     @Override
-    public void getMeals(UUID restaurantId, CustomSingleObserver<GetMeals> observer) {
+    public void getMeals(String restaurantId, CustomSingleObserver<GetMeals> observer) {
         responseWrapper.wrapSingle(mealRestService.getMeals(restaurantId))
                 .subscribe(observer);
     }

@@ -6,6 +6,7 @@ import pl.pawbal.mealsdistributor.di.module.ActivityModule;
 import pl.pawbal.mealsdistributor.ui.home.HomeFragment;
 import pl.pawbal.mealsdistributor.ui.login.LoginActivity;
 import pl.pawbal.mealsdistributor.ui.main.MainActivity;
+import pl.pawbal.mealsdistributor.ui.meal.MealFragment;
 import pl.pawbal.mealsdistributor.ui.register.RegisterActivity;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantFragment;
@@ -30,4 +31,6 @@ public interface ActivityComponent {
     void inject(RestaurantDetailsFragment restaurantDetailsFragment);
 
     void inject(EditRestaurantFragment editRestaurantFragment);
+
+    void inject(MealFragment mealFragment);
 }

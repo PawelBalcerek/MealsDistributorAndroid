@@ -8,7 +8,9 @@ import pl.pawbal.mealsdistributor.ui.base.MvpPresenter;
 public interface RestaurantDetailsMvpPresenter<V> extends MvpPresenter<V> {
     void getRestaurant(Bundle bundle);
 
-    void deleteRestaurant(String id);
+    void deleteRestaurant(String restaurantId);
 
     void navigateToEditRestaurant(Restaurant restaurant);
+
+    void navigateToMeals(String restaurantId);
 }

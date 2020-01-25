@@ -10,5 +10,7 @@ public interface RestaurantDetailsMvpView extends MvpView {
 
     void onRestaurantDelete();
 
-    void navigateToEditRestaurantFragment(Bundle restaurant);
+    void navigateToEditRestaurantFragment(Bundle bundle);
+
+    void navigateToMealFragment(Bundle bundle);
 }
