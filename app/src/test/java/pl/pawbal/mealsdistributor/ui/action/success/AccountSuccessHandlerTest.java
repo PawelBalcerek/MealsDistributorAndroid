@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import pl.pawbal.mealsdistributor.ui.login.LoginMvpView;
+import pl.pawbal.mealsdistributor.ui.main.MainMvpView;
 
 import static org.mockito.Mockito.verify;
 
@@ -20,5 +21,19 @@ class AccountSuccessHandlerTest {
 
         //then
         verify(view).navigateToMainActivity();
+        verify(view).hideLoading();
+    }
+
+    @Test
+    void onLogoutSuccess() {
+        //given
+        MainMvpView view = Mockito.mock(MainMvpView.class);
+
+        //when
+        accountSuccessHandler.onLogoutSuccess(view);
+
+        //then
+        verify(view).hideLoading();
+        verify(view).onLogout();
     }
 }

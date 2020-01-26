@@ -13,8 +13,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import pl.pawbal.mealsdistributor.config.ApplicationProperties;
-import pl.pawbal.mealsdistributor.config.RestConfiguration;
+import pl.pawbal.mealsdistributor.config.rest.RestConfiguration;
 import pl.pawbal.mealsdistributor.data.api.service.AccountService;
 import pl.pawbal.mealsdistributor.data.api.service.ConfigurationService;
 import pl.pawbal.mealsdistributor.data.api.service.MealService;
@@ -43,7 +42,12 @@ import pl.pawbal.mealsdistributor.data.api.service.wrapper.OrderWrapperService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.RestaurantWrapperService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.UserWrapperService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.ResponseWrapper;
+import pl.pawbal.mealsdistributor.data.preference.AppPreferenceHelper;
+import pl.pawbal.mealsdistributor.data.preference.PreferenceHelper;
 import pl.pawbal.mealsdistributor.di.ApplicationContext;
+import pl.pawbal.mealsdistributor.di.PreferenceInfo;
+
+import static pl.pawbal.mealsdistributor.data.preference.AppPreferenceHelper.APP_PREFERENCE_FILE_NAME;
 
 @Module
 public class ApplicationModule {
@@ -84,18 +88,6 @@ public class ApplicationModule {
         return properties;
     }
 
-    @Provides
-    @Singleton
-    ApplicationProperties provideApplicationProperties(Properties properties) {
-        return new ApplicationProperties(properties);
-    }
-
-    @Provides
-    @Singleton
-    RestConfiguration provideRestConfiguration(ApplicationProperties applicationProperties) {
-        return new RestConfiguration(applicationProperties);
-    }
-
     // API Services
     @Provides
     @Singleton
@@ -125,6 +117,18 @@ public class ApplicationModule {
     ConfigurationRestService provideConfigurationRestService(RestConfiguration restConfiguration) {
         return restConfiguration.create()
                 .create(ConfigurationRestService.class);
+    }
+
+    @Provides
+    @PreferenceInfo
+    String providePreferenceName() {
+        return APP_PREFERENCE_FILE_NAME;
+    }
+
+    @Provides
+    @Singleton
+    PreferenceHelper providePreferenceHelper(AppPreferenceHelper appPreferenceHelper) {
+        return appPreferenceHelper;
     }
 
     @Provides

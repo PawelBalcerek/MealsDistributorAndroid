@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
+import pl.pawbal.mealsdistributor.ui.main.MainMvpView;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpView;
 import retrofit2.HttpException;
 
@@ -39,6 +40,20 @@ public class UserErrorHandler {
             }
         } else {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.register_default_error_toast), t);
+        }
+    }
+
+    public void onGetCurrentUserError(Throwable t, MainMvpView view) {
+        view.logout();
+        view.hideLoading();
+        if (t instanceof HttpException) {
+            if (((HttpException) t).code() == 401) {
+                errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_current_user_error_401_toast), t);
+            } else {
+                errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_current_user_default_error_toast), t);
+            }
+        } else {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_current_user_default_error_toast), t);
         }
     }
 }

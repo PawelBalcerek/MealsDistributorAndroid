@@ -6,4 +6,8 @@ public interface MainMvpPresenter<V> extends MvpPresenter<V> {
     void onNavigateToHome();
 
     void onNavigateToRestaurant();
+
+    void getCurrentUser();
+
+    void logout();
 }

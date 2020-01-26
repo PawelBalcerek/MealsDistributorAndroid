@@ -11,7 +11,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import pl.pawbal.mealsdistributor.R;
+import pl.pawbal.mealsdistributor.data.models.dto.response.user.GetUser;
 import pl.pawbal.mealsdistributor.ui.action.core.SuccessHandler;
+import pl.pawbal.mealsdistributor.ui.main.MainMvpView;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpView;
 
 import static org.mockito.Mockito.verify;
@@ -43,6 +45,20 @@ class UserSuccessHandlerTest {
         //then
         verify(successHandler).showToast(context, message);
         verify(view).navigateToLogin();
+    }
+
+    @Test
+    void onGetCurrentUserSuccess() {
+        //given
+        GetUser user = new GetUser();
+        MainMvpView view = Mockito.mock(MainMvpView.class);
+
+        //when
+        userSuccessHandler.onGetCurrentUserSuccess(user, view);
+
+        //then
+        verify(view).hideLoading();
+        verify(view).bindUserToMenu(user);
     }
 
 }
