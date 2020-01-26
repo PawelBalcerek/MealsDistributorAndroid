@@ -27,6 +27,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.user.GetUser;
 import pl.pawbal.mealsdistributor.ui.base.BaseActivity;
 import pl.pawbal.mealsdistributor.ui.home.HomeFragment;
 import pl.pawbal.mealsdistributor.ui.login.LoginActivity;
+import pl.pawbal.mealsdistributor.ui.orderproposition.OrderPropositionFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
 import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
@@ -97,6 +98,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
             case R.id.mi_navigation_restaurant:
                 presenter.onNavigateToRestaurant();
                 return true;
+            case R.id.mi_navigation_order_proposition:
+                presenter.onNavigateToOrderProposition();
+                return true;
             default:
                 return false;
         }
@@ -125,6 +129,14 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         Fragment fromStack = fragmentManager.findFragmentByTag(RestaurantFragment.TAG);
         FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
                 RestaurantFragment.newInstance(), RestaurantFragment.TAG);
+    }
+
+    @Override
+    public void navigateToOrderPropositionFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(OrderPropositionFragment.TAG);
+        FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
+                OrderPropositionFragment.newInstance(), OrderPropositionFragment.TAG);
     }
 
     @Override

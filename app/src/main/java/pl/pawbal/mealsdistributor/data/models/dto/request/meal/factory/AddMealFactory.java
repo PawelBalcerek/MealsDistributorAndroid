@@ -27,8 +27,8 @@ public class AddMealFactory {
         addMeal.setDescription(description);
         addMeal.setPrice(bigDecimalFormatUtil.format(price));
         addMeal.setRestaurantId(restaurantId);
-        addMeal.setStartDate(localDateTimeUtil.format(startDate));
-        addMeal.setEndDate(localDateTimeUtil.format(endDate));
+        addMeal.setStartDate(localDateTimeUtil.of(startDate));
+        addMeal.setEndDate(localDateTimeUtil.of(endDate));
         return addMeal;
     }
 }

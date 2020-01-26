@@ -6,5 +6,8 @@
         <item
             android:id="@+id/mi_navigation_restaurant"
             android:title="@string/restaurants" />
+        <item
+            android:id="@+id/mi_navigation_order_proposition"
+            android:title="@string/order_proposition" />
     </group>
 </menu>

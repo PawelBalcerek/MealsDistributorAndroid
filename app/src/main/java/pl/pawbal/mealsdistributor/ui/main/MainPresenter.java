@@ -51,6 +51,12 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     }
 
     @Override
+    public void onNavigateToOrderProposition() {
+        getMvpView().closeMenu();
+        getMvpView().navigateToOrderPropositionFragment();
+    }
+
+    @Override
     public void getCurrentUser() {
         getMvpView().showLoading();
         userService.getCurrentUser(new CustomSingleObserver<>(

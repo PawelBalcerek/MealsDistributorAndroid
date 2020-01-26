@@ -12,6 +12,8 @@ public interface MainMvpView extends MvpView {
 
     void navigateToRestaurantFragment();
 
+    void navigateToOrderPropositionFragment();
+
     void logout();
 
     void onLogout();

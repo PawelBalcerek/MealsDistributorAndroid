@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
+import pl.pawbal.mealsdistributor.ui.base.MvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantMvpView;
 import pl.pawbal.mealsdistributor.ui.restaurant.details.RestaurantDetailsMvpView;
@@ -55,7 +56,7 @@ public class RestaurantErrorHandler {
     }
 
     // TODO: May be unit tested
-    public void onGetRestaurantError(Throwable t, RestaurantDetailsMvpView view) {
+    public void onGetRestaurantError(Throwable t, MvpView view) {
         view.hideLoading();
         if (t instanceof HttpException) {
             switch (((HttpException) t).code()) {
