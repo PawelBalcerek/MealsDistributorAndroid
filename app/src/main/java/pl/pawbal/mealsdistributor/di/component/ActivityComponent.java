@@ -11,6 +11,7 @@ import pl.pawbal.mealsdistributor.ui.meal.add.AddMealFragment;
 import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsFragment;
 import pl.pawbal.mealsdistributor.ui.meal.edit.EditMealFragment;
 import pl.pawbal.mealsdistributor.ui.orderproposition.OrderPropositionFragment;
+import pl.pawbal.mealsdistributor.ui.orderproposition.add.AddOrderPropositionFragment;
 import pl.pawbal.mealsdistributor.ui.register.RegisterActivity;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
 import pl.pawbal.mealsdistributor.ui.restaurant.add.AddRestaurantFragment;
@@ -45,4 +46,6 @@ public interface ActivityComponent {
     void inject(EditMealFragment editMealFragment);
 
     void inject(OrderPropositionFragment orderPropositionFragment);
+
+    void inject(AddOrderPropositionFragment orderPropositionFragment);
 }
