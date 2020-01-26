@@ -1,4 +1,4 @@
-package pl.pawbal.mealsdistributor.config;
+package pl.pawbal.mealsdistributor.config.properties;
 
 import java.util.Properties;
 
@@ -10,11 +10,11 @@ public class ApplicationProperties {
     private final Properties properties;
 
     @Inject
-    public ApplicationProperties(Properties properties) {
+    ApplicationProperties(Properties properties) {
         this.properties = properties;
     }
 
-    String getProperty(String key) {
+    public String getProperty(String key) {
         return properties.getProperty(key);
     }
 }

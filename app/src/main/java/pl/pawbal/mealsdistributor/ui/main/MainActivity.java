@@ -22,9 +22,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
-import pl.pawbal.mealsdistributor.config.FontManager;
+import pl.pawbal.mealsdistributor.config.ui.FontManager;
+import pl.pawbal.mealsdistributor.data.models.dto.response.user.GetUser;
 import pl.pawbal.mealsdistributor.ui.base.BaseActivity;
 import pl.pawbal.mealsdistributor.ui.home.HomeFragment;
+import pl.pawbal.mealsdistributor.ui.login.LoginActivity;
 import pl.pawbal.mealsdistributor.ui.restaurant.RestaurantFragment;
 import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
@@ -40,8 +42,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @BindView(R.id.nv_main_menu)
     NavigationView menuNavigationView;
-
-    TextView loginTextView;
 
     public static Intent getStartIntent(Context context) {
         return new Intent(context, MainActivity.class);
@@ -78,8 +78,14 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     private void setUpNavigationView() {
-        loginTextView = menuNavigationView.findViewById(R.id.tv_navigation_header_login);
         menuNavigationView.setNavigationItemSelectedListener(this::navigationItemSelectedAction);
+        presenter.getCurrentUser();
+    }
+
+    @Override
+    public void bindUserToMenu(GetUser user) {
+        TextView login = menuNavigationView.findViewById(R.id.tv_navigation_header_login);
+        login.setText(user.getEmail().split("@")[0]);
     }
 
     private boolean navigationItemSelectedAction(MenuItem item) {
@@ -119,6 +125,19 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         Fragment fromStack = fragmentManager.findFragmentByTag(RestaurantFragment.TAG);
         FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
                 RestaurantFragment.newInstance(), RestaurantFragment.TAG);
+    }
+
+    @Override
+    @OnClick(R.id.tv_logout)
+    public void logout() {
+        presenter.logout();
+    }
+
+    @Override
+    public void onLogout() {
+        Intent intent = LoginActivity.getStartIntent(MainActivity.this);
+        startActivity(intent);
+        finish();
     }
 
     @Override

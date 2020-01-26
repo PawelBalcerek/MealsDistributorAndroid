@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
-import pl.pawbal.mealsdistributor.config.FontManager;
+import pl.pawbal.mealsdistributor.config.ui.FontManager;
 import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeal;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;

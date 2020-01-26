@@ -8,6 +8,7 @@ import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
 import pl.pawbal.mealsdistributor.ui.login.LoginMvpView;
+import pl.pawbal.mealsdistributor.ui.main.MainMvpView;
 import retrofit2.HttpException;
 
 public class AccountErrorHandler {
@@ -45,5 +46,10 @@ public class AccountErrorHandler {
         } else {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.login_default_error_toast), t);
         }
+    }
+
+    public void onLogoutError(Throwable t, MainMvpView view) {
+        view.hideLoading();
+        errorHandler.showToast(context, TAG, context.getResources().getString(R.string.something_went_terribly_wrong), t);
     }
 }

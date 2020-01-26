@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
-import pl.pawbal.mealsdistributor.config.FontManager;
+import pl.pawbal.mealsdistributor.config.ui.FontManager;
 import pl.pawbal.mealsdistributor.data.models.dto.base.Restaurant;
 import pl.pawbal.mealsdistributor.data.models.dto.response.restaurant.GetRestaurant;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;

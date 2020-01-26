@@ -1,4 +1,4 @@
-package pl.pawbal.mealsdistributor.config;
+package pl.pawbal.mealsdistributor.config.ui;
 
 import android.content.Context;
 import android.graphics.Typeface;

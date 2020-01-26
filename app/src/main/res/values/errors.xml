@@ -1,7 +1,10 @@
 <resources>
+    <string name="something_went_terribly_wrong">Coś poszło bardzo nie tak.</string>
     <string name="register_default_error_toast">Rejestracja nie powiodła się, proszę spróbować ponownie.</string>
     <string name="register_error_400_toast">Podane dane są niepoprawne.</string>
     <string name="register_error_409_toast">Użytkownik o podanym adresie e-mail już istnieje.</string>
+    <string name="get_current_user_default_error_toast">Nie udało się pobrać wymaganych danych, proszę spróbować zalogować się ponownie.</string>
+    <string name="get_current_user_error_401_toast">Proszę zalogować się ponownie.</string>
     <string name="login_default_error_toast">Logowanie nie powiodło się, proszę spróbować ponownie.</string>
     <string name="get_restaurants_default_error_toast">Nie udało się pobrać listy restauracji, proszę spróbować ponownie.</string>
     <string name="add_restaurant_default_error_toast">Nie udało się dodać nowej restauracji, proszę spróbować ponownie.</string>
