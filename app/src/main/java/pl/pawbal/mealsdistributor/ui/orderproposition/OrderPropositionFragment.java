@@ -7,13 +7,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
+import pl.pawbal.mealsdistributor.ui.orderproposition.add.AddOrderPropositionFragment;
+import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
 public class OrderPropositionFragment extends BaseFragment implements OrderPropositionMvpView {
     public static final String TAG = OrderPropositionFragment.class.toString();
@@ -43,6 +48,14 @@ public class OrderPropositionFragment extends BaseFragment implements OrderPropo
 
     @Override
     protected void setUp(View view) {
+    }
+
+    @OnClick(R.id.btn_order_proposition_add)
+    public void navigateToAddOrderPropositionFragment() {
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(AddOrderPropositionFragment.TAG);
+        FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
+                AddOrderPropositionFragment.newInstance(), AddOrderPropositionFragment.TAG);
     }
 
     @Override
