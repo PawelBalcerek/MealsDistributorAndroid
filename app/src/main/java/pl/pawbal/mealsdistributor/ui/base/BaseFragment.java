@@ -1,6 +1,6 @@
 package pl.pawbal.mealsdistributor.ui.base;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +16,7 @@ import pl.pawbal.mealsdistributor.service.ActivityCommonService;
 public abstract class BaseFragment extends Fragment implements MvpView {
     private BaseActivity baseActivity;
     private Unbinder unbinder;
-    private ProgressDialog progressDialog;
+    private AlertDialog alertDialog;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -39,13 +39,13 @@ public abstract class BaseFragment extends Fragment implements MvpView {
     @Override
     public void showLoading() {
         hideLoading();
-        progressDialog = ActivityCommonService.showLoadingDialog(getContext());
+        alertDialog = ActivityCommonService.showLoadingDialog(getContext());
     }
 
     @Override
     public void hideLoading() {
-        if (progressDialog != null && progressDialog.isShowing())
-            progressDialog.cancel();
+        if (alertDialog != null && alertDialog.isShowing())
+            alertDialog.cancel();
     }
 
     @Override
@@ -61,6 +61,7 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         if (baseActivity != null) baseActivity.hideKeyboard();
     }
 
+    @Nullable
     protected ActivityComponent getActivityComponent() {
         if (baseActivity != null) {
             return baseActivity.getActivityComponent();

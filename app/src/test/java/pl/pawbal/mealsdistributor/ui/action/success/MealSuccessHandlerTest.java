@@ -8,6 +8,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
 import pl.pawbal.mealsdistributor.ui.meal.MealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpView;
+import pl.pawbal.mealsdistributor.ui.meal.edit.EditMealMvpView;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -56,4 +57,16 @@ class MealSuccessHandlerTest {
         verify(view).bindMeal(meal);
     }
 
+    @Test
+    void onEditMealSuccess() {
+        //given
+        EditMealMvpView view = Mockito.mock(EditMealMvpView.class);
+
+        //when
+        successHandler.onEditMealSuccess(view);
+
+        //then
+        verify(view).hideLoading();
+        verify(view).goBack();
+    }
 }

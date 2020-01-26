@@ -1,4 +1,4 @@
-package pl.pawbal.mealsdistributor.ui.meal.add;
+package pl.pawbal.mealsdistributor.ui.meal.edit;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,17 +17,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pl.pawbal.mealsdistributor.R;
+import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeal;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
 import pl.pawbal.mealsdistributor.ui.custom.CustomDatePickerBuilder;
+import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
+import pl.pawbal.mealsdistributor.util.LocalDateTimeUtil;
 import pl.pawbal.mealsdistributor.util.ViewValueUtil;
 
-public class AddMealFragment extends BaseFragment implements AddMealMvpView {
-    public static final String TAG = AddMealFragment.class.toString();
-    private String restaurantId;
+public class EditMealFragment extends BaseFragment implements EditMealMvpView {
+    public static final String TAG = EditMealFragment.class.toString();
+    private String mealId;
 
     @Inject
-    AddMealMvpPresenter<AddMealMvpView> presenter;
+    EditMealMvpPresenter<EditMealMvpView> presenter;
 
     @Inject
     CustomDatePickerBuilder customDatePickerBuilder;
@@ -50,9 +53,9 @@ public class AddMealFragment extends BaseFragment implements AddMealMvpView {
     private MaterialDatePicker<Long> startDatePicker;
     private MaterialDatePicker<Long> endDatePicker;
 
-    public static AddMealFragment newInstance() {
+    public static EditMealFragment newInstance() {
         Bundle args = new Bundle();
-        AddMealFragment fragment = new AddMealFragment();
+        EditMealFragment fragment = new EditMealFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,7 +63,7 @@ public class AddMealFragment extends BaseFragment implements AddMealMvpView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_meal, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_meal, container, false);
         ActivityComponent component = getActivityComponent();
         if (component != null) {
             component.inject(this);
@@ -72,32 +75,35 @@ public class AddMealFragment extends BaseFragment implements AddMealMvpView {
 
     @Override
     protected void setUp(View view) {
-        setUpDatePickers();
-        presenter.bindRestaurantId(getArguments());
-    }
-
-    private void setUpDatePickers() {
-        setUpStartDatePicker();
-        setUpEndDatePicker();
-    }
-
-    private void setUpStartDatePicker() {
-        startDatePicker = customDatePickerBuilder.build();
-        startDatePicker.addOnPositiveButtonClickListener(
-                selection -> mealStartDate.setText(startDatePicker.getHeaderText())
-        );
-    }
-
-    private void setUpEndDatePicker() {
-        endDatePicker = customDatePickerBuilder.build();
-        endDatePicker.addOnPositiveButtonClickListener(
-                selection -> mealEndDate.setText(endDatePicker.getHeaderText())
-        );
+        presenter.bindMeal(getArguments());
     }
 
     @Override
-    public void bindRestaurantId(String restaurantId) {
-        this.restaurantId = restaurantId;
+    public void bindMeal(GetMeal meal) {
+        mealId = meal.getId();
+        mealName.setText(meal.getName());
+        mealDescription.setText(meal.getDescription());
+        mealPrice.setText(BigDecimalFormatUtil.format(meal.getPrice()));
+        Long startDate = LocalDateTimeUtil.getMilliSec(meal.getStartDate());
+        setUpStartDatePicker(startDate);
+        mealStartDate.setText(LocalDateTimeUtil.format(meal.getStartDate()));
+        Long endDate = LocalDateTimeUtil.getMilliSec(meal.getEndDate());
+        setUpEndDatePicker(endDate);
+        mealEndDate.setText(LocalDateTimeUtil.format(meal.getEndDate()));
+    }
+
+    private void setUpStartDatePicker(Long selection) {
+        startDatePicker = selection != null ? customDatePickerBuilder.build(selection) : customDatePickerBuilder.build();
+        startDatePicker.addOnPositiveButtonClickListener(
+                ignored -> mealStartDate.setText(startDatePicker.getHeaderText())
+        );
+    }
+
+    private void setUpEndDatePicker(Long selection) {
+        endDatePicker = selection != null ? customDatePickerBuilder.build(selection) : customDatePickerBuilder.build();
+        endDatePicker.addOnPositiveButtonClickListener(
+                ignored -> mealEndDate.setText(endDatePicker.getHeaderText())
+        );
     }
 
     @OnClick(R.id.et_meal_form_start_date)
@@ -111,20 +117,21 @@ public class AddMealFragment extends BaseFragment implements AddMealMvpView {
     }
 
     @Override
-    @OnClick(R.id.btn_add_meal_go_back)
+    @OnClick(R.id.btn_edit_meal_go_back)
     public void goBack() {
         requireFragmentManager().popBackStack();
         hideKeyboard();
     }
 
-    @OnClick(R.id.btn_add_meal_accept)
+    @OnClick(R.id.btn_edit_meal_save)
     public void saveMeal() {
+        String id = mealId;
         String name = ViewValueUtil.getValue(mealName);
         String description = ViewValueUtil.getValue(mealDescription);
         String price = ViewValueUtil.getValue(mealPrice);
         Long startDate = ViewValueUtil.getValue(mealStartDate, startDatePicker);
         Long endDate = ViewValueUtil.getValue(mealEndDate, endDatePicker);
-        presenter.addMeal(name, description, price, restaurantId, startDate, endDate);
+        presenter.saveMeal(id, name, description, price, startDate, endDate);
     }
 
     @Override

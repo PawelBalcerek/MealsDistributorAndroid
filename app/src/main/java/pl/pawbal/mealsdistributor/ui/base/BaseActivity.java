@@ -1,6 +1,6 @@
 package pl.pawbal.mealsdistributor.ui.base;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +19,7 @@ import pl.pawbal.mealsdistributor.service.NetworkCommonService;
 
 public abstract class BaseActivity extends AppCompatActivity implements MvpView, BaseFragment.Callback {
     private ActivityComponent activityComponent;
-    private ProgressDialog progressDialog;
+    private AlertDialog alertDialog;
     private Unbinder unbinder;
 
     @Override
@@ -38,12 +38,12 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     @Override
     public void showLoading() {
         hideLoading();
-        progressDialog = ActivityCommonService.showLoadingDialog(this);
+        alertDialog = ActivityCommonService.showLoadingDialog(this);
     }
 
     @Override
     public void hideLoading() {
-        if (progressDialog != null && progressDialog.isShowing()) progressDialog.cancel();
+        if (alertDialog != null && alertDialog.isShowing()) alertDialog.cancel();
     }
 
     @Override

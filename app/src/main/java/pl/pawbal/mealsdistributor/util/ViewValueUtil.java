@@ -13,6 +13,11 @@ public class ViewValueUtil {
 
     public static Long getValue(EditText editText, MaterialDatePicker<Long> datePicker) {
         Editable editable = editText.getText();
-        return editable != null ? datePicker.getSelection() : null;
+        if (editable == null) return null;
+        try {
+            return datePicker.getSelection();
+        } catch (NullPointerException npe) {
+            return LocalDateTimeUtil.getMilliSec(editable.toString());
+        }
     }
 }

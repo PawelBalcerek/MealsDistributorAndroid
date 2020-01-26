@@ -47,4 +47,5 @@
     <string name="meal_start_date_colon">Dostępny od:</string>
     <string name="example_date">29 sty 2019</string>
     <string name="example_long_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas tincidunt tortor vel imperdiet. Maecenas sit amet fringilla felis. Integer at turpis interdum, tempor est ac, placerat elit. In velit tellus, vestibulum at porta at, accumsan id ipsum. Fusce imperdiet turpis rhoncus, sodales ipsum nec, dignissim sem. Pellentesque lacinia lectus at dapibus placerat. Nullam nisi ligula, laoreet id bibendum in, auctor et enim. Aliquam ante enim, dictum sit amet magna a, ornare sagittis quam. Aliquam nec bibendum erat, quis luctus odio. Duis sed porttitor metus. Donec aliquam luctus lacus sit amet finibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris tristique malesuada urna rhoncus consectetur. Donec posuere, felis vel aliquet facilisis, nulla arcu vulputate elit, eu maximus ipsum tortor eu nibh.</string>
+    <string name="edit_meal_title">Edycja posiłku</string>
 </resources>

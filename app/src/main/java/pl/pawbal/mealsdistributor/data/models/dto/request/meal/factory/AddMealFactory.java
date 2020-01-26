@@ -1,4 +1,4 @@
-package pl.pawbal.mealsdistributor.data.models.dto.factory;
+package pl.pawbal.mealsdistributor.data.models.dto.request.meal.factory;
 
 import androidx.annotation.Nullable;
 
@@ -6,17 +6,17 @@ import javax.inject.Inject;
 
 import pl.pawbal.mealsdistributor.data.models.dto.request.meal.AddMeal;
 import pl.pawbal.mealsdistributor.util.BigDecimalFormatUtil;
-import pl.pawbal.mealsdistributor.util.LocalDateTimeFormatUtil;
+import pl.pawbal.mealsdistributor.util.LocalDateTimeUtil;
 
-public class MealFactory {
+public class AddMealFactory {
     private final BigDecimalFormatUtil bigDecimalFormatUtil;
-    private final LocalDateTimeFormatUtil localDateTimeFormatUtil;
+    private final LocalDateTimeUtil localDateTimeUtil;
 
     @Inject
-    public MealFactory(BigDecimalFormatUtil bigDecimalFormatUtil,
-                       LocalDateTimeFormatUtil localDateTimeFormatUtil) {
+    public AddMealFactory(BigDecimalFormatUtil bigDecimalFormatUtil,
+                          LocalDateTimeUtil localDateTimeUtil) {
         this.bigDecimalFormatUtil = bigDecimalFormatUtil;
-        this.localDateTimeFormatUtil = localDateTimeFormatUtil;
+        this.localDateTimeUtil = localDateTimeUtil;
     }
 
     //TODO: unit test
@@ -27,8 +27,8 @@ public class MealFactory {
         addMeal.setDescription(description);
         addMeal.setPrice(bigDecimalFormatUtil.format(price));
         addMeal.setRestaurantId(restaurantId);
-        addMeal.setStartDate(localDateTimeFormatUtil.format(startDate));
-        addMeal.setEndDate(localDateTimeFormatUtil.format(endDate));
+        addMeal.setStartDate(localDateTimeUtil.format(startDate));
+        addMeal.setEndDate(localDateTimeUtil.format(endDate));
         return addMeal;
     }
 }
