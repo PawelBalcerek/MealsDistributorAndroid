@@ -26,6 +26,9 @@ import pl.pawbal.mealsdistributor.ui.meal.add.AddMealPresenter;
 import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsPresenter;
+import pl.pawbal.mealsdistributor.ui.meal.edit.EditMealMvpPresenter;
+import pl.pawbal.mealsdistributor.ui.meal.edit.EditMealMvpView;
+import pl.pawbal.mealsdistributor.ui.meal.edit.EditMealPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpPresenter;
 import pl.pawbal.mealsdistributor.ui.register.RegisterMvpView;
 import pl.pawbal.mealsdistributor.ui.register.RegisterPresenter;
@@ -118,6 +121,11 @@ public class ActivityModule {
 
     @Provides
     MealDetailsMvpPresenter<MealDetailsMvpView> provideMealDetailsMvpPresenter(MealDetailsPresenter<MealDetailsMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    EditMealMvpPresenter<EditMealMvpView> provideEditMealMvpPresenter(EditMealPresenter<EditMealMvpView> presenter) {
         return presenter;
     }
 }

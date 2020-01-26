@@ -8,6 +8,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.data.api.service.MealService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomSingleObserver;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.bundle.MealBundleFactory;
+import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeal;
 import pl.pawbal.mealsdistributor.ui.action.error.MealErrorHandler;
 import pl.pawbal.mealsdistributor.ui.action.success.MealSuccessHandler;
 import pl.pawbal.mealsdistributor.ui.base.BasePresenter;
@@ -40,5 +41,11 @@ public class MealDetailsPresenter<V extends MealDetailsMvpView> extends BasePres
                 m -> successHandler.onGetMealSuccess(m, getMvpView()),
                 t -> errorHandler.onGetMealError(t, getMvpView())
         ));
+    }
+
+    @Override
+    public void navigateToEditMealFragment(GetMeal meal) {
+        Bundle bundle = mealBundleFactory.create(meal);
+        getMvpView().navigateToEditMealFragment(bundle);
     }
 }

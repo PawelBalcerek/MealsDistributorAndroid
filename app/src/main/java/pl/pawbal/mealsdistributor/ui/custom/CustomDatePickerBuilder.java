@@ -17,4 +17,11 @@ public class CustomDatePickerBuilder {
                 .setTitleText(R.string.date_picker_title)
                 .build();
     }
+
+    public MaterialDatePicker<Long> build(Long selection) {
+        return MaterialDatePicker.Builder.datePicker()
+                .setSelection(selection)
+                .setTitleText(R.string.date_picker_title)
+                .build();
+    }
 }

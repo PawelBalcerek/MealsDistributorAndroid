@@ -35,6 +35,7 @@ public class RestaurantBundleFactory {
         return bundle;
     }
 
+    @Nullable
     public Restaurant restaurant(@Nullable Bundle bundle) {
         String restaurantJson = null;
         if (bundle != null)

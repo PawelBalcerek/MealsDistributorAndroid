@@ -12,6 +12,7 @@ import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
 import pl.pawbal.mealsdistributor.ui.meal.MealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpView;
+import pl.pawbal.mealsdistributor.ui.meal.edit.EditMealMvpView;
 import retrofit2.HttpException;
 
 public class MealErrorHandler {
@@ -76,6 +77,32 @@ public class MealErrorHandler {
         } else {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_meal_default_error_toast), t);
         }
+    }
 
+    // TODO: Unit test
+    public void onEditMealError(Throwable t, EditMealMvpView view) {
+        view.hideLoading();
+        view.hideKeyboard();
+        if (t instanceof HttpException) {
+            switch (((HttpException) t).code()) {
+                case 400:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_meal_400_error_toast), t);
+                    break;
+                case 403:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_meal_403_error_toast), t);
+                    break;
+                case 404:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_meal_404_error_toast), t);
+                default:
+                    errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_meal_default_error_toast), t);
+                    break;
+            }
+        } else if (t instanceof NumberFormatException) {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_meal_nfe_error_toast), t);
+        } else if (t instanceof DateTimeException) {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_meal_dte_error_toast), t);
+        } else {
+            errorHandler.showToast(context, TAG, context.getResources().getString(R.string.edit_meal_default_error_toast), t);
+        }
     }
 }

@@ -11,16 +11,16 @@ import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import pl.pawbal.mealsdistributor.data.api.service.MealService;
 import pl.pawbal.mealsdistributor.data.api.service.wrapper.core.CustomCompletableObserver;
-import pl.pawbal.mealsdistributor.data.models.dto.factory.MealFactory;
 import pl.pawbal.mealsdistributor.data.models.dto.factory.bundle.RestaurantBundleFactory;
 import pl.pawbal.mealsdistributor.data.models.dto.request.meal.AddMeal;
+import pl.pawbal.mealsdistributor.data.models.dto.request.meal.factory.AddMealFactory;
 import pl.pawbal.mealsdistributor.ui.action.error.MealErrorHandler;
 import pl.pawbal.mealsdistributor.ui.action.success.MealSuccessHandler;
 import pl.pawbal.mealsdistributor.ui.base.BasePresenter;
 
 public class AddMealPresenter<V extends AddMealMvpView> extends BasePresenter<V> implements AddMealMvpPresenter<V> {
     private final RestaurantBundleFactory restaurantBundleFactory;
-    private final MealFactory mealFactory;
+    private final AddMealFactory addMealFactory;
     private final MealSuccessHandler successHandler;
     private final MealErrorHandler errorHandler;
     private final MealService mealService;
@@ -28,13 +28,13 @@ public class AddMealPresenter<V extends AddMealMvpView> extends BasePresenter<V>
     @Inject
     public AddMealPresenter(CompositeDisposable compositeDisposable,
                             RestaurantBundleFactory restaurantBundleFactory,
-                            MealFactory mealFactory,
+                            AddMealFactory addMealFactory,
                             MealSuccessHandler successHandler,
                             MealErrorHandler errorHandler,
                             MealService mealService) {
         super(compositeDisposable);
         this.restaurantBundleFactory = restaurantBundleFactory;
-        this.mealFactory = mealFactory;
+        this.addMealFactory = addMealFactory;
         this.successHandler = successHandler;
         this.errorHandler = errorHandler;
         this.mealService = mealService;
@@ -57,7 +57,7 @@ public class AddMealPresenter<V extends AddMealMvpView> extends BasePresenter<V>
     private void tryAddMeal(String name, String description, String price,
                             String restaurantId, @Nullable Long startDate, @Nullable Long endDate) {
         try {
-            AddMeal meal = mealFactory.create(name, description, price, restaurantId, startDate, endDate);
+            AddMeal meal = addMealFactory.create(name, description, price, restaurantId, startDate, endDate);
             mealService.addMeal(meal, new CustomCompletableObserver(
                     getCompositeDisposable(),
                     () -> successHandler.onAddMealSuccess(getMvpView()),

@@ -7,6 +7,7 @@ import pl.pawbal.mealsdistributor.data.models.dto.response.meal.GetMeals;
 import pl.pawbal.mealsdistributor.ui.meal.MealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.add.AddMealMvpView;
 import pl.pawbal.mealsdistributor.ui.meal.details.MealDetailsMvpView;
+import pl.pawbal.mealsdistributor.ui.meal.edit.EditMealMvpView;
 
 public class MealSuccessHandler {
     @Inject
@@ -26,5 +27,10 @@ public class MealSuccessHandler {
     public void onGetMealSuccess(GetMeal meal, MealDetailsMvpView view) {
         view.hideLoading();
         view.bindMeal(meal);
+    }
+
+    public void onEditMealSuccess(EditMealMvpView view) {
+        view.hideLoading();
+        view.goBack();
     }
 }
