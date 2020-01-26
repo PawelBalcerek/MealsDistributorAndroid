@@ -14,6 +14,7 @@
     <string name="phone_number">Tel.</string>
     <string name="add_restaurant">Nowa resturacja</string>
     <string name="restaurant_name_hint">Nazwa*</string>
+    <string name="restaurant_name_long_hint">Nazwa restauracji*</string>
     <string name="add_restaurant_title">Dodaj nową restaurację</string>
     <string name="restaurant_phone_number">Numer telefonu*</string>
     <string name="restaurant_min_order_cost">Minimalny koszt zamówienia</string>
@@ -50,4 +51,6 @@
     <string name="edit_meal_title">Edycja posiłku</string>
     <string name="add_order_proposition">Nowa oferta zamówienia</string>
     <string name="order_proposition">Propozycje zamówień</string>
+    <string name="add_order_proposition_title">Dodaj nową propozycję zamówień</string>
+    <string name="order_proposition_form_order_time">Godzina zamówienia*</string>
 </resources>

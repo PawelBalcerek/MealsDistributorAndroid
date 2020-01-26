@@ -23,7 +23,7 @@ public class LocalDateTimeUtil {
 
     // TODO: may be unit tested
     @Nullable
-    public LocalDateTime format(@Nullable Long epochMilliSec) throws DateTimeException {
+    public LocalDateTime of(@Nullable Long epochMilliSec) throws DateTimeException {
         if (epochMilliSec == null) return null;
         return LocalDateTime.ofInstant(Instant.ofEpochMilli(epochMilliSec), ZoneId.systemDefault());
     }

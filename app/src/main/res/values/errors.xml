@@ -37,4 +37,8 @@
     <string name="edit_meal_400_error_toast">Nie udało się edytować posiłku, proszę sprawdzić poprawność danych.</string>
     <string name="edit_meal_403_error_toast">Nie udało się edytować posiłku, nie masz dostępu do tej funkcjonalności.</string>
     <string name="edit_meal_404_error_toast">Nie udało się edytować posiłku, posiłek nie został znaleziony w systemie.</string>
+    <string name="add_order_proposition_default_error_toast">Nie udało się dodać nowego posiłku, proszę spróbować ponownie.</string>
+    <string name="add_order_proposition_dte_error_toast">Dodawanie nowego posiłku nie powiodło się. Data dostępności od bądź data dostępności do nie została wybrana poprawnie.</string>
+    <string name="add_order_proposition_400_error_toast">Nie udało się dodać nowego posiłku, proszę sprawdzić poprawność danych.</string>
+    <string name="add_order_proposition_404_error_toast">Nie udało się dodać nowego posiłku dla wybranej restauracji, wybrana restauracja nie istnieje.</string>
 </resources>

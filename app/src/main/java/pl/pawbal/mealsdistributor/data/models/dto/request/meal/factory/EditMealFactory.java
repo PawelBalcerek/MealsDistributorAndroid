@@ -27,8 +27,8 @@ public class EditMealFactory {
         editMeal.setName(name);
         editMeal.setDescription(description);
         editMeal.setPrice(bigDecimalFormatUtil.format(price));
-        editMeal.setStartDate(localDateTimeUtil.format(startDate));
-        editMeal.setEndDate(localDateTimeUtil.format(endDate));
+        editMeal.setStartDate(localDateTimeUtil.of(startDate));
+        editMeal.setEndDate(localDateTimeUtil.of(endDate));
         return editMeal;
     }
 }
