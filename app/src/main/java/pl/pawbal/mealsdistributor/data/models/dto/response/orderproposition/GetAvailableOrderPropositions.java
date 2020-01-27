@@ -5,5 +5,5 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class GetAvailableOrderPropositions extends GetOrderPropositions{
+public class GetAvailableOrderPropositions extends GetOrderPropositions {
 }

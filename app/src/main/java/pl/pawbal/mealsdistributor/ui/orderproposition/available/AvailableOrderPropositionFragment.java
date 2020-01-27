@@ -7,16 +7,24 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import pl.pawbal.mealsdistributor.R;
+import pl.pawbal.mealsdistributor.data.models.dto.response.orderproposition.GetAvailableOrderPropositions;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
+import pl.pawbal.mealsdistributor.ui.orderproposition.OrderPropositionListAdapter;
 
 public class AvailableOrderPropositionFragment extends BaseFragment implements AvailableOrderPropositionMvpView {
     public static final String TAG = AvailableOrderPropositionFragment.class.toString();
+
+    @BindView(R.id.rv_available_order_proposition_list)
+    RecyclerView availableOrderPropositionList;
 
     @Inject
     AvailableOrderPropositionMvpPresenter<AvailableOrderPropositionMvpView> presenter;
@@ -43,7 +51,22 @@ public class AvailableOrderPropositionFragment extends BaseFragment implements A
 
     @Override
     protected void setUp(View view) {
+        setUpAvailableOrderPropositionList();
+        presenter.getAvailableOrderPropositions();
+    }
 
+    private void setUpAvailableOrderPropositionList() {
+        availableOrderPropositionList.setHasFixedSize(true);
+        availableOrderPropositionList.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    @Override
+    public void bind(GetAvailableOrderPropositions availableOrderPropositions) {
+        OrderPropositionListAdapter adapter = new OrderPropositionListAdapter(availableOrderPropositions.getOrderPropositions(), this::onOrderPropositionViewHolderClick);
+        availableOrderPropositionList.setAdapter(adapter);
+    }
+
+    private void onOrderPropositionViewHolderClick(View view) {
     }
 
     @Override

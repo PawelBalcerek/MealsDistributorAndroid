@@ -58,4 +58,5 @@
     <string name="stopped">Koniec zamówień</string>
     <string name="example_uuid">3fa85f64</string>
     <string name="order_proposition_id">Identyfikator</string>
+    <string name="available_order_proposition">Dostępne propozycje zamówień</string>
 </resources>

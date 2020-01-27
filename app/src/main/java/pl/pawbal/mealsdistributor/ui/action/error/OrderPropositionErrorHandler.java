@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.ActivityContext;
 import pl.pawbal.mealsdistributor.ui.action.core.ErrorHandler;
+import pl.pawbal.mealsdistributor.ui.base.MvpView;
 import pl.pawbal.mealsdistributor.ui.orderproposition.add.AddOrderPropositionMvpView;
 import retrofit2.HttpException;
 
@@ -43,5 +44,10 @@ public class OrderPropositionErrorHandler {
         } else {
             errorHandler.showToast(context, TAG, context.getResources().getString(R.string.add_order_proposition_default_error_toast), t);
         }
+    }
+
+    public void onGetAvailableOrderPropositionsError(Throwable t, MvpView view) {
+        view.hideLoading();
+        errorHandler.showToast(context, TAG, context.getResources().getString(R.string.get_available_order_propositions_default_error_toast), t);
     }
 }
