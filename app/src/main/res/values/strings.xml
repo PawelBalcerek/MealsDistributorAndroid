@@ -52,5 +52,11 @@
     <string name="add_order_proposition">Nowa oferta zamówienia</string>
     <string name="order_proposition">Propozycje zamówień</string>
     <string name="add_order_proposition_title">Dodaj nową propozycję zamówień</string>
+    <string name="order_proposition_order_time">Godzina zamówienia</string>
     <string name="order_proposition_form_order_time">Godzina zamówienia*</string>
+    <string name="example_time">12:00</string>
+    <string name="stopped">Koniec zamówień</string>
+    <string name="example_uuid">3fa85f64</string>
+    <string name="order_proposition_id">Identyfikator</string>
+    <string name="available_order_proposition">Dostępne propozycje zamówień</string>
 </resources>

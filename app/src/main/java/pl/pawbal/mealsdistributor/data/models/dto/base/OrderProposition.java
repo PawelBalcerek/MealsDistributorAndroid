@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import lombok.Data;
 
@@ -12,20 +11,20 @@ import lombok.Data;
 public class OrderProposition {
     @Expose
     @SerializedName("id")
-    private UUID id;
+    private String id;
     @Expose
-    @SerializedName("creatorId")
-    private UUID creatorId;
+    @SerializedName("creatorID")
+    private String creatorId;
     @Expose
     @SerializedName("restaurantId")
-    private UUID restaurantId;
+    private String restaurantId;
     @Expose
     @SerializedName("creationDate")
     private LocalDateTime creationDate;
     @Expose
-    @SerializedName("timeToOrder")
+    @SerializedName("timeToOrdering")
     private LocalDateTime timeToOrder;
     @Expose
-    @SerializedName("isFinished")
-    private boolean isFinished;
+    @SerializedName("orderingStopped")
+    private boolean isStopped;
 }

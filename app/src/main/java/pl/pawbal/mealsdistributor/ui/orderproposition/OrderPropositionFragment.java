@@ -18,6 +18,7 @@ import pl.pawbal.mealsdistributor.R;
 import pl.pawbal.mealsdistributor.di.component.ActivityComponent;
 import pl.pawbal.mealsdistributor.ui.base.BaseFragment;
 import pl.pawbal.mealsdistributor.ui.orderproposition.add.AddOrderPropositionFragment;
+import pl.pawbal.mealsdistributor.ui.orderproposition.available.AvailableOrderPropositionFragment;
 import pl.pawbal.mealsdistributor.util.FragmentUtil;
 
 public class OrderPropositionFragment extends BaseFragment implements OrderPropositionMvpView {
@@ -56,6 +57,14 @@ public class OrderPropositionFragment extends BaseFragment implements OrderPropo
         Fragment fromStack = fragmentManager.findFragmentByTag(AddOrderPropositionFragment.TAG);
         FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
                 AddOrderPropositionFragment.newInstance(), AddOrderPropositionFragment.TAG);
+    }
+
+    @OnClick(R.id.btn_order_proposition_available)
+    public void navigateToAvailableOrderPropositionFragment() {
+        FragmentManager fragmentManager = requireFragmentManager();
+        Fragment fromStack = fragmentManager.findFragmentByTag(AvailableOrderPropositionFragment.TAG);
+        FragmentUtil.navigateToFragment(null, fragmentManager, fromStack,
+                AvailableOrderPropositionFragment.newInstance(), AvailableOrderPropositionFragment.TAG);
     }
 
     @Override
